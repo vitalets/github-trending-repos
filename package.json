@@ -9,7 +9,7 @@
   "scripts": {
     "code": "eslint .",
     "update": "node .",
-    "precommit": "npm run code",
+    "precommit": "lint-staged",
     "prepush": "npm run code"
   },
   "lint-staged": {
@@ -18,9 +18,11 @@
   "license": "MIT",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
+    "node-fetch": "^1.7.3"
+  },
+  "devDependencies": {
     "eslint": "^4.10.0",
     "husky": "^0.14.3",
-    "lint-staged": "^4.3.0",
-    "node-fetch": "^1.7.3"
+    "lint-staged": "^4.3.0"
   }
 }
