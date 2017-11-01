@@ -1,7 +1,7 @@
 {
   "name": "github-trending-repos",
   "version": "0.1.0",
-  "description": "Get notified of new trending repos on GitHub",
+  "description": "Be aware of new trending repos on GitHub",
   "author": {
     "name": "Vitaliy Potapov",
     "email": "noginsk@rambler.ru"
