@@ -17,7 +17,7 @@
     "max-depth": ["error", {"max" : 2}],
     "max-nested-callbacks": ["error", {"max" : 2}],
     "max-params": ["error", {"max" : 3}],
-    "max-statements": ["error", {"max" : 12}, {"ignoreTopLevelFunctions": false}],
+    "max-statements": ["error", {"max" : 15}, {"ignoreTopLevelFunctions": false}],
     "max-len": ["error", {"code" : 120}],
     "max-lines": ["error", {"max": 170, "skipComments": true, "skipBlankLines": true}],
     "semi": ["error", "always"],
