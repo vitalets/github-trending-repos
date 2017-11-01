@@ -1,4 +1,3 @@
-
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 
@@ -6,6 +5,7 @@ const DRY_RUN = !process.env.TRAVIS;
 const TRENDING_URL = 'https://github.com/trending/{lang}?since=daily';
 const API_URL = 'https://api.github.com/repos/vitalets/github-trending-repos';
 const ISSUE_LABEL = 'subscribe';
+const ISSUE_TITLE_REG = /New trending repo in (.+)/i;
 const REPO_URL_REG = /https:\/\/github.com\/[^)]+/ig;
 const COMMENT_TPL = `
 **New trending repo:** [{name}]({url})
@@ -33,7 +33,11 @@ async function getIssues() {
 
 async function processIssue(issue) {
   const lang = extractLang(issue);
-  console.log(lang.toUpperCase());
+  if (lang) {
+    console.log(`${lang.toUpperCase()}:`);
+  } else {
+    throw new Error(`Language not found for: ${issue.url}`);
+  }
   const trendingRepos = await getTrendingRepos(lang);
   console.log(`Trending repos: ${trendingRepos.size}`);
   if (trendingRepos.size === 0) {
@@ -49,7 +53,7 @@ async function processIssue(issue) {
 }
 
 async function getTrendingRepos(lang) {
-  const url = TRENDING_URL.replace('{lang}', lang.toLowerCase());
+  const url = getTrendingUrl(lang);
   console.log(`Fetching trending repos for ${lang}: ${url}`);
   const body = await fetch(url).then(r => r.text());
   const $ = cheerio.load(body);
@@ -125,8 +129,20 @@ async function fetchJson(method, path, data) {
   return await response.json();
 }
 
+function getTrendingUrl(lang) {
+  let urlLang = lang.toLowerCase().replace(/ /g, '-');
+  if (urlLang === 'all-languages') {
+    urlLang = '';
+  }
+  if (urlLang === 'unknown-languages') {
+    urlLang = 'unknown';
+  }
+  return TRENDING_URL.replace('{lang}', urlLang);
+}
+
 function extractLang(issue) {
-  return issue.title.split(' ').pop();
+  const matches = issue.title.match(ISSUE_TITLE_REG);
+  return matches && matches[1].trim();
 }
 
 function toNumber(el) {
