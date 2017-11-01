@@ -5,7 +5,7 @@ const DRY_RUN = !process.env.TRAVIS;
 const TRENDING_URL = 'https://github.com/trending/{lang}?since=daily';
 const API_URL = 'https://api.github.com/repos/vitalets/github-trending-repos';
 const ISSUE_LABEL = 'subscribe';
-const ISSUE_TITLE_REG = /New trending repo in (.+)/i;
+const ISSUE_TITLE_REG = /New trending repos in (.+)/i;
 const REPO_URL_REG = /https:\/\/github.com\/[^)]+/ig;
 
 main()
