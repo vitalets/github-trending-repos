@@ -7,11 +7,6 @@ const API_URL = 'https://api.github.com/repos/vitalets/github-trending-repos';
 const ISSUE_LABEL = 'subscribe';
 const ISSUE_TITLE_REG = /New trending repo in (.+)/i;
 const REPO_URL_REG = /https:\/\/github.com\/[^)]+/ig;
-const COMMENT_TPL = `
-**New trending repo:** [{name}]({url})
-**Description:** {description}
-**Stars today:** {starsToday}
-`.trim();
 
 main()
   .catch(e => {
@@ -97,13 +92,15 @@ function filterNewRepos(trendingRepos, knownRepos) {
 }
 
 async function postComment(issue, newRepos) {
-  const body = newRepos.map(repo => {
-    return COMMENT_TPL
-      .replace('{name}', repo.name.replace('/', ' / '))
-      .replace('{url}', repo.url)
-      .replace('{description}', repo.description || '*none*')
-      .replace('{starsToday}', repo.starsToday);
-  }).join('\n\n');
+  const header = `**New trending repo${newRepos.length > 1 ? 's' : ''}!**`;
+  const items = newRepos.map(repo => {
+    return [
+      `[${repo.name.replace('/', ' / ')}](${repo.url})`,
+      repo.description,
+      `***+${repo.starsToday}** stars today*`
+    ].filter(Boolean).join('\n');
+  });
+  const body = [header, ...items].join('\n\n');
   if (DRY_RUN) {
     console.log(`[DRY_RUN]: will comment\n${body}`);
     return;
