@@ -8,7 +8,7 @@
   },
   "scripts": {
     "code": "eslint .",
-    "check": "node .",
+    "update": "node .",
     "precommit": "npm run code",
     "prepush": "npm run code"
   },
