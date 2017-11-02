@@ -2,10 +2,11 @@ const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 
 const DRY_RUN = !process.env.TRAVIS;
-const TRENDING_URL = 'https://github.com/trending/{lang}?since=daily';
+const TRENDING_URL = 'https://github.com/trending/{lang}?since={since}';
 const API_URL = 'https://api.github.com/repos/vitalets/github-trending-repos';
-const ISSUE_LABEL = 'subscribe';
-const ISSUE_TITLE_REG = /New trending repos in (.+)/i;
+const ISSUE_LABEL_DAILY = 'trending-daily';
+const ISSUE_LABEL_WEEKLY = 'trending-weekly';
+const ISSUE_TITLE_REG = /New (daily|weekly) trending repos in (.+)/i;
 const REPO_URL_REG = /https:\/\/github.com\/[^)]+/ig;
 
 main()
@@ -23,18 +24,23 @@ async function main() {
 }
 
 async function getIssues() {
-  return await fetchJson(`get`, `issues?labels=${ISSUE_LABEL}`);
+  const res = await Promise.all([
+    fetchJson(`get`, `issues?labels=${ISSUE_LABEL_DAILY}`),
+    fetchJson(`get`, `issues?labels=${ISSUE_LABEL_WEEKLY}`),
+  ]);
+  return [...res[0], ...res[1]];
 }
 
 async function processIssue(issue) {
+  const since = issue.labels.find(l => l.name === ISSUE_LABEL_DAILY) ? 'daily' : 'weekly';
   const lang = extractLang(issue);
   if (lang) {
-    console.log(`${lang.toUpperCase()}:`);
+    console.log(`${lang.toUpperCase()} (${since}):`);
   } else {
     throw new Error(`Language not found for: ${issue.url}`);
   }
-  const trendingRepos = await getTrendingRepos(lang);
-  console.log(`Trending repos: ${trendingRepos.size}`);
+  const trendingRepos = await getTrendingRepos(lang, since);
+  console.log(`Trending ${since} repos: ${trendingRepos.size}`);
   if (trendingRepos.size === 0) {
     throw new Error(`0 trending repos for ${lang}`);
   }
@@ -43,12 +49,14 @@ async function processIssue(issue) {
   const newRepos = filterNewRepos(trendingRepos, knownRepos);
   console.log(`New repos: ${newRepos.length}`);
   if (newRepos.length) {
-    await postComment(issue, newRepos);
+    newRepos.forEach(r => console.log(`${r.name} +${r.starsAdded}`));
+    await postComment(issue, newRepos, since);
   }
+  console.log('--');
 }
 
-async function getTrendingRepos(lang) {
-  const url = getTrendingUrl(lang);
+async function getTrendingRepos(lang, since) {
+  const url = getTrendingUrl(lang, since);
   console.log(`Fetching trending repos for ${lang}: ${url}`);
   const body = await fetch(url).then(r => r.text());
   const $ = cheerio.load(body);
@@ -60,7 +68,7 @@ async function getTrendingRepos(lang) {
       url: `https://github.com/${name}`,
       description: $(repo).find('p', '.py-1').text().trim(),
       language: $(repo).find('[itemprop=programmingLanguage]').text().trim(),
-      starsToday: toNumber($(repo).find(`.float-sm-right`)),
+      starsAdded: toNumber($(repo).find(`.float-sm-right`)),
       stars: toNumber($(repo).find(`[href="/${name}/stargazers"]`)),
       forks: toNumber($(repo).find(`[href="/${name}/network"]`)),
     };
@@ -91,18 +99,18 @@ function filterNewRepos(trendingRepos, knownRepos) {
   return result;
 }
 
-async function postComment(issue, newRepos) {
+async function postComment(issue, newRepos, since) {
   const header = `**New trending repo${newRepos.length > 1 ? 's' : ''}!**`;
   const items = newRepos.map(repo => {
     return [
       `[${repo.name.replace('/', ' / ')}](${repo.url})`,
       repo.description,
-      `***+${repo.starsToday}** stars today*`
+      `***+${repo.starsAdded}** stars ${since === 'daily' ? 'today' : 'this week'}*`
     ].filter(Boolean).join('\n');
   });
   const body = [header, ...items].join('\n\n');
   if (DRY_RUN) {
-    console.log(`[DRY_RUN]: will comment\n${body}`);
+    console.log(`DRY_RUN! skip posting comment.`);
     return;
   }
   const result = await fetchJson(`post`, `issues/${issue.number}/comments`, {body});
@@ -115,6 +123,7 @@ async function postComment(issue, newRepos) {
 
 async function fetchJson(method, path, data) {
   const url = `${API_URL}/${path}`;
+  console.log(method, url);
   const response = await fetch(url, {
     method,
     headers: {
@@ -123,10 +132,15 @@ async function fetchJson(method, path, data) {
     },
     body: JSON.stringify(data)
   });
-  return await response.json();
+  if (response.ok) {
+    return await response.json();
+  } else {
+    const text = await response.text();
+    throw new Error(`${response.status} ${response.statusText} ${text}`);
+  }
 }
 
-function getTrendingUrl(lang) {
+function getTrendingUrl(lang, since) {
   let urlLang = lang.toLowerCase().replace(/ /g, '-');
   if (urlLang === 'all-languages') {
     urlLang = '';
@@ -134,12 +148,14 @@ function getTrendingUrl(lang) {
   if (urlLang === 'unknown-languages') {
     urlLang = 'unknown';
   }
-  return TRENDING_URL.replace('{lang}', urlLang);
+  return TRENDING_URL
+    .replace('{lang}', urlLang)
+    .replace('{since}', since);
 }
 
 function extractLang(issue) {
   const matches = issue.title.match(ISSUE_TITLE_REG);
-  return matches && matches[1].trim();
+  return matches && matches[2].trim();
 }
 
 function toNumber(el) {
