@@ -14,7 +14,7 @@ For example:
 
 ## How it works
 Every day the bot checks [GitHub trending repos](https://github.com/trending) and makes a comment in issues
-if new trending repo appears.
+if new trending repo appears. As a subscriber you can receive these notifications in GitHub.
 
 [trending-daily]: https://github.com/vitalets/github-trending-repos/labels/trending-daily
 [trending-weekly]: https://github.com/vitalets/github-trending-repos/labels/trending-weekly
