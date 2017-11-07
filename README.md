@@ -6,13 +6,12 @@ Be aware of new [trending repos](https://github.com/trending) in your favorite p
 ## How to subscribe
 1. Look at issues in this repo labeled with [trending-daily] or [trending-weekly]
 2. Select the most interesting ones and subscribe (press <img alt="subscribe button" valign="middle" src="https://user-images.githubusercontent.com/1473072/32487280-46f4489c-c3ba-11e7-82d7-cfe073cac8d1.png"> button)
-3. Now every time when a new trending repo in selected language appears the issue will be automatically commented and you will receive GitHub notification:  
-  ![notification example](https://user-images.githubusercontent.com/1473072/32301011-1cf71836-bf6d-11e7-95d2-3a8c4577d4a1.png)  
+3. Every day an issue is automatically commented if there are new trending repos in selected programming language. And you receive GitHub notification:  
+  ![notification example](https://user-images.githubusercontent.com/1473072/32488601-4295b138-c3be-11e7-8eb2-18a624c54ca2.png)  
   The comment itself is like this:
-  ![comment example](https://user-images.githubusercontent.com/1473072/32488171-d239068e-c3bc-11e7-9cdf-1bd151f786c4.png)
+  ![comment example](https://user-images.githubusercontent.com/1473072/32488902-4cb7d26c-c3bf-11e7-9a4c-bc77cb3643b2.png)
 
-
-Created by [Vitaliy Potapov](https://github.com/vitalets).
+&copy; 2017 [Vitaliy Potapov](https://github.com/vitalets).
 
 [trending-daily]: https://github.com/vitalets/github-trending-repos/labels/trending-daily
 [trending-weekly]: https://github.com/vitalets/github-trending-repos/labels/trending-weekly
