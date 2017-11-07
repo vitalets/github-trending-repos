@@ -8,6 +8,7 @@ const ISSUE_LABEL_DAILY = 'trending-daily';
 const ISSUE_LABEL_WEEKLY = 'trending-weekly';
 const ISSUE_TITLE_REG = /New (daily|weekly) trending repos in (.+)/i;
 const REPO_URL_REG = /https:\/\/github.com\/[^)]+/ig;
+const MIN_DAILY_STARS = 10;
 
 main()
   .catch(e => {
@@ -72,6 +73,9 @@ async function getTrendingRepos(lang, since) {
       stars: toNumber($(repo).find(`[href="/${name}/stargazers"]`)),
       forks: toNumber($(repo).find(`[href="/${name}/network"]`)),
     };
+    if (since === 'daily' && info.starsAdded < MIN_DAILY_STARS) {
+      return;
+    }
     repos.set(name, info);
   });
   return repos;
