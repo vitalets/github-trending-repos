@@ -11,6 +11,15 @@ This project allows you to receive GitHub notifications about new [trending repo
   The comment itself is like this:
   ![comment example](https://user-images.githubusercontent.com/1473072/32488902-4cb7d26c-c3bf-11e7-9a4c-bc77cb3643b2.png)
 
+## Available languages
+* [JavaScript](https://github.com/vitalets/github-trending-repos/issues/5)
+* [Python](https://github.com/vitalets/github-trending-repos/issues/7)
+* [Java](https://github.com/vitalets/github-trending-repos/issues/8)
+* [Ruby](https://github.com/vitalets/github-trending-repos/issues/9)
+* [PHP](https://github.com/vitalets/github-trending-repos/issues/10)
+
+Feel free to [create new issue](https://github.com/vitalets/github-trending-repos/issues/new) if you need more.
+
 &copy; 2017 [Vitaliy Potapov](https://github.com/vitalets).
 
 [trending-daily]: https://github.com/vitalets/github-trending-repos/labels/trending-daily
