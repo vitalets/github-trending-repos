@@ -18,7 +18,7 @@ This project allows you to receive GitHub notifications about new [trending repo
 * [Ruby](https://github.com/vitalets/github-trending-repos/issues/9)
 * [PHP](https://github.com/vitalets/github-trending-repos/issues/10)
 
-Feel free to [create new issue](https://github.com/vitalets/github-trending-repos/issues/new) if you need more.
+Feel free to [create new issue](https://github.com/vitalets/github-trending-repos/issues/new) if your language is missing.
 
 &copy; 2017 [Vitaliy Potapov](https://github.com/vitalets).
 
