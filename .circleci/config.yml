@@ -1,10 +1,24 @@
 version: 2
 jobs:
-  build:
+  check_trending_repos:
     docker:
       - image: circleci/node:8
 
     steps:
       - checkout
       - run: npm install
-      - run: npm test
+      - run: npm run test
+
+workflows:
+  version: 2
+  scheduled_check:
+    triggers:
+      - schedule:
+         cron: "0 */2 * * *"
+         filters:
+           branches:
+             only:
+               - master
+
+    jobs:
+      - check_trending_repos
