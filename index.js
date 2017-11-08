@@ -1,7 +1,8 @@
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 
-const DRY_RUN = !process.env.TRAVIS;
+const DRY_RUN = Boolean(process.env.DRY_RUN);
+const GITHUB_TOKEN = DRY_RUN ? process.env.GITHUB_TOKEN_VITALETS : process.env.GITHUB_TOKEN_BOT;
 const TRENDING_URL = 'https://github.com/trending/{lang}?since={since}';
 const API_URL = 'https://api.github.com/repos/vitalets/github-trending-repos';
 const ISSUE_LABEL_DAILY = 'trending-daily';
@@ -17,6 +18,9 @@ main()
   });
 
 async function main() {
+  if (!GITHUB_TOKEN) {
+    throw new Error('No GitHub token in env variables!');
+  }
   const issues = await getIssues();
   console.log(`Fetched issues: ${issues.length}`);
   for (let issue of issues) {
@@ -131,7 +135,7 @@ async function fetchJson(method, path, data) {
     method,
     headers: {
       'Accept': 'application/vnd.github.v3+json',
-      'Authorization': `token ${process.env.GITHUB_TOKEN}`
+      'Authorization': `token ${GITHUB_TOKEN}`
     },
     body: JSON.stringify(data)
   });

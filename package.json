@@ -12,6 +12,7 @@
   },
   "scripts": {
     "code": "eslint .",
+    "test": "DRY_RUN=1 node .",
     "update": "node .",
     "precommit": "lint-staged",
     "prepush": "npm run code"
