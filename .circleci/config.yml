@@ -21,10 +21,7 @@ workflows:
   version: 2
   commit:
     jobs:
-      - prepare
-      - test:
-          requires:
-            - prepare
+      - test
 
   scheduled:
     triggers:
@@ -36,7 +33,4 @@ workflows:
                - master
 
     jobs:
-      - prepare
-      - update_issues:
-          requires:
-            - prepare
+      - update_issues
