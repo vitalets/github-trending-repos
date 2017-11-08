@@ -20,11 +20,11 @@ jobs:
 
 workflows:
   version: 2
-  commit:
+  commit_workflow:
     jobs:
       - test
 
-  scheduled:
+  scheduled_workflow:
     triggers:
       - schedule:
          cron: "0 * * * *"
