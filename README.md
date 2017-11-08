@@ -6,7 +6,7 @@ This project allows you to receive GitHub notifications about new [trending repo
 ## How to subscribe
 1. Look at issues in this repo labeled with [trending-daily] or [trending-weekly]
 2. Select the most interesting issues and subscribe (press <img alt="subscribe button" valign="middle" src="https://user-images.githubusercontent.com/1473072/32487280-46f4489c-c3ba-11e7-82d7-cfe073cac8d1.png"> button)
-3. Every 3 hours the automatic script checks GitHub trending repos and drops an issue comment if there are new ones.
+3. Every hour the automatic script checks GitHub trending repos and drops an issue comment if there are new ones.
    As a subscriber you receive GitHub notification. For example:  
   ![notification example](https://user-images.githubusercontent.com/1473072/32488601-4295b138-c3be-11e7-8eb2-18a624c54ca2.png)  
   The comment itself is like this:  
