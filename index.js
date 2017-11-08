@@ -9,6 +9,8 @@ const ISSUE_LABEL_DAILY = 'trending-daily';
 const ISSUE_LABEL_WEEKLY = 'trending-weekly';
 const ISSUE_TITLE_REG = /New (daily|weekly) trending repos in (.+)/i;
 const REPO_URL_REG = /https:\/\/github.com\/[^)]+/ig;
+// sometimes GitHub shows this message on trending page
+const TRENDING_REPOS_DISSECTED_MSG = 'Trending repositories results are currently being dissected';
 const MIN_STARS = 10;
 
 main()
@@ -45,10 +47,6 @@ async function processIssue(issue) {
     throw new Error(`Language not found for: ${issue.url}`);
   }
   const trendingRepos = await getTrendingRepos(lang, since);
-  console.log(`Trending ${since} repos: ${trendingRepos.size}`);
-  if (trendingRepos.size === 0) {
-    throw new Error(`0 trending repos for ${lang}`);
-  }
   const knownRepos = await getKnownRepos(issue);
   console.log(`Known repos: ${knownRepos.size}`);
   const newRepos = filterNewRepos(trendingRepos, knownRepos);
@@ -81,6 +79,10 @@ async function getTrendingRepos(lang, since) {
       repos.set(name, info);
     }
   });
+  console.log(`Trending ${since} repos: ${repos.size}`);
+  if (repos.size === 0) {
+    verifyEmptyTrendingRepos($, lang);
+  }
   return repos;
 }
 
@@ -158,6 +160,15 @@ function getTrendingUrl(lang, since) {
   return TRENDING_URL
     .replace('{lang}', urlLang)
     .replace('{since}', since);
+}
+
+function verifyEmptyTrendingRepos($, lang) {
+  const isDissecting = $('.blankslate').text().indexOf(TRENDING_REPOS_DISSECTED_MSG) >= 0;
+  if (isDissecting) {
+    console.log(TRENDING_REPOS_DISSECTED_MSG);
+  } else {
+    throw new Error(`Can't retrieve trending repos for ${lang}`);
+  }
 }
 
 function extractLang(issue) {
