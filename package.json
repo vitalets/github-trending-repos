@@ -12,7 +12,7 @@
   },
   "scripts": {
     "code": "eslint .",
-    "test": "LANG=javascript npm run fulltest",
+    "test": "TRENDING_LANG=javascript npm run fulltest",
     "fulltest": "DRY_RUN=1 npm run update",
     "update": "node .",
     "precommit": "lint-staged",

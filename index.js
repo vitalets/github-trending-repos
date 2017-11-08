@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 
 const DRY_RUN = Boolean(process.env.DRY_RUN);
-const LANG = process.env.LANG;
+const TRENDING_LANG = process.env.TRENDING_LANG;
 const GITHUB_TOKEN = DRY_RUN ? process.env.GITHUB_TOKEN_VITALETS : process.env.GITHUB_TOKEN_BOT;
 const API_URL = 'https://api.github.com/repos/vitalets/github-trending-repos';
 const ISSUE_LABEL_DAILY = 'trending-daily';
@@ -13,7 +13,7 @@ const TRENDING_REPOS_DISSECTED_MSG = 'Trending repositories results are currentl
 const MIN_STARS = 10;
 
 console.log(`DRY_RUN: ${DRY_RUN}`);
-console.log(`FILTER BY LANG: ${LANG || '*'}`);
+console.log(`FILTER BY LANG: ${TRENDING_LANG || '*'}`);
 
 main()
   .catch(e => {
@@ -26,8 +26,8 @@ async function main() {
     throw new Error('No GitHub token in env variables!');
   }
   let issues = await getIssues();
-  if (LANG) {
-    issues = issues.filter(issue => issue.body.indexOf(`https://github.com/trending/${LANG}`) >= 0);
+  if (TRENDING_LANG) {
+    issues = issues.filter(issue => issue.body.indexOf(`https://github.com/trending/${TRENDING_LANG}`) >= 0);
   }
   console.log(`Fetched issues: ${issues.length}`);
   for (let issue of issues) {
