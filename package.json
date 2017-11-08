@@ -6,6 +6,10 @@
     "name": "Vitaliy Potapov",
     "email": "noginsk@rambler.ru"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vitalets/github-trending-repos.git"
+  },
   "scripts": {
     "code": "eslint .",
     "update": "node .",
