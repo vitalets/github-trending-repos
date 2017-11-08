@@ -1,6 +1,7 @@
 defaults: &defaults
   docker:
     - image: circleci/node:8
+  working_directory: ~/project
   steps:
     - checkout
     - run: npm install
