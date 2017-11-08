@@ -9,7 +9,7 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: npm run test
+      - run: npm run fulltest
 
   update_issues:
     <<: *defaults
@@ -27,7 +27,7 @@ workflows:
   scheduled:
     triggers:
       - schedule:
-         cron: "0 */2 * * *"
+         cron: "0 */1 * * *"
          filters:
            branches:
              only:

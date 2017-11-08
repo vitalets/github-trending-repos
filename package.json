@@ -12,7 +12,8 @@
   },
   "scripts": {
     "code": "eslint .",
-    "test": "DRY_RUN=1 node .",
+    "test": "LANG=javascript npm run fulltest",
+    "fulltest": "DRY_RUN=1 npm run update",
     "update": "node .",
     "precommit": "lint-staged",
     "prepush": "npm run code"

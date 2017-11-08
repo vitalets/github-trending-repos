@@ -2,16 +2,18 @@ const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 
 const DRY_RUN = Boolean(process.env.DRY_RUN);
+const LANG = process.env.LANG;
 const GITHUB_TOKEN = DRY_RUN ? process.env.GITHUB_TOKEN_VITALETS : process.env.GITHUB_TOKEN_BOT;
-const TRENDING_URL = 'https://github.com/trending/{lang}?since={since}';
 const API_URL = 'https://api.github.com/repos/vitalets/github-trending-repos';
 const ISSUE_LABEL_DAILY = 'trending-daily';
 const ISSUE_LABEL_WEEKLY = 'trending-weekly';
-const ISSUE_TITLE_REG = /New (daily|weekly) trending repos in (.+)/i;
-const REPO_URL_REG = /https:\/\/github.com\/[^)]+/ig;
+const GITHUB_URL_REG = /https:\/\/github.com\/[^)]+/ig;
 // sometimes GitHub shows this message on trending page
 const TRENDING_REPOS_DISSECTED_MSG = 'Trending repositories results are currently being dissected';
 const MIN_STARS = 10;
+
+console.log(`DRY_RUN: ${DRY_RUN}`);
+console.log(`FILTER BY LANG: ${LANG || '*'}`);
 
 main()
   .catch(e => {
@@ -23,11 +25,15 @@ async function main() {
   if (!GITHUB_TOKEN) {
     throw new Error('No GitHub token in env variables!');
   }
-  const issues = await getIssues();
+  let issues = await getIssues();
+  if (LANG) {
+    issues = issues.filter(issue => issue.body.indexOf(`https://github.com/trending/${LANG}`) >= 0);
+  }
   console.log(`Fetched issues: ${issues.length}`);
   for (let issue of issues) {
     await processIssue(issue);
   }
+  console.log('\nDone.');
 }
 
 async function getIssues() {
@@ -39,50 +45,39 @@ async function getIssues() {
 }
 
 async function processIssue(issue) {
-  const since = issue.labels.find(l => l.name === ISSUE_LABEL_DAILY) ? 'daily' : 'weekly';
-  const lang = extractLang(issue);
-  if (lang) {
-    console.log(`${lang.toUpperCase()} (${since}):`);
-  } else {
-    throw new Error(`Language not found for: ${issue.url}`);
+  console.log(`\n== ${issue.title.toUpperCase()} ==`);
+  const trendingRepos = await getTrendingRepos(issue);
+  if (trendingRepos.size === 0) {
+    return;
   }
-  const trendingRepos = await getTrendingRepos(lang, since);
   const knownRepos = await getKnownRepos(issue);
   console.log(`Known repos: ${knownRepos.size}`);
-  const newRepos = filterNewRepos(trendingRepos, knownRepos);
+  const newRepos = selectNewRepos(trendingRepos, knownRepos);
   console.log(`New repos: ${newRepos.length}`);
   if (newRepos.length) {
-    newRepos.forEach(r => console.log(`${r.name} +${r.starsAdded}`));
-    await postComment(issue, newRepos, since);
+    newRepos.forEach(r => console.log(`  ${r.name} +${r.starsAdded}`));
+    await postComment(issue, newRepos);
   }
-  console.log('--');
 }
 
-async function getTrendingRepos(lang, since) {
-  const url = getTrendingUrl(lang, since);
-  console.log(`Fetching trending repos for ${lang}: ${url}`);
+async function getTrendingRepos(issue) {
+  const url = extractTrendingUrl(issue);
+  if (!url) {
+    throw new Error(`Can't find trending url in body of: ${issue.url}`);
+  }
+  console.log(`Fetching trending repos: ${url}`);
   const body = await fetch(url).then(r => r.text());
   const $ = cheerio.load(body);
   const repos = new Map();
-  $('li', 'ol.repo-list').each((index, repo) => {
-    const name = $(repo).find('h3').text().trim().replace(/ /g, '');
-    const info = {
-      name,
-      url: `https://github.com/${name}`,
-      description: $(repo).find('p', '.py-1').text().trim(),
-      language: $(repo).find('[itemprop=programmingLanguage]').text().trim(),
-      starsAdded: toNumber($(repo).find(`.float-sm-right`)),
-      stars: toNumber($(repo).find(`[href="/${name}/stargazers"]`)),
-      forks: toNumber($(repo).find(`[href="/${name}/network"]`)),
-    };
+  const domRepos = $('li', 'ol.repo-list');
+  console.log(`Found trending repos: ${domRepos.length}`);
+  assertZeroTrendingRepos(domRepos);
+  domRepos.each((index, repo) => {
+    const info = extractTrendingRepoInfo(repo, $);
     if (info.starsAdded >= MIN_STARS) {
-      repos.set(name, info);
+      repos.set(info.name, info);
     }
   });
-  console.log(`Trending ${since} repos: ${repos.size}`);
-  if (repos.size === 0) {
-    verifyEmptyTrendingRepos($, lang);
-  }
   return repos;
 }
 
@@ -90,7 +85,7 @@ async function getKnownRepos(issue) {
   const comments = await fetchJson(`get`, `issues/${issue.number}/comments`);
   const repos = new Set();
   comments.forEach(comment => {
-    const names = comment.body.match(REPO_URL_REG);
+    const names = comment.body.match(GITHUB_URL_REG);
     if (names) {
       names.forEach(name => repos.add(name));
     }
@@ -98,7 +93,7 @@ async function getKnownRepos(issue) {
   return repos;
 }
 
-function filterNewRepos(trendingRepos, knownRepos) {
+function selectNewRepos(trendingRepos, knownRepos) {
   const result = [];
   for (let trendingRepo of trendingRepos.values()) {
     if (!knownRepos.has(trendingRepo.url)) {
@@ -108,18 +103,19 @@ function filterNewRepos(trendingRepos, knownRepos) {
   return result;
 }
 
-async function postComment(issue, newRepos, since) {
-  const header = `**New trending repo${newRepos.length > 1 ? 's' : ''}!**`;
+async function postComment(issue, newRepos) {
+  const since = issue.labels.find(l => l.name === ISSUE_LABEL_DAILY) ? 'today' : 'this week';
+  const header = `**${issue.title}!**`;
   const items = newRepos.map(repo => {
     return [
       `[${repo.name.replace('/', ' / ')}](${repo.url})`,
       repo.description,
-      `***+${repo.starsAdded}** stars ${since === 'daily' ? 'today' : 'this week'}*`
+      `***+${repo.starsAdded}** stars ${since}*`
     ].filter(Boolean).join('\n');
   });
   const body = [header, ...items].join('\n\n');
   if (DRY_RUN) {
-    console.log(`DRY_RUN! skip posting comment.`);
+    console.log(`dry run: skip posting comment.`);
     return;
   }
   const result = await fetchJson(`post`, `issues/${issue.number}/comments`, {body});
@@ -149,31 +145,36 @@ async function fetchJson(method, path, data) {
   }
 }
 
-function getTrendingUrl(lang, since) {
-  let urlLang = lang.toLowerCase().replace(/ /g, '-');
-  if (urlLang === 'all-languages') {
-    urlLang = '';
-  }
-  if (urlLang === 'unknown-languages') {
-    urlLang = 'unknown';
-  }
-  return TRENDING_URL
-    .replace('{lang}', urlLang)
-    .replace('{since}', since);
+function extractTrendingRepoInfo(repo, $) {
+  const name = $(repo).find('h3').text().trim().replace(/ /g, '');
+  return {
+    name,
+    url: `https://github.com/${name}`,
+    description: $(repo).find('p', '.py-1').text().trim(),
+    language: $(repo).find('[itemprop=programmingLanguage]').text().trim(),
+    starsAdded: toNumber($(repo).find(`.float-sm-right`)),
+    stars: toNumber($(repo).find(`[href="/${name}/stargazers"]`)),
+    forks: toNumber($(repo).find(`[href="/${name}/network"]`)),
+  };
 }
 
-function verifyEmptyTrendingRepos($, lang) {
-  const isDissecting = $('.blankslate').text().indexOf(TRENDING_REPOS_DISSECTED_MSG) >= 0;
-  if (isDissecting) {
-    console.log(TRENDING_REPOS_DISSECTED_MSG);
-  } else {
-    throw new Error(`Can't retrieve trending repos for ${lang}`);
+function assertZeroTrendingRepos(domRepos, $, url) {
+  if (domRepos.length === 0) {
+    const isDissecting = $('.blankslate').text().indexOf(TRENDING_REPOS_DISSECTED_MSG) >= 0;
+    if (isDissecting) {
+      console.log(`Trending repos are being dissecting.`);
+    } else {
+      throw new Error(`Can't retrieve trending repos from: ${url}`);
+    }
   }
 }
 
-function extractLang(issue) {
-  const matches = issue.title.match(ISSUE_TITLE_REG);
-  return matches && matches[2].trim();
+function extractTrendingUrl(issue) {
+  const matches = issue.body.match(GITHUB_URL_REG);
+  if (!matches) {
+    throw new Error(`Can't find trending url in body of: ${issue.url}: ${issue.body}`);
+  }
+  return matches[0];
 }
 
 function toNumber(el) {
