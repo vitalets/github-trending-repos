@@ -1,21 +1,21 @@
 defaults: &defaults
   docker:
     - image: circleci/node:8
-  working_directory: ~/project
-  steps:
-    - checkout
-    - run: npm install
 
 version: 2
 jobs:
   test:
     <<: *defaults
     steps:
+      - checkout
+      - run: npm install
       - run: npm run test
 
   update_issues:
     <<: *defaults
     steps:
+      - checkout
+      - run: npm install
       - run: npm run update
 
 workflows:
