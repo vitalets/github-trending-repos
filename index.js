@@ -128,7 +128,7 @@ async function postComment(issue, newTrendingRepos) {
     console.log(`dry run: skip commenting!`);
     return;
   }
-  const result = await fetchJson(`post`, `issues/${issue.number}/comments`, {body});
+  const {result} = await fetchJson(`post`, `issues/${issue.number}/comments`, {body});
   if (!result.id) {
     throw new Error(JSON.stringify(result));
   } else {
