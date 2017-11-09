@@ -10,7 +10,7 @@ This project allows you to receive [GitHub notifications] about [new trending re
    As a subscriber you receive GitHub notification. For example:  
   ![notification example](https://user-images.githubusercontent.com/1473072/32488601-4295b138-c3be-11e7-8eb2-18a624c54ca2.png)  
   The comment itself is like this:  
-  ![comment example](https://user-images.githubusercontent.com/1473072/32488902-4cb7d26c-c3bf-11e7-9a4c-bc77cb3643b2.png)
+  ![comment example](https://user-images.githubusercontent.com/1473072/32593861-c2030470-c53a-11e7-9272-30cae0632dd6.png)
 
 ## Available languages
 * [JavaScript](https://github.com/vitalets/github-trending-repos/issues/5)
