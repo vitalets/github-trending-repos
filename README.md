@@ -21,7 +21,7 @@ This project allows you to receive [GitHub notifications] about [new trending re
 
 Feel free to [create new issue](https://github.com/vitalets/github-trending-repos/issues/new) if your language is missing.
 
-&copy; 2017 [Vitaliy Potapov](https://github.com/vitalets).
+&copy; 2017 [Vitaliy Potapov](https://github.com/vitalets)
 
 [trending-daily]: https://github.com/vitalets/github-trending-repos/labels/trending-daily
 [trending-weekly]: https://github.com/vitalets/github-trending-repos/labels/trending-weekly
