@@ -10,7 +10,7 @@ const ISSUE_LABEL_WEEKLY = 'trending-weekly';
 const GITHUB_URL_REG = /https:\/\/github.com\/[^)]+/ig;
 // sometimes GitHub shows this message on trending page
 const TRENDING_REPOS_DISSECTED_MSG = 'Trending repositories results are currently being dissected';
-const MIN_STARS = 10;
+const MIN_STARS = 20;
 
 console.log(`DRY_RUN: ${DRY_RUN}`);
 console.log(`FILTER BY LANG: ${TRENDING_LANG || '*'}`);
