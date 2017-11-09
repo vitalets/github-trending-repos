@@ -15,8 +15,9 @@ const GITHUB_URL_REG = /https:\/\/github.com\/[^)]+/ig;
 const TRENDING_REPOS_DISSECTED_MSG = 'Trending repositories results are currently being dissected';
 const MIN_STARS = 20;
 
-console.log(`DRY_RUN: ${DRY_RUN}`);
-console.log(`FILTER BY LANG: ${TRENDING_LANG || '*'}`);
+console.log(`Dry run: ${DRY_RUN}`);
+console.log(`Filter by lang: ${TRENDING_LANG || '*'}`);
+console.log(`Limit by stars: ${MIN_STARS}`);
 
 main()
   .catch(e => {
