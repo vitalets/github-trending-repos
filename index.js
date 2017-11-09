@@ -1,7 +1,10 @@
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
+const parseLinkHeader = require('parse-link-header');
 
+// when DRY_RUN issues are not commented
 const DRY_RUN = Boolean(process.env.DRY_RUN);
+// filter by particular language
 const TRENDING_LANG = process.env.TRENDING_LANG;
 const GITHUB_TOKEN = DRY_RUN ? process.env.GITHUB_TOKEN_VITALETS : process.env.GITHUB_TOKEN_BOT;
 const API_URL = 'https://api.github.com/repos/vitalets/github-trending-repos';
@@ -41,7 +44,7 @@ async function getIssues() {
     fetchJson(`get`, `issues?labels=${ISSUE_LABEL_DAILY}`),
     fetchJson(`get`, `issues?labels=${ISSUE_LABEL_WEEKLY}`),
   ]);
-  return [...res[0], ...res[1]];
+  return [...res[0].result, ...res[1].result];
 }
 
 async function processIssue(issue) {
@@ -50,13 +53,11 @@ async function processIssue(issue) {
   if (trendingRepos.size === 0) {
     return;
   }
-  const knownRepos = await getKnownRepos(issue);
-  console.log(`Known repos: ${knownRepos.size}`);
-  const newRepos = selectNewRepos(trendingRepos, knownRepos);
-  console.log(`New repos: ${newRepos.length}`);
-  if (newRepos.length) {
-    newRepos.forEach(r => console.log(`  ${r.name} +${r.starsAdded}`));
-    await postComment(issue, newRepos);
+  await excludeKnownRepos(issue, trendingRepos);
+  console.log(`New repos: ${trendingRepos.size}`);
+  if (trendingRepos.size) {
+    trendingRepos.forEach(r => console.log(`  ${r.name} +${r.starsAdded}`));
+    await postComment(issue, trendingRepos);
   }
 }
 
@@ -70,52 +71,61 @@ async function getTrendingRepos(issue) {
   const $ = cheerio.load(body);
   const repos = new Map();
   const domRepos = $('li', 'ol.repo-list');
-  console.log(`Found trending repos: ${domRepos.length}`);
-  assertZeroTrendingRepos(domRepos);
+  console.log(`Current trending repos: ${domRepos.length}`);
+  assertZeroTrendingRepos(domRepos, $, url);
   domRepos.each((index, repo) => {
     const info = extractTrendingRepoInfo(repo, $);
     if (info.starsAdded >= MIN_STARS) {
-      repos.set(info.name, info);
+      repos.set(info.url, info);
     }
   });
   return repos;
 }
 
-async function getKnownRepos(issue) {
-  const comments = await fetchJson(`get`, `issues/${issue.number}/comments`);
-  const repos = new Set();
-  comments.forEach(comment => {
-    const names = comment.body.match(GITHUB_URL_REG);
-    if (names) {
-      names.forEach(name => repos.add(name));
-    }
-  });
-  return repos;
-}
-
-function selectNewRepos(trendingRepos, knownRepos) {
-  const result = [];
-  for (let trendingRepo of trendingRepos.values()) {
-    if (!knownRepos.has(trendingRepo.url)) {
-      result.push(trendingRepo);
+/**
+ * Fetching known repos from comments. Considering pagination and going from the latest page to the first.
+ * It allows to stop pagination requests earlier if all trending repos are known.
+ */
+async function excludeKnownRepos(issue, trendingRepos) {
+  console.log(`Fetching known repos from comments...`);
+  let url = `issues/${issue.number}/comments`;
+  const {pages} = await fetchJson(`head`, url);
+  if (pages) {
+    console.log(`Comment pages: ${pages.last.page}`);
+    url = pages.last.url;
+  }
+  while (true) {
+    const {pages, result} = await fetchJson(`get`, url);
+    const knownRepos = result.reduce((res, comment) => {
+      const repos = comment.body.match(GITHUB_URL_REG) || [];
+      return res.concat(repos);
+    }, []);
+    console.log(`Known trending repos: ${knownRepos.length}`);
+    knownRepos.forEach(repoUrl => trendingRepos.delete(repoUrl));
+    // stop on first page OR if all trending repos are known
+    if (!pages || !pages.prev || trendingRepos.size === 0) {
+      break;
+    } else {
+      url = pages.prev.url;
     }
   }
-  return result;
 }
 
-async function postComment(issue, newRepos) {
+async function postComment(issue, newTrendingRepos) {
   const since = issue.labels.find(l => l.name === ISSUE_LABEL_DAILY) ? 'today' : 'this week';
   const header = `**${issue.title}!**`;
-  const items = newRepos.map(repo => {
-    return [
+  const commentItems = [];
+  newTrendingRepos.forEach(repo => {
+    const commentItem = [
       `[${repo.name.replace('/', ' / ')}](${repo.url})`,
       repo.description,
       `***+${repo.starsAdded}** stars ${since}*`
     ].filter(Boolean).join('\n');
+    commentItems.push(commentItem);
   });
-  const body = [header, ...items].join('\n\n');
+  const body = [header, ...commentItems].join('\n\n');
   if (DRY_RUN) {
-    console.log(`dry run: skip posting comment.`);
+    console.log(`dry run: skip commenting!`);
     return;
   }
   const result = await fetchJson(`post`, `issues/${issue.number}/comments`, {body});
@@ -127,7 +137,8 @@ async function postComment(issue, newRepos) {
 }
 
 async function fetchJson(method, path, data) {
-  const url = `${API_URL}/${path}`;
+  method = method.toUpperCase();
+  const url = /^https?:/.test(path) ? path : `${API_URL}/${path}`;
   console.log(method, url);
   const response = await fetch(url, {
     method,
@@ -138,7 +149,9 @@ async function fetchJson(method, path, data) {
     body: JSON.stringify(data)
   });
   if (response.ok) {
-    return await response.json();
+    const pages = parseLinkHeader(response.headers.get('link'));
+    const result = method !== 'HEAD' ? await response.json() : null;
+    return {pages, result};
   } else {
     const text = await response.text();
     throw new Error(`${response.status} ${response.statusText} ${text}`);
