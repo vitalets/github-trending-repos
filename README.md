@@ -1,7 +1,7 @@
 # GitHub Trending Repos
 [![CircleCI](https://circleci.com/gh/vitalets/github-trending-repos.svg?style=svg)](https://circleci.com/gh/vitalets/github-trending-repos)
 
-This project allows you to receive GitHub notifications about new [trending repos](https://github.com/trending) in your favorite programming language.
+This project allows you to receive [GitHub notifications] about [new trending repos](https://github.com/trending) in your favorite programming language.
 
 ## How to subscribe
 1. Look at issues in this repo labeled with [trending-daily] or [trending-weekly]
@@ -25,3 +25,4 @@ Feel free to [create new issue](https://github.com/vitalets/github-trending-repo
 
 [trending-daily]: https://github.com/vitalets/github-trending-repos/labels/trending-daily
 [trending-weekly]: https://github.com/vitalets/github-trending-repos/labels/trending-weekly
+[GitHub notifications]: https://help.github.com/articles/accessing-your-notifications/
