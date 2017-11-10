@@ -13,11 +13,22 @@ This project allows you to receive [GitHub notifications] about [new trending re
   ![comment example](https://user-images.githubusercontent.com/1473072/32593861-c2030470-c53a-11e7-9272-30cae0632dd6.png)
 
 ## Available languages
+The fifteen [most popular languages on GitHub](https://octoverse.github.com/) are available:
 * [JavaScript](https://github.com/vitalets/github-trending-repos/issues/5)
 * [Python](https://github.com/vitalets/github-trending-repos/issues/7)
 * [Java](https://github.com/vitalets/github-trending-repos/issues/8)
 * [Ruby](https://github.com/vitalets/github-trending-repos/issues/9)
 * [PHP](https://github.com/vitalets/github-trending-repos/issues/10)
+* [C++](https://github.com/vitalets/github-trending-repos/issues/29)
+* [CSS](https://github.com/vitalets/github-trending-repos/issues/30)
+* [C#](https://github.com/vitalets/github-trending-repos/issues/31)
+* [Go](https://github.com/vitalets/github-trending-repos/issues/32)
+* [C](https://github.com/vitalets/github-trending-repos/issues/33)
+* [TypeScript](https://github.com/vitalets/github-trending-repos/issues/34)
+* [Shell](https://github.com/vitalets/github-trending-repos/issues/35)
+* [Swift](https://github.com/vitalets/github-trending-repos/issues/36)
+* [Scala](https://github.com/vitalets/github-trending-repos/issues/37)
+* [Objective-C](https://github.com/vitalets/github-trending-repos/issues/38)
 
 Feel free to [create new issue](https://github.com/vitalets/github-trending-repos/issues/new) if your language is missing.
 
