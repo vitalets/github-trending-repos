@@ -13,7 +13,7 @@ This project allows you to receive [GitHub notifications] about [new trending re
   ![comment example](https://user-images.githubusercontent.com/1473072/32593861-c2030470-c53a-11e7-9272-30cae0632dd6.png)
 
 ## Available languages
-The fifteen [most popular languages on GitHub](https://octoverse.github.com/) are available:
+The fifteen [most popular languages on GitHub](https://octoverse.github.com/) are available for subscription:
 * [JavaScript](https://github.com/vitalets/github-trending-repos/issues/5)
 * [Python](https://github.com/vitalets/github-trending-repos/issues/7)
 * [Java](https://github.com/vitalets/github-trending-repos/issues/8)
