@@ -15,6 +15,8 @@ const GITHUB_URL_REG = /https:\/\/github.com\/[^)]+/ig;
 const TRENDING_REPOS_DISSECTED_MSG = 'Trending repositories results are currently being dissected';
 const MIN_STARS = 20;
 
+let requestCount = 0;
+
 console.log(`Dry run: ${DRY_RUN}`);
 console.log(`Filter by lang: ${TRENDING_LANG || '*'}`);
 console.log(`Limit by stars: ${MIN_STARS}`);
@@ -38,7 +40,9 @@ async function main() {
   for (let issue of issues) {
     await processIssue(issue);
   }
-  console.log(`\nDone in ${getTimestamp() - startTime} seconds.`);
+  console.log(`\nDone.`);
+  console.log(`Duration (sec): ${getTimestamp() - startTime}`);
+  console.log(`API requests: ${requestCount}`);
 }
 
 async function getIssues() {
@@ -142,6 +146,7 @@ async function fetchJson(method, path, data) {
   method = method.toUpperCase();
   const url = /^https?:/.test(path) ? path : `${API_URL}/${path}`;
   console.log(method, url);
+  requestCount++;
   const response = await fetch(url, {
     method,
     headers: {
