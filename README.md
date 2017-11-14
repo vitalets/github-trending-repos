@@ -37,6 +37,11 @@ Feel free to [create new issue](https://github.com/vitalets/github-trending-repo
 ## How often the script should run?
 You are welcome to share the opinion [here](https://github.com/vitalets/github-trending-repos/issues/42).
 
+## Similar projects
+* [josephyzhou/github-trending](https://github.com/josephyzhou/github-trending) - A repo that generates `.md` file with trending repos per day.
+* [andygrunwald/TrendingGithub](https://github.com/andygrunwald/TrendingGithub) - A Twitter bot that tweets new trending repos every 30 minutes.
+* [thechangelog/nightly](https://github.com/thechangelog/nightly) - An Email newsletter sent every night.
+
 &copy; 2017 [Vitaliy Potapov](https://github.com/vitalets)
 
 [trending-daily]: https://github.com/vitalets/github-trending-repos/labels/trending-daily
