@@ -34,6 +34,9 @@ The fifteen [most popular languages on GitHub](https://octoverse.github.com/) ar
 
 Feel free to [create new issue](https://github.com/vitalets/github-trending-repos/issues/new) if your language is missing.
 
+## How often the script should run?
+You are welcome to share the opinion [here](https://github.com/vitalets/github-trending-repos/issues/42).
+
 &copy; 2017 [Vitaliy Potapov](https://github.com/vitalets)
 
 [trending-daily]: https://github.com/vitalets/github-trending-repos/labels/trending-daily
