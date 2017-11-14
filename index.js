@@ -81,6 +81,7 @@ async function getTrendingRepos(issue) {
   assertZeroTrendingRepos(domRepos, $, url);
   domRepos.each((index, repo) => {
     const info = extractTrendingRepoInfo(repo, $);
+    validateRepoInfo(info, url);
     if (info.starsAdded >= MIN_STARS) {
       repos.set(info.url, info);
     }
@@ -195,6 +196,12 @@ function extractTrendingUrl(issue) {
     throw new Error(`Can't find trending url in body of: ${issue.url}: ${issue.body}`);
   }
   return matches[0];
+}
+
+function validateRepoInfo(info, url) {
+  if (!info.name) {
+    throw new Error(`Can't extract repo name. Check that GitHub didn't change selectors on page: ${url}`);
+  }
 }
 
 function toNumber(el) {
