@@ -26,6 +26,7 @@ main()
   });
 
 async function main() {
+  const startTime = getTimestamp();
   if (!GITHUB_TOKEN) {
     throw new Error('No GitHub token in env variables!');
   }
@@ -37,7 +38,7 @@ async function main() {
   for (let issue of issues) {
     await processIssue(issue);
   }
-  console.log('\nDone.');
+  console.log(`\nDone in ${getTimestamp() - startTime} seconds.`);
 }
 
 async function getIssues() {
@@ -193,4 +194,8 @@ function extractTrendingUrl(issue) {
 
 function toNumber(el) {
   return parseInt(el.text().trim().replace(',', '') || 0);
+}
+
+function getTimestamp() {
+  return Math.round(Date.now() / 1000);
 }
