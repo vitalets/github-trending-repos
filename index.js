@@ -125,7 +125,7 @@ async function postComment(issue, newTrendingRepos) {
     const commentItem = [
       `[${repo.name.replace('/', ' / ')}](${repo.url})`,
       repo.description,
-      `***+${repo.starsAdded}** stars ${since}*`
+      repo.starsAdded ? `***+${repo.starsAdded}** stars ${since}*` : `*No info about stars ${since}*`
     ].filter(Boolean).join('\n');
     commentItems.push(commentItem);
   });
