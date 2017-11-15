@@ -80,8 +80,7 @@ async function getTrendingRepos(issue) {
   console.log(`Current trending repos: ${domRepos.length}`);
   assertZeroTrendingRepos(domRepos, $, url);
   domRepos.each((index, repo) => {
-    const info = extractTrendingRepoInfo(repo, $);
-    validateRepoInfo(info, url);
+    const info = extractTrendingRepoInfo(repo, $, url);
     if (info.starsAdded >= MIN_STARS) {
       repos.set(info.url, info);
     }
@@ -166,13 +165,17 @@ async function fetchJson(method, path, data) {
   }
 }
 
-function extractTrendingRepoInfo(repo, $) {
+function extractTrendingRepoInfo(repo, $, url) {
   const name = $(repo).find('h3').text().trim().replace(/ /g, '');
+  if (!name) {
+    throw new Error(`Can't extract repo name. Check selector 'h3' on: ${url}`);
+  }
   return {
     name,
     url: `https://github.com/${name}`,
     description: $(repo).find('p', '.py-1').text().trim(),
     language: $(repo).find('[itemprop=programmingLanguage]').text().trim(),
+    // For non-popular languages GitHub may not provide stars added
     starsAdded: toNumber($(repo).find(`.float-sm-right`)),
     stars: toNumber($(repo).find(`[href="/${name}/stargazers"]`)),
     forks: toNumber($(repo).find(`[href="/${name}/network"]`)),
@@ -196,12 +199,6 @@ function extractTrendingUrl(issue) {
     throw new Error(`Can't find trending url in body of: ${issue.url}: ${issue.body}`);
   }
   return matches[0];
-}
-
-function validateRepoInfo(info, url) {
-  if (!info.name) {
-    throw new Error(`Can't extract repo name. Check that GitHub didn't change selectors on page: ${url}`);
-  }
 }
 
 function toNumber(el) {
