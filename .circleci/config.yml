@@ -9,14 +9,21 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: npm run fulltest
+      - run: npm run test-all
 
-  update_issues:
+  update_daily:
     <<: *defaults
     steps:
       - checkout
       - run: npm install
-      - run: npm run update
+      - run: npm run update-daily
+
+  update_weekly:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm run update-weekly
 
 workflows:
   version: 2
@@ -24,14 +31,26 @@ workflows:
     jobs:
       - test
 
-  scheduled_workflow:
+  daily_workflow:
     triggers:
       - schedule:
-         cron: "0 * * * *"
+         cron: "0 0 * * *"
          filters:
            branches:
              only:
                - master
 
     jobs:
-      - update_issues
+      - update_daily
+
+  weekly_workflow:
+    triggers:
+      - schedule:
+         cron: "0 0 * * 5"
+         filters:
+           branches:
+             only:
+               - master
+
+    jobs:
+      - update_weekly

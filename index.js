@@ -2,24 +2,29 @@ const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 const parseLinkHeader = require('parse-link-header');
 
-// when DRY_RUN issues are not commented
-const DRY_RUN = Boolean(process.env.DRY_RUN);
-// filter by particular language
+// Label for filtering issues: 'trending-daily|trending-weekly'
+const TRENDING_LABEL = process.env.TRENDING_LABEL;
+if (!TRENDING_LABEL) {
+  throw new Error('No TRENDING_LABEL in env variables!');
+}
+// Set TRENDING_POST_COMMENTS to actually post comments to issues
+const TRENDING_POST_COMMENTS = Boolean(process.env.TRENDING_POST_COMMENTS);
+// Filter by particular language
 const TRENDING_LANG = process.env.TRENDING_LANG;
-const GITHUB_TOKEN = DRY_RUN ? process.env.GITHUB_TOKEN_VITALETS : process.env.GITHUB_TOKEN_BOT;
+// Use bot's token for posting comments and vitalets token for testing
+const GITHUB_TOKEN = TRENDING_POST_COMMENTS ? process.env.GITHUB_TOKEN_BOT : process.env.GITHUB_TOKEN_VITALETS;
+if (!GITHUB_TOKEN) {
+  throw new Error('No GitHub token in env variables!');
+}
+
 const API_URL = 'https://api.github.com/repos/vitalets/github-trending-repos';
-const ISSUE_LABEL_DAILY = 'trending-daily';
-const ISSUE_LABEL_WEEKLY = 'trending-weekly';
 const GITHUB_URL_REG = /https:\/\/github.com\/[^)]+/ig;
-// sometimes GitHub shows this message on trending page
-const TRENDING_REPOS_DISSECTED_MSG = 'Trending repositories results are currently being dissected';
-const MIN_STARS = 20;
 
 let requestCount = 0;
 
-console.log(`Dry run: ${DRY_RUN}`);
+console.log(`Filter by label: ${TRENDING_LABEL}`);
 console.log(`Filter by lang: ${TRENDING_LANG || '*'}`);
-console.log(`Limit by stars: ${MIN_STARS}`);
+console.log(`Post comments: ${TRENDING_POST_COMMENTS}`);
 
 main()
   .catch(e => {
@@ -29,14 +34,8 @@ main()
 
 async function main() {
   const startTime = getTimestamp();
-  if (!GITHUB_TOKEN) {
-    throw new Error('No GitHub token in env variables!');
-  }
-  let issues = await getIssues();
-  if (TRENDING_LANG) {
-    issues = issues.filter(issue => issue.body.indexOf(`https://github.com/trending/${TRENDING_LANG}`) >= 0);
-  }
-  console.log(`Fetched issues: ${issues.length}`);
+  const issues = await getIssues();
+  console.log(`Issues count: ${issues.length}`);
   for (let issue of issues) {
     await processIssue(issue);
   }
@@ -46,11 +45,12 @@ async function main() {
 }
 
 async function getIssues() {
-  const res = await Promise.all([
-    fetchJson(`get`, `issues?labels=${ISSUE_LABEL_DAILY}`),
-    fetchJson(`get`, `issues?labels=${ISSUE_LABEL_WEEKLY}`),
-  ]);
-  return [...res[0].result, ...res[1].result];
+  console.log(`Fetching issues...`);
+  let {result} = await fetchJson(`get`, `issues?labels=${TRENDING_LABEL}`);
+  if (TRENDING_LANG) {
+    result = result.filter(issue => issue.body.indexOf(`https://github.com/trending/${TRENDING_LANG}`) >= 0);
+  }
+  return result;
 }
 
 async function processIssue(issue) {
@@ -62,8 +62,13 @@ async function processIssue(issue) {
   await excludeKnownRepos(issue, trendingRepos);
   console.log(`New repos: ${trendingRepos.size}`);
   if (trendingRepos.size) {
-    trendingRepos.forEach(r => console.log(`  ${r.name} +${r.starsAdded}`));
-    await postComment(issue, trendingRepos);
+    const commentBody = generateCommentBody(issue, trendingRepos);
+    if (TRENDING_POST_COMMENTS) {
+      await postComment(issue, commentBody);
+    } else {
+      console.log(`Skip posting comment!`);
+      console.log(`Comment body:\n${commentBody}`);
+    }
   }
 }
 
@@ -81,9 +86,7 @@ async function getTrendingRepos(issue) {
   assertZeroTrendingRepos(domRepos, $, url);
   domRepos.each((index, repo) => {
     const info = extractTrendingRepoInfo(repo, $, url);
-    if (info.starsAdded >= MIN_STARS) {
-      repos.set(info.url, info);
-    }
+    repos.set(info.url, info);
   });
   return repos;
 }
@@ -93,7 +96,7 @@ async function getTrendingRepos(issue) {
  * It allows to stop pagination requests earlier if all trending repos are known.
  */
 async function excludeKnownRepos(issue, trendingRepos) {
-  console.log(`Fetching known repos from comments...`);
+  console.log(`Fetching known repos from issue comments...`);
   let url = `issues/${issue.number}/comments`;
   const {pages} = await fetchJson(`head`, url);
   if (pages) {
@@ -108,7 +111,7 @@ async function excludeKnownRepos(issue, trendingRepos) {
     }, []);
     console.log(`Known trending repos: ${knownRepos.length}`);
     knownRepos.forEach(repoUrl => trendingRepos.delete(repoUrl));
-    // stop on first page OR if all trending repos are known
+    // stop when the first page achieved OR if all trending repos are found in comments
     if (!pages || !pages.prev || trendingRepos.size === 0) {
       break;
     } else {
@@ -117,23 +120,7 @@ async function excludeKnownRepos(issue, trendingRepos) {
   }
 }
 
-async function postComment(issue, newTrendingRepos) {
-  const since = issue.labels.find(l => l.name === ISSUE_LABEL_DAILY) ? 'today' : 'this week';
-  const header = `**${issue.title}!**`;
-  const commentItems = [];
-  newTrendingRepos.forEach(repo => {
-    const commentItem = [
-      `[${repo.name.replace('/', ' / ')}](${repo.url})`,
-      repo.description,
-      repo.starsAdded ? `***+${repo.starsAdded}** stars ${since}*` : `*No info about stars ${since}*`
-    ].filter(Boolean).join('\n');
-    commentItems.push(commentItem);
-  });
-  const body = [header, ...commentItems].join('\n\n');
-  if (DRY_RUN) {
-    console.log(`dry run: skip commenting!`);
-    return;
-  }
+async function postComment(issue, body) {
   const {result} = await fetchJson(`post`, `issues/${issue.number}/comments`, {body});
   if (!result.id) {
     throw new Error(JSON.stringify(result));
@@ -165,6 +152,21 @@ async function fetchJson(method, path, data) {
   }
 }
 
+function generateCommentBody(issue, newTrendingRepos) {
+  const since = issue.title.indexOf('daily') >= 0 ? 'today' : 'this week';
+  const header = `**${issue.title}!**`;
+  const commentItems = [];
+  newTrendingRepos.forEach(repo => {
+    const commentItem = [
+      `[${repo.name.replace('/', ' / ')}](${repo.url})`,
+      repo.description,
+      repo.starsAdded ? `***+${repo.starsAdded}** stars ${since}*` : `*No info about stars ${since}*`
+    ].filter(Boolean).join('\n');
+    commentItems.push(commentItem);
+  });
+  return [header, ...commentItems].join('\n\n');
+}
+
 function extractTrendingRepoInfo(repo, $, url) {
   const name = $(repo).find('h3').text().trim().replace(/ /g, '');
   if (!name) {
@@ -184,6 +186,8 @@ function extractTrendingRepoInfo(repo, $, url) {
 
 function assertZeroTrendingRepos(domRepos, $, url) {
   if (domRepos.length === 0) {
+    // When GitHub is re-calculating trending repos - it shows this message
+    const TRENDING_REPOS_DISSECTED_MSG = 'Trending repositories results are currently being dissected';
     const isDissecting = $('.blankslate').text().indexOf(TRENDING_REPOS_DISSECTED_MSG) >= 0;
     if (isDissecting) {
       console.log(`Trending repos are being dissecting.`);
