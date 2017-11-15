@@ -40,8 +40,8 @@ there are following languages for subscription:
 * [Swift](https://github.com/vitalets/github-trending-repos/issues/36)
 * [Scala](https://github.com/vitalets/github-trending-repos/issues/37)
 * [Objective-C](https://github.com/vitalets/github-trending-repos/issues/38)
-* [Haskell](https://github.com/vitalets/github-trending-repos/issues/40)
 * [Rust](https://github.com/vitalets/github-trending-repos/issues/44)
+* [Haskell](https://github.com/vitalets/github-trending-repos/issues/46)
 
 Feel free to [create new issue](https://github.com/vitalets/github-trending-repos/issues/new) if your language is missing.
 
