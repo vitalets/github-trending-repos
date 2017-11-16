@@ -65,7 +65,8 @@ Feel free to share the issue link with others to let community know about exitin
 ## Alternatives
 * Subscribe to [GitHub Explore Newsletter](https://github.com/explore#newsletter)
 * Follow [@TrendingGithub](https://twitter.com/TrendingGithub) on Twitter
-* Browse contents of [josephyzhou/github-trending](https://github.com/josephyzhou/github-trending)
+* View [gitmostwanted.com/trending](http://gitmostwanted.com/trending/)
+* Browse `.md` files in [josephyzhou/github-trending](https://github.com/josephyzhou/github-trending)
 
 Neither alternative can *filter notifications per programming language*. That's why I've created this project.
 
