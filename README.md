@@ -63,10 +63,11 @@ I will check it and mark with corresponding label. After that notifications will
 Feel free to share the issue link with others to let community know about exiting projects!
 
 ## Alternatives
-* Subscribe to [GitHub Explore Newsletter](https://github.com/explore#newsletter)
+* Subscribe to official [GitHub Explore Newsletter](https://github.com/explore#newsletter)
+* Subscribe to [Changelog Nightly](https://changelog.com/nightly) powered by [GitHub Archive](https://www.githubarchive.org/)
 * Follow [@TrendingGithub](https://twitter.com/TrendingGithub) on Twitter
 * View [gitmostwanted.com/trending](http://gitmostwanted.com/trending/)
-* Browse `.md` files in [josephyzhou/github-trending](https://github.com/josephyzhou/github-trending)
+* Browse contents of [josephyzhou/github-trending](https://github.com/josephyzhou/github-trending)
 
 Neither alternative can *filter notifications per programming language*. That's why I've created this project.
 
