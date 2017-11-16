@@ -2,7 +2,7 @@
 [![CircleCI](https://circleci.com/gh/vitalets/github-trending-repos.svg?style=svg)](https://circleci.com/gh/vitalets/github-trending-repos)
 
 This project allows you to subscribe on [new trending repositories](https://github.com/trending) in your favorite
-programming language on GitHub. It uses [GitHub notifications] to send you updates on daily/weekly basis.
+programming language on GitHub. It uses [GitHub notifications] to send you updates every day or week.
 
 ## How it works
 1. Every issue in this repo is related to particular programming language
