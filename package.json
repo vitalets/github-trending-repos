@@ -13,7 +13,9 @@
   "scripts": {
     "code": "eslint .",
     "test": "TRENDING_LANG=javascript npm run test-all",
-    "test-all": "npm run daily && npm run weekly",
+    "test-daily": "npm run daily",
+    "test-weekly": "npm run weekly",
+    "test-all": "npm run test-daily && npm run test-weekly",
     "update-daily": "TRENDING_POST_COMMENTS=true npm run daily",
     "update-weekly": "TRENDING_POST_COMMENTS=true npm run weekly",
     "daily": "TRENDING_LABEL=trending-daily node .",
