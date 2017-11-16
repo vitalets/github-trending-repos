@@ -1,15 +1,15 @@
 # GitHub Trending Repos
 [![CircleCI](https://circleci.com/gh/vitalets/github-trending-repos.svg?style=svg)](https://circleci.com/gh/vitalets/github-trending-repos)
 
-This project allows you to stay notified about [new trending repositories](https://github.com/trending) in your favorite
-programming language on GitHub.
+This project allows you to subscribe on [new trending repositories](https://github.com/trending) in your favorite
+programming language on GitHub. It uses [GitHub notifications] to send you updates on daily/weekly basis.
 
 ## How it works
 1. Every issue in this repo is related to particular programming language
 2. You subscribe to issue updates by pressing <img alt="subscribe button" valign="middle" src="https://user-images.githubusercontent.com/1473072/32487280-46f4489c-c3ba-11e7-82d7-cfe073cac8d1.png"> button
-3. Scheduled script runs on daily/weekly basis and crawls trending repos page
+3. Scheduled job runs script that crawls trending repos page
 4. If there are new repos - the script drops a comment to corresponding issue
-5. All issue subscribers receive [GitHub notification] in web interface <img alt="notification icon" valign="bottom" src="https://user-images.githubusercontent.com/1473072/32723023-01555c78-c87d-11e7-8190-6bf3bb0ec405.png"> or by email
+5. All issue subscribers receive GitHub notification in web interface <img alt="notification icon" valign="bottom" src="https://user-images.githubusercontent.com/1473072/32723023-01555c78-c87d-11e7-8190-6bf3bb0ec405.png"> or by email
 
 ## Schedule
 * Daily check runs **every day at 00:00 UTC**
@@ -75,4 +75,4 @@ Neither alternative can *filter notifications per programming language*. That's 
 
 [trending-daily]: https://github.com/vitalets/github-trending-repos/labels/trending-daily
 [trending-weekly]: https://github.com/vitalets/github-trending-repos/labels/trending-weekly
-[GitHub notification]: https://help.github.com/articles/accessing-your-notifications/
+[GitHub notifications]: https://help.github.com/articles/accessing-your-notifications/
