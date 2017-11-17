@@ -65,6 +65,8 @@ async function processIssue(issue) {
     const commentBody = generateCommentBody(issue, trendingRepos);
     if (TRENDING_POST_COMMENTS) {
       await postComment(issue, commentBody);
+      // wait 5s to avoid abuse rate limit: https://developer.github.com/v3/#abuse-rate-limits
+      await sleep(5000);
     } else {
       console.log(`Skip posting comment!`);
       console.log(`Comment body:\n${commentBody}`);
@@ -211,4 +213,8 @@ function toNumber(el) {
 
 function getTimestamp() {
   return Math.round(Date.now() / 1000);
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
