@@ -13,7 +13,7 @@ programming language on GitHub. It uses [GitHub notifications] to send you updat
 
 ## Schedule
 * Daily check runs **every day at 00:00 UTC**
-* Weekly check runs **every friday at 00:00 UTC**
+* Weekly check runs **every friday at 02:00 UTC**
 
 ## Examples
 Notification in web interface:  
