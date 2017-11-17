@@ -69,7 +69,7 @@ Feel free to share the issue link with others to let community know about exitin
 * View [gitmostwanted.com/trending](http://gitmostwanted.com/trending/)
 * Browse contents of [josephyzhou/github-trending](https://github.com/josephyzhou/github-trending)
 
-Neither alternative can *filter notifications per programming language*. That's why I've created this project.
+Neither alternative can *send notifications per programming language*. That's why I've created this project.
 
 &copy; 2017 [Vitaliy Potapov](https://github.com/vitalets)
 
