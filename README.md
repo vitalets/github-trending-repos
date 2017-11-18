@@ -1,4 +1,4 @@
-# GitHub Trending Repos
+# GitHub Trending Repos :chart_with_upwards_trend:
 [![CircleCI](https://circleci.com/gh/vitalets/github-trending-repos.svg?style=svg)](https://circleci.com/gh/vitalets/github-trending-repos)
 <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fvitalets%2Fgithub-trending-repos&via=vitpotapov&text=Stay%20notified%20about%20trending%20GitHub%20repositories%20in%20your%20favorite%20programming%20language%21&hashtags=github%2Ctrending"><img align="right" alt="Tweet" src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social"/></a>
 
