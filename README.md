@@ -3,18 +3,19 @@
 <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fvitalets%2Fgithub-trending-repos&via=vitpotapov&text=Stay%20notified%20about%20trending%20GitHub%20repositories%20in%20your%20favorite%20programming%20language%21&hashtags=github%2Ctrending"><img align="right" alt="Tweet" src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social"/></a>
 
 A way to subscribe on [new trending repositories](https://github.com/trending) in your favorite
-programming language on GitHub. Updates come as [GitHub notifications] every day or week.
+programming language on GitHub. Updates come as [GitHub notifications] once a day or week.
 
 ## How it works
 1. Every issue in this repo is related to particular programming language
 2. You subscribe to issue by pressing <img alt="subscribe button" valign="middle" src="https://user-images.githubusercontent.com/1473072/32487280-46f4489c-c3ba-11e7-82d7-cfe073cac8d1.png"> button
-3. Scheduled script crawls trending repos page once a day or week
+3. Scheduled scripts crawl trending repos page every day and week
 4. If there are new repos - the script drops a comment to the corresponding issue
 5. All issue subscribers receive GitHub notification in web interface <img alt="notification icon" valign="bottom" src="https://user-images.githubusercontent.com/1473072/32723023-01555c78-c87d-11e7-8190-6bf3bb0ec405.png"> or by email
 
 ## Schedule
-* Daily check runs **every day at 00:00 UTC** - for issues labeled with [trending-daily](https://github.com/vitalets/github-trending-repos/labels/trending-daily)
-* Weekly check runs **every friday at 02:00 UTC** - for issues labeled with [trending-weekly](https://github.com/vitalets/github-trending-repos/labels/trending-weekly)
+You can choose the following subscription types:
+* Daily: runs **every day at 00:00 UTC**, see issues labeled with [trending-daily](https://github.com/vitalets/github-trending-repos/labels/trending-daily)
+* Weekly: runs **every friday at 02:00 UTC**, see issues labeled with [trending-weekly](https://github.com/vitalets/github-trending-repos/labels/trending-weekly)
 
 ## Examples
 Notification in web interface:  
