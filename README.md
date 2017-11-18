@@ -7,14 +7,14 @@ programming language on GitHub. It uses [GitHub notifications] to deliver update
 
 ## How it works
 1. Every issue in this repo is related to particular programming language
-2. You subscribe to issue updates by pressing <img alt="subscribe button" valign="middle" src="https://user-images.githubusercontent.com/1473072/32487280-46f4489c-c3ba-11e7-82d7-cfe073cac8d1.png"> button
-3. Scheduled job runs script that crawls trending repos page
-4. If there are new repos - the script drops a comment to corresponding issue
+2. You subscribe to issue by pressing <img alt="subscribe button" valign="middle" src="https://user-images.githubusercontent.com/1473072/32487280-46f4489c-c3ba-11e7-82d7-cfe073cac8d1.png"> button
+3. Scheduled script crawls trending repos page once a day or week
+4. If there are new repos - the script drops a comment to the corresponding issue
 5. All issue subscribers receive GitHub notification in web interface <img alt="notification icon" valign="bottom" src="https://user-images.githubusercontent.com/1473072/32723023-01555c78-c87d-11e7-8190-6bf3bb0ec405.png"> or by email
 
 ## Schedule
-* Daily check runs **every day at 00:00 UTC**
-* Weekly check runs **every friday at 02:00 UTC**
+* Daily check runs **every day at 00:00 UTC** - for issues labeled with [trending-daily](https://github.com/vitalets/github-trending-repos/labels/trending-daily)
+* Weekly check runs **every friday at 02:00 UTC** - for issues labeled with [trending-weekly](https://github.com/vitalets/github-trending-repos/labels/trending-weekly)
 
 ## Examples
 Notification in web interface:  
