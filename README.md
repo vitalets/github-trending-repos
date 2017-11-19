@@ -48,7 +48,7 @@ there are following languages for subscription:
 * [R](https://github.com/vitalets/github-trending-repos/issues/39)
 * [Pascal](https://github.com/vitalets/github-trending-repos/issues/41)
 
-If you'd like to add new language feel free to [open new issue](https://github.com/vitalets/github-trending-repos/issues/new).
+If you'd like to track another language feel free to [open new issue](https://github.com/vitalets/github-trending-repos/issues/new).
 
 ## Alternatives
 * Subscribe to official [GitHub Explore Newsletter](https://github.com/explore#newsletter)
