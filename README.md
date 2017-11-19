@@ -48,21 +48,7 @@ there are following languages for subscription:
 * [R](https://github.com/vitalets/github-trending-repos/issues/39)
 * [Pascal](https://github.com/vitalets/github-trending-repos/issues/41)
 
-## How to add new language
-If your favorite language is missing you are welcome to add it:
-
-1. Please re-check that language is not in issues already
-2. Create new issue by the following templates:  
-   ```
-   // Title
-   New daily|weekly trending repos in %lang%
-
-   // Body
-   Subscribe to this issue and stay notified about new [daily|weekly trending repos in %lang%](https://github.com/trending/%lang%?since=daily|weekly)!
-   ```
-
-I will check it and mark with corresponding label. After that notifications will start working.  
-Feel free to share the issue link with others to let community know about exiting projects!
+If you'd like to add new language feel free to [open new issue](https://github.com/vitalets/github-trending-repos/issues/new).
 
 ## Alternatives
 * Subscribe to official [GitHub Explore Newsletter](https://github.com/explore#newsletter)
