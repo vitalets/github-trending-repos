@@ -23,7 +23,7 @@ Notification in web interface:
 ![Example of web notification](https://user-images.githubusercontent.com/1473072/32488601-4295b138-c3be-11e7-8eb2-18a624c54ca2.png)
 
 The comment with new repos:  
-![Example of comment](https://user-images.githubusercontent.com/1473072/32593861-c2030470-c53a-11e7-9272-30cae0632dd6.png)
+![Example of comment](https://user-images.githubusercontent.com/1473072/33029917-f054b67c-ce2a-11e7-9b42-a7ee16d98228.png)
 
 ## Available languages
 Started from the [fifteen most popular languages on GitHub](https://octoverse.github.com/) and with the community help
