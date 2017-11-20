@@ -1,4 +1,4 @@
-<div align="center"><img src="https://user-images.githubusercontent.com/1473072/33014697-37d79820-cdf9-11e7-8483-8a1563a56a46.gif" alt="Stars counter"/></div>
+<div align="center"><img src="https://user-images.githubusercontent.com/1473072/33017421-567c68a0-ce03-11e7-9313-e73b18cc47d8.gif" alt="Stars counter"/></div>
 <h1 align="center">GitHub Trending Repos :chart_with_upwards_trend:</h1>
 <a href="https://circleci.com/gh/vitalets/github-trending-repos"><img src="https://circleci.com/gh/vitalets/github-trending-repos.svg?style=svg" alt="CircleCI"/></a>
 <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fvitalets%2Fgithub-trending-repos&via=vitpotapov&text=Stay%20notified%20about%20trending%20GitHub%20repositories%20in%20your%20favorite%20programming%20language%21&hashtags=github%2Ctrending"><img align="right" alt="Tweet" src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social"/></a>
