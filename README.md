@@ -3,15 +3,15 @@
 <a href="https://circleci.com/gh/vitalets/github-trending-repos"><img src="https://circleci.com/gh/vitalets/github-trending-repos.svg?style=svg" alt="CircleCI"/></a>
 <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fvitalets%2Fgithub-trending-repos&via=vitpotapov&text=Stay%20notified%20about%20trending%20GitHub%20repositories%20in%20your%20favorite%20programming%20language%21&hashtags=github%2Ctrending"><img align="right" alt="Tweet" src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social"/></a>
 
-A way to subscribe on [new trending repositories](https://github.com/trending) in your favorite
-programming language on GitHub. Updates come as [GitHub notifications] once a day or week.
+A way to subscribe on new [trending repositories](https://github.com/trending) in your favorite programming language on GitHub.
+Updates come as [GitHub notifications] once a day or a week.
 
 ## How it works
-1. Every issue in this repo is related to the particular programming language
-2. You can subscribe to an issue by pressing <img alt="subscribe button" valign="middle" src="https://user-images.githubusercontent.com/1473072/32487280-46f4489c-c3ba-11e7-82d7-cfe073cac8d1.png"> button
-3. Scheduled scripts scrape trending repos page every day and week
+1. Every issue in this repo is related to a particular programming language
+2. You can subscribe to comments in particular issues by pressing <img alt="subscribe button" valign="middle" src="https://user-images.githubusercontent.com/1473072/32487280-46f4489c-c3ba-11e7-82d7-cfe073cac8d1.png"> button
+3. Scheduled script scrapes trending repos page every day and week
 4. If there are new repos - the script drops a comment to the corresponding issue
-5. All issue subscribers receive GitHub notification in web interface <img alt="notification icon" valign="bottom" src="https://user-images.githubusercontent.com/1473072/32723023-01555c78-c87d-11e7-8190-6bf3bb0ec405.png"> or by email
+5. All issue subscribers receive GitHub notification in the web interface <img alt="notification icon" valign="bottom" src="https://user-images.githubusercontent.com/1473072/32723023-01555c78-c87d-11e7-8190-6bf3bb0ec405.png"> or by email
 
 ## Schedule
 You can choose the following subscription types:
