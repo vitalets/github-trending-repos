@@ -52,11 +52,14 @@ Many languages are available for subscription including the [fifteen most popula
 If you'd like to add new language - feel free to [open an issue](https://github.com/vitalets/github-trending-repos/issues/new).
 
 ## Alternatives
-* Subscribe to official [GitHub Explore Newsletter](https://github.com/explore#newsletter)
-* Subscribe to [Changelog Nightly](https://changelog.com/nightly) powered by [GitHub Archive](https://www.githubarchive.org/)
-* Follow [@TrendingGithub](https://twitter.com/TrendingGithub) on Twitter
-* View [gitmostwanted.com/trending](http://gitmostwanted.com/trending/)
-* Browse contents of [josephyzhou/github-trending](https://github.com/josephyzhou/github-trending)
+* Newsletter:
+  * [Official GitHub Explore Newsletter](https://github.com/explore#newsletter)
+  * [Changelog Nightly](https://changelog.com/nightly)
+  * [GitLogs](http://www.gitlogs.com/)
+* Twitter bot: [@TrendingGithub](https://twitter.com/TrendingGithub)
+* Browser extension: [Githunt](https://github.com/kamranahmedse/githunt)
+* Webpage with extra filters: [gitmostwanted.com/trending](http://gitmostwanted.com/trending/)
+* Daily updated repo: [josephyzhou/github-trending](https://github.com/josephyzhou/github-trending)
 
 None of alternatives can *send notifications per programming language*. That's why I've created this project.
 
