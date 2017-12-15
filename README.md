@@ -58,6 +58,7 @@ If you'd like to add new language - feel free to [open an issue](https://github.
   * [GitLogs](http://www.gitlogs.com/)
 * Twitter bot: [@TrendingGithub](https://twitter.com/TrendingGithub)
 * Browser extension: [Githunt](https://github.com/kamranahmedse/githunt)
+* RSS feed: [github-trends.ryotarai.info](http://github-trends.ryotarai.info/)
 * Webpage with extra filters: [gitmostwanted.com/trending](http://gitmostwanted.com/trending/)
 * Daily updated repo: [josephyzhou/github-trending](https://github.com/josephyzhou/github-trending)
 
