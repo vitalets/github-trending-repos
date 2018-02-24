@@ -35,6 +35,7 @@
   "devDependencies": {
     "eslint": "^4.10.0",
     "husky": "^0.14.3",
-    "lint-staged": "^4.3.0"
+    "lint-staged": "^4.3.0",
+    "lodash.groupby": "^4.6.0"
   }
 }

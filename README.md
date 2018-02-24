@@ -26,30 +26,36 @@ The comment with new repos:
 ![Example of comment](https://user-images.githubusercontent.com/1473072/33029917-f054b67c-ce2a-11e7-9b42-a7ee16d98228.png)
 
 ## Available languages
-Many languages are available for subscription including the [fifteen most popular languages on GitHub](https://octoverse.github.com/):
+Many languages are available for subscription:
 
-* [JavaScript](https://github.com/vitalets/github-trending-repos/issues/5)
-* [Python](https://github.com/vitalets/github-trending-repos/issues/7)
-* [Java](https://github.com/vitalets/github-trending-repos/issues/8)
-* [Ruby](https://github.com/vitalets/github-trending-repos/issues/9)
-* [PHP](https://github.com/vitalets/github-trending-repos/issues/10)
-* [C++](https://github.com/vitalets/github-trending-repos/issues/29)
-* [CSS](https://github.com/vitalets/github-trending-repos/issues/30)
-* [C#](https://github.com/vitalets/github-trending-repos/issues/31)
-* [Go](https://github.com/vitalets/github-trending-repos/issues/32)
-* [C](https://github.com/vitalets/github-trending-repos/issues/33)
-* [TypeScript](https://github.com/vitalets/github-trending-repos/issues/34)
-* [Shell](https://github.com/vitalets/github-trending-repos/issues/35)
-* [Swift](https://github.com/vitalets/github-trending-repos/issues/36)
-* [Scala](https://github.com/vitalets/github-trending-repos/issues/37)
-* [Objective-C](https://github.com/vitalets/github-trending-repos/issues/38)
-* [Rust](https://github.com/vitalets/github-trending-repos/issues/44)
-* [Haskell](https://github.com/vitalets/github-trending-repos/issues/46)
-* [1C Enterprise](https://github.com/vitalets/github-trending-repos/issues/43)
-* [R](https://github.com/vitalets/github-trending-repos/issues/39)
-* [Pascal](https://github.com/vitalets/github-trending-repos/issues/41)
+* 1C Enterprise ([daily](https://github.com/vitalets/github-trending-repos/issues/43))
+* C ([daily](https://github.com/vitalets/github-trending-repos/issues/33) | [weekly](https://github.com/vitalets/github-trending-repos/issues/21))
+* C# ([daily](https://github.com/vitalets/github-trending-repos/issues/31) | [weekly](https://github.com/vitalets/github-trending-repos/issues/19))
+* C++ ([daily](https://github.com/vitalets/github-trending-repos/issues/29) | [weekly](https://github.com/vitalets/github-trending-repos/issues/17))
+* CSS ([daily](https://github.com/vitalets/github-trending-repos/issues/30) | [weekly](https://github.com/vitalets/github-trending-repos/issues/18))
+* Go ([daily](https://github.com/vitalets/github-trending-repos/issues/32) | [weekly](https://github.com/vitalets/github-trending-repos/issues/20))
+* Haskell ([daily](https://github.com/vitalets/github-trending-repos/issues/46) | [weekly](https://github.com/vitalets/github-trending-repos/issues/47))
+* Java ([daily](https://github.com/vitalets/github-trending-repos/issues/8) | [weekly](https://github.com/vitalets/github-trending-repos/issues/12))
+* JavaScript ([daily](https://github.com/vitalets/github-trending-repos/issues/5) | [weekly](https://github.com/vitalets/github-trending-repos/issues/16))
+* Objective-C ([daily](https://github.com/vitalets/github-trending-repos/issues/38) | [weekly](https://github.com/vitalets/github-trending-repos/issues/26))
+* PHP ([daily](https://github.com/vitalets/github-trending-repos/issues/10) | [weekly](https://github.com/vitalets/github-trending-repos/issues/14))
+* Pascal ([weekly](https://github.com/vitalets/github-trending-repos/issues/41))
+* Python ([daily](https://github.com/vitalets/github-trending-repos/issues/7) | [weekly](https://github.com/vitalets/github-trending-repos/issues/11))
+* R ([weekly](https://github.com/vitalets/github-trending-repos/issues/39))
+* Ruby ([daily](https://github.com/vitalets/github-trending-repos/issues/9) | [weekly](https://github.com/vitalets/github-trending-repos/issues/13))
+* Rust ([daily](https://github.com/vitalets/github-trending-repos/issues/44) | [weekly](https://github.com/vitalets/github-trending-repos/issues/45))
+* Scala ([daily](https://github.com/vitalets/github-trending-repos/issues/37) | [weekly](https://github.com/vitalets/github-trending-repos/issues/25))
+* Shell ([daily](https://github.com/vitalets/github-trending-repos/issues/35) | [weekly](https://github.com/vitalets/github-trending-repos/issues/23))
+* Swift ([daily](https://github.com/vitalets/github-trending-repos/issues/36) | [weekly](https://github.com/vitalets/github-trending-repos/issues/24))
+* TypeScript ([daily](https://github.com/vitalets/github-trending-repos/issues/34) | [weekly](https://github.com/vitalets/github-trending-repos/issues/22))
+* Verilog ([daily](https://github.com/vitalets/github-trending-repos/issues/50))
 
 If you'd like to add new language - feel free to [open an issue](https://github.com/vitalets/github-trending-repos/issues/new).
+
+## Specials
+
+* Trending repos across all languages ([daily](https://github.com/vitalets/github-trending-repos/issues/6) | [weekly](https://github.com/vitalets/github-trending-repos/issues/15))
+* Trending repos in unknown languages ([daily](https://github.com/vitalets/github-trending-repos/issues/28) | [weekly](https://github.com/vitalets/github-trending-repos/issues/27))
 
 ## Alternatives
 * Newsletter:
