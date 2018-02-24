@@ -18,10 +18,10 @@ You can choose the following subscription types:
 * Weekly: runs **every friday at 02:00 UTC**, see issues labeled with [trending-weekly](https://github.com/vitalets/github-trending-repos/labels/trending-weekly)
 
 ## Examples
-Notification in web interface:  
+Once a day (or a week) you get a notification in GitHub web interface:  
 ![Example of web notification](https://user-images.githubusercontent.com/1473072/32488601-4295b138-c3be-11e7-8eb2-18a624c54ca2.png)
 
-The comment with new repos:  
+After click you are navigated to the first unread comment with new trending repos in selected language:  
 ![Example of comment](https://user-images.githubusercontent.com/1473072/33029917-f054b67c-ce2a-11e7-9b42-a7ee16d98228.png)
 
 ## Available languages
