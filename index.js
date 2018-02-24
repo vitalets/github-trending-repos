@@ -46,7 +46,7 @@ async function main() {
 
 async function getIssues() {
   console.log(`Fetching issues...`);
-  let {result} = await fetchJson(`get`, `issues?labels=${TRENDING_LABEL}`);
+  let {result} = await fetchJson(`get`, `issues?labels=${TRENDING_LABEL}&per_page=100`);
   if (TRENDING_LANG) {
     result = result.filter(issue => issue.body.indexOf(`https://github.com/trending/${TRENDING_LANG}`) >= 0);
   }
