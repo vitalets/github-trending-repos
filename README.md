@@ -21,7 +21,7 @@ You can choose the following subscription types:
 Once a day (or a week) you get a notification in GitHub web interface:  
 ![Example of web notification](https://user-images.githubusercontent.com/1473072/32488601-4295b138-c3be-11e7-8eb2-18a624c54ca2.png)
 
-After click you are navigated to the first unread comment with new trending repos in selected language:  
+After click you are navigated to the first unread comment with new trends in selected language:  
 ![Example of comment](https://user-images.githubusercontent.com/1473072/33029917-f054b67c-ce2a-11e7-9b42-a7ee16d98228.png)
 
 ## Available languages
@@ -93,7 +93,7 @@ It's more convenient to selectively subscribe on issues you are interested in.
 
 None of alternatives can *send notifications per programming language*. That's why I've created this project.
 
-&copy; 2017 [Vitaliy Potapov](https://github.com/vitalets)
+&copy; 2017-2018 [Vitaliy Potapov](https://github.com/vitalets)
 
 [trending-daily]: https://github.com/vitalets/github-trending-repos/labels/trending-daily
 [trending-weekly]: https://github.com/vitalets/github-trending-repos/labels/trending-weekly
