@@ -61,6 +61,7 @@ Many languages are available for subscription:
 * PureScript ([daily](https://github.com/vitalets/github-trending-repos/issues/100) | [weekly](https://github.com/vitalets/github-trending-repos/issues/101))
 * Python ([daily](https://github.com/vitalets/github-trending-repos/issues/7) | [weekly](https://github.com/vitalets/github-trending-repos/issues/11))
 * R ([weekly](https://github.com/vitalets/github-trending-repos/issues/39))
+* Racket ([weekly](https://github.com/vitalets/github-trending-repos/issues/115))
 * Ruby ([daily](https://github.com/vitalets/github-trending-repos/issues/9) | [weekly](https://github.com/vitalets/github-trending-repos/issues/13))
 * Rust ([daily](https://github.com/vitalets/github-trending-repos/issues/44) | [weekly](https://github.com/vitalets/github-trending-repos/issues/45))
 * Scala ([daily](https://github.com/vitalets/github-trending-repos/issues/37) | [weekly](https://github.com/vitalets/github-trending-repos/issues/25))
