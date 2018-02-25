@@ -76,6 +76,10 @@ If you'd like to add new language - feel free to [open an issue](https://github.
 * Trending repos across all languages ([daily](https://github.com/vitalets/github-trending-repos/issues/6) | [weekly](https://github.com/vitalets/github-trending-repos/issues/15))
 * Trending repos in unknown languages ([daily](https://github.com/vitalets/github-trending-repos/issues/28) | [weekly](https://github.com/vitalets/github-trending-repos/issues/27))
 
+## Watching the repo
+If you start watching this repo - you will receive **many** notifications about trends in all languages.
+It's more convenient to selectively subscribe on issues you are interested in.
+
 ## Alternatives
 * Newsletter:
   * [Official GitHub Explore Newsletter](https://github.com/explore#newsletter)
