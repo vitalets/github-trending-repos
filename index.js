@@ -55,6 +55,10 @@ async function getIssues() {
 
 async function processIssue(issue) {
   console.log(`\n== ${issue.title.toUpperCase()} ==`);
+  // in test mode check that issue is locked
+  if (!TRENDING_POST_COMMENTS) {
+    assertIssueIsLocked(issue);
+  }
   const trendingRepos = await getTrendingRepos(issue);
   if (trendingRepos.size === 0) {
     return;
@@ -196,6 +200,12 @@ function assertZeroTrendingRepos(domRepos, $, url) {
     } else {
       throw new Error(`Can't retrieve trending repos from: ${url}`);
     }
+  }
+}
+
+function assertIssueIsLocked(issue) {
+  if (!issue.locked) {
+    throw new Error(`Unlocked issue: ${issue.html_url}`);
   }
 }
 
