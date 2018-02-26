@@ -81,6 +81,14 @@ If you'd like to add new language - feel free to [open an issue](https://github.
 If you start watching this repo - you will receive **many** notifications about trends in all languages.
 It's more convenient to selectively subscribe on issues you are interested in.
 
+## Is it better than RSS / newsletter / etc?
+It's a matter of taste. Personally I found it convenient by the following reasons:
+
+* I'm dealing with GitHub notifications anyway and trends are seamlessly integrated in my daily workflow
+* I'm familiar with GitHub UI
+* I don't want to visit another website, setup any tool, register somewhere and etc
+* I can quickly overview trends without loosing the working context
+
 ## Alternatives
 * Newsletter:
   * [Official GitHub Explore Newsletter](https://github.com/explore#newsletter)
