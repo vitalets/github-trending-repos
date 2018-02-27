@@ -69,6 +69,7 @@ Many languages are available for subscription:
 * Swift ([daily](https://github.com/vitalets/github-trending-repos/issues/36) | [weekly](https://github.com/vitalets/github-trending-repos/issues/24))
 * TypeScript ([daily](https://github.com/vitalets/github-trending-repos/issues/34) | [weekly](https://github.com/vitalets/github-trending-repos/issues/22))
 * Verilog ([daily](https://github.com/vitalets/github-trending-repos/issues/50))
+* Vim script ([daily](https://github.com/vitalets/github-trending-repos/issues/118) | [weekly](https://github.com/vitalets/github-trending-repos/issues/119))
 
 If you'd like to add new language - feel free to [open an issue](https://github.com/vitalets/github-trending-repos/issues/new).
 
