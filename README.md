@@ -71,7 +71,7 @@ Many languages are available for subscription:
 * Verilog ([daily](https://github.com/vitalets/github-trending-repos/issues/50))
 * Vim script ([daily](https://github.com/vitalets/github-trending-repos/issues/118) | [weekly](https://github.com/vitalets/github-trending-repos/issues/119))
 
-If you'd like to add new language - feel free to [open an issue](https://github.com/vitalets/github-trending-repos/issues/new).
+If you'd like to add new language - feel free to [create issue by this template](https://github.com/vitalets/github-trending-repos/issues/new?title=Please%20add%20%7Blang%7D&body=%7Blink%20to%20GitHub%20trending%20page%7D%20%20%0A-%20%5B%20%5D%20daily%0A-%20%5B%20%5D%20weekly).
 
 ## Specials
 
