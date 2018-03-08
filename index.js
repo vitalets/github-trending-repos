@@ -48,9 +48,11 @@ async function main() {
     }
   }
   console.log(`\nDone.`);
-  console.log(`Errors: ${errors.length}`);
   console.log(`Duration (sec): ${getTimestamp() - startTime}`);
   console.log(`API requests: ${requestCount}`);
+  if (errors.length > 0) {
+    throw new Error(`There are errors in ${errors.length} issue(s)`);
+  }
 }
 
 async function getIssues() {
