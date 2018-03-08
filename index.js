@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 const parseLinkHeader = require('parse-link-header');
@@ -16,6 +18,7 @@ const GITHUB_TOKEN = TRENDING_POST_COMMENTS ? process.env.GITHUB_TOKEN_BOT : pro
 if (!GITHUB_TOKEN) {
   throw new Error('No GitHub token in env variables!');
 }
+const ARTIFACTS_PATH = process.env.CIRCLE_ARTIFACTS || '.artifacts';
 
 const API_URL = 'https://api.github.com/repos/vitalets/github-trending-repos';
 const GITHUB_URL_REG = /https:\/\/github.com\/[^)]+/ig;
@@ -211,11 +214,29 @@ function assertZeroTrendingRepos(domRepos, $, url) {
     // When GitHub is re-calculating trending repos - it shows this message
     const TRENDING_REPOS_DISSECTED_MSG = 'Trending repositories results are currently being dissected';
     const isDissecting = $('.blankslate').text().indexOf(TRENDING_REPOS_DISSECTED_MSG) >= 0;
+    const isTimeouted = $.text().indexOf('This page is taking way too long to load') >= 0;
     if (isDissecting) {
       console.log(`Trending repos are being dissecting.`);
+    } else if (isTimeouted) {
+      console.log(`Page timeouted.`);
     } else {
+      const filename = url.match(/trending\/(.+)$/)[1];
+      saveArtifact(`${filename}.html`, $.html());
       throw new Error(`Can't retrieve trending repos from: ${url}`);
     }
+  }
+}
+
+function saveArtifact(filename, content) {
+  try {
+    if (!fs.existsSync(ARTIFACTS_PATH)) {
+      fs.mkdirSync(ARTIFACTS_PATH);
+    }
+    const filepath = path.join(ARTIFACTS_PATH, filename);
+    console.log(`Saving artifact: ${filepath}`);
+    fs.writeFileSync(filepath, content, 'utf-8');
+  } catch (e) {
+    console.error(e);
   }
 }
 

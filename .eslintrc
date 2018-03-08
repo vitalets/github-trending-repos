@@ -20,7 +20,7 @@
     "max-params": ["error", {"max" : 3}],
     "max-statements": ["error", {"max" : 17}, {"ignoreTopLevelFunctions": false}],
     "max-len": ["error", {"code" : 120}],
-    "max-lines": ["error", {"max": 220, "skipComments": true, "skipBlankLines": true}],
+    "max-lines": ["error", {"max": 250, "skipComments": true, "skipBlankLines": true}],
     "semi": ["error", "always"],
     "space-before-function-paren": ["error", {"anonymous": "always", "named": "never", "asyncArrow": "always"}]
   }
