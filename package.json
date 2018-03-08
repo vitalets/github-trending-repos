@@ -12,7 +12,14 @@
   },
   "scripts": {
     "code": "eslint .",
-    "test": "TRENDING_LANG=javascript npm run test-all",
+    "test-trends": "mocha test/trends.test.js -r test/setup.js",
+    "test-issues": "mocha test/issues.test.js -r test/setup.js",
+    "test-comments": "mocha test/comments.test.js -r test/setup.js",
+    "test-helpers": "mocha test/*.test.js -r test/setup.js",
+    "test-daily-new": "TRENDING_LABEL=trending-daily node scripts/update-comments",
+    "test-weekly-new": "TRENDING_LABEL=trending-weekly node scripts/update-comments",
+    "separator": "---",
+    "test-lang": "TRENDING_LANG=javascript npm run test-all",
     "test-daily": "npm run daily",
     "test-weekly": "npm run weekly",
     "test-all": "npm run test-daily && npm run test-weekly",
@@ -26,16 +33,22 @@
   "lint-staged": {
     "*.js": "eslint"
   },
-  "license": "MIT",
   "dependencies": {
+    "axios": "^0.18.0",
+    "axios-retry": "^3.0.2",
     "cheerio": "^1.0.0-rc.2",
     "node-fetch": "^2.0.0-alpha.9",
-    "parse-link-header": "^1.0.1"
+    "parse-link-header": "^1.0.1",
+    "promise-retry": "^1.1.1",
+    "ramda": "^0.25.0"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
     "eslint": "^4.10.0",
     "husky": "^0.14.3",
     "lint-staged": "^4.3.0",
-    "lodash.groupby": "^4.6.0"
-  }
+    "lodash.groupby": "^4.6.0",
+    "mocha": "^5.0.3"
+  },
+  "license": "MIT"
 }

@@ -11,6 +11,8 @@ jobs:
       - run: npm install
       - run: npm run test-daily
       - run: npm run test-weekly
+      - run: npm run test-daily-new
+      - run: npm run test-weekly-new
 
   update_daily:
     <<: *defaults
