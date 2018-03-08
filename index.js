@@ -21,6 +21,7 @@ const API_URL = 'https://api.github.com/repos/vitalets/github-trending-repos';
 const GITHUB_URL_REG = /https:\/\/github.com\/[^)]+/ig;
 
 let requestCount = 0;
+const errors = [];
 
 console.log(`Filter by label: ${TRENDING_LABEL}`);
 console.log(`Filter by lang: ${TRENDING_LANG || '*'}`);
@@ -37,9 +38,14 @@ async function main() {
   const issues = await getIssues();
   console.log(`Issues count: ${issues.length}`);
   for (let issue of issues) {
-    await processIssue(issue);
+    try {
+      await processIssue(issue);
+    } catch (e) {
+      await handleIssueError(e);
+    }
   }
   console.log(`\nDone.`);
+  console.log(`Errors: ${errors.length}`);
   console.log(`Duration (sec): ${getTimestamp() - startTime}`);
   console.log(`API requests: ${requestCount}`);
 }
@@ -155,6 +161,16 @@ async function fetchJson(method, path, data) {
   } else {
     const text = await response.text();
     throw new Error(`${response.status} ${response.statusText} ${text}`);
+  }
+}
+
+async function handleIssueError(error) {
+  if (TRENDING_POST_COMMENTS) {
+    errors.push(error);
+    console.error(error);
+    await sleep(1000);
+  } else {
+    throw error;
   }
 }
 
