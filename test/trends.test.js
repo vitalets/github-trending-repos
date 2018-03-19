@@ -3,7 +3,7 @@ const Trends = require('../scripts/helpers/trends');
 
 describe('trends', function () {
 
-  this.timeout(30 * 1000);
+  this.timeout(60 * 1000);
 
   it('should load and parse trends', async function () {
     const trendingUrl = 'https://github.com/trending/javascript?since=weekly';
