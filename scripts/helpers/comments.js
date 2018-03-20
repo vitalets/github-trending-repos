@@ -15,6 +15,11 @@ module.exports = class Comments {
     this._comments = [];
   }
 
+  get lastCommentTimestamp() {
+    const lastComment = this._comments && this._comments[this._comments.length - 1];
+    return lastComment ? new Date(lastComment.created_at).valueOf() : 0;
+  }
+
   /**
    * Gets all comments (from all pages) for provided issue.
    *

@@ -7,6 +7,7 @@
  */
 
 const R = require('ramda');
+const ms = require('ms');
 const config = require('./config');
 const reporter = require('./helpers/reporter');
 const errors = require('./helpers/errors');
@@ -45,6 +46,7 @@ class IssueProcessor {
     this._trendingRepos = [];
     this._knownRepos = [];
     this._newRepos = [];
+    this._commentBody = '';
   }
 
   async process() {
@@ -55,6 +57,13 @@ class IssueProcessor {
       this._detectNewRepos();
     }
     if (this._newRepos.length) {
+      await this._processNewRepos();
+    }
+  }
+
+  async _processNewRepos() {
+    this._generateCommentBody();
+    if (this._shouldUpdate()) {
       await this._postComment();
     }
   }
@@ -71,17 +80,28 @@ class IssueProcessor {
   }
 
   async _postComment() {
-    const body = this._generateCommentBody();
-    if (config.dryRun) {
-      reporter.log(`DRY RUN! Skip posting comment.\nComment body:\n${body}`);
-      return;
-    }
-    const result = await this._commentsHelper.post(body);
+    const result = await this._commentsHelper.post(this._commentBody);
     if (result.url) {
-      reporter.log(`Commented: ${result.url}`);
+      reporter.log(`Commented: ${result.html_url}`);
     } else {
       throw new Error(JSON.stringify(result));
     }
+  }
+
+  _shouldUpdate() {
+    if (config.dryRun) {
+      reporter.log(`DRY RUN! Skip posting comment.\nComment body:\n${this._commentBody}`);
+      return false;
+    }
+    const timeSinceLastUpdate = Date.now() - this._commentsHelper.lastCommentTimestamp;
+    if (timeSinceLastUpdate < config.noUpdatePeriodMs) {
+      reporter.log([
+        `RECENTLY UPDATED (${ms(timeSinceLastUpdate)} ago)! Skip posting comment.`,
+        `Comment body:\n${this._commentBody}`
+      ].join('\n'));
+      return false;
+    }
+    return true;
   }
 
   _detectNewRepos() {
@@ -103,6 +123,6 @@ class IssueProcessor {
         repo.starsAdded ? `***+${repo.starsAdded}** stars ${since}*` : '',
       ].filter(Boolean).join('\n');
     });
-    return [header, ...commentItems].join('\n\n');
+    this._commentBody = [header, ...commentItems].join('\n\n');
   }
 }

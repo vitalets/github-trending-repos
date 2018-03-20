@@ -1,4 +1,6 @@
 
+const ms = require('ms');
+
 const config = {};
 
 // Label for filtering issues: 'trending-daily|trending-weekly'
@@ -12,5 +14,8 @@ config.githubToken = config.dryRun ? process.env.GITHUB_TOKEN_VITALETS : process
 config.apiUrl = 'https://api.github.com/repos/vitalets/github-trending-repos';
 config.trendingUrl = 'https://github.com/trending';
 config.artifactsPath = process.env.CIRCLE_ARTIFACTS || '.artifacts';
+config.isDailyRun = config.issuesLabel && config.issuesLabel.indexOf('daily') >= 0;
+// Period while issues should not be updated: 22 hours for daily, and 6 days for weekly. Allows to re-run script.
+config.noUpdatePeriodMs = config.isDailyRun ? ms('22h') : ms('6d');
 
 module.exports = config;
