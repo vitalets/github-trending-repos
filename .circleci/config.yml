@@ -11,6 +11,8 @@ jobs:
       - run: npm install
       - run: npm run test-daily-new
       - run: npm run test-weekly-new
+      - store_artifacts:
+          path: .artifacts
 
   update_daily:
     <<: *defaults
