@@ -33,7 +33,8 @@ module.exports = class Trends {
    */
   async getAll() {
     return promiseRetry((retry, attempt) => {
-      log(`Fetching trending repos (attempt #${attempt}): ${this._url}`);
+      const time = `${new Date().getHours()}:${new Date().getMinutes()}`;
+      log(`Fetching trending repos (attempt #${attempt}, ${time}): ${this._url}`);
       return this._loadRepos().catch(e => this._retry(e, retry));
     }, RETRY_OPTIONS);
   }
