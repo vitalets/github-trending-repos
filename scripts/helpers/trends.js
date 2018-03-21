@@ -13,12 +13,12 @@ const artifacts = require('./artifacts');
 
 const RETRY_OPTIONS = {
   retries: 5,
-  minTimeout: 3000,
+  minTimeout: 5000,
 };
 
 // trending page can take a long time to load
 const request = axios.create({
-  timeout: 20 * 1000,
+  timeout: 30 * 1000,
 });
 
 module.exports = class Trends {
