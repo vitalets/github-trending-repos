@@ -1,45 +1,16 @@
 /**
- * Main script for updating comments with new trending repos.
- *
- * 1. Loads all issues with trending label
- * 2. For each issues loads trends and comments
- * 3. Checks for new repos and posts comment
+ * Updates single issue.
  */
 
 const R = require('ramda');
 const ms = require('ms');
-const config = require('./config');
-const reporter = require('./helpers/reporter');
-const errors = require('./helpers/errors');
-const Issues = require('./helpers/issues');
-const Trends = require('./helpers/trends');
-const Comments = require('./helpers/comments');
+const config = require('../config');
+const {log} = require('./logger');
+const Issues = require('./issues');
+const Trends = require('./trends');
+const Comments = require('./comments');
 
-main()
-  .catch(e => {
-    reporter.logError(e);
-    process.exit(1);
-  });
-
-async function main() {
-  reporter.start();
-  const issues = await new Issues(config.issuesLabel, config.lang).getAll();
-  for (const issue of issues) {
-    try {
-      await new IssueProcessor(issue).process();
-    } catch(e) {
-      errors.handleIssueError(e);
-    }
-  }
-  reporter.finish();
-  if (errors.getCount() > 0) {
-    throw new Error(`There are ${errors.getCount()} error(s)`);
-  } else {
-    reporter.log(`Errors: 0`);
-  }
-}
-
-class IssueProcessor {
+module.exports = class IssueUpdater {
   constructor(issue) {
     this._issue = issue;
     this._commentsHelper = new Comments(this._issue);
@@ -47,9 +18,14 @@ class IssueProcessor {
     this._knownRepos = [];
     this._newRepos = [];
     this._commentBody = '';
+    this._updated = false;
   }
 
-  async process() {
+  get updated() {
+    return this._updated;
+  }
+
+  async update() {
     this._logHeader();
     await this._loadTrendingRepos();
     if (this._trendingRepos.length) {
@@ -76,13 +52,13 @@ class IssueProcessor {
   async _loadKnownRepos() {
     const comments = await this._commentsHelper.getAll();
     this._knownRepos = R.pipe(R.map(Comments.extractRepos), R.flatten)(comments);
-    reporter.log(`Known repos: ${this._knownRepos.length}`);
+    log(`Known repos: ${this._knownRepos.length}`);
   }
 
   async _postComment() {
     const result = await this._commentsHelper.post(this._commentBody);
     if (result.url) {
-      reporter.log(`Commented: ${result.html_url}`);
+      log(`Commented: ${result.html_url}`);
     } else {
       throw new Error(JSON.stringify(result));
     }
@@ -90,12 +66,12 @@ class IssueProcessor {
 
   _shouldUpdate() {
     if (config.dryRun) {
-      reporter.log(`DRY RUN! Skip posting comment.\nComment body:\n${this._commentBody}`);
+      log(`DRY RUN! Skip posting comment.\nComment body:\n${this._commentBody}`);
       return false;
     }
     const timeSinceLastUpdate = Date.now() - this._commentsHelper.lastCommentTimestamp;
     if (timeSinceLastUpdate < config.noUpdatePeriodMs) {
-      reporter.log([
+      log([
         `RECENTLY UPDATED (${ms(timeSinceLastUpdate)} ago)! Skip posting comment.`,
         `Comment body:\n${this._commentBody}`
       ].join('\n'));
@@ -106,11 +82,11 @@ class IssueProcessor {
 
   _detectNewRepos() {
     this._newRepos = R.differenceWith((a, b) => a.url === b, this._trendingRepos, this._knownRepos);
-    reporter.log(`New repos: ${this._newRepos.length}`);
+    log(`New repos: ${this._newRepos.length}`);
   }
 
   _logHeader() {
-    reporter.log(`\n== ${this._issue.title.toUpperCase()} ==`);
+    log(`\n== ${this._issue.title.toUpperCase()} ==`);
   }
 
   _generateCommentBody() {
@@ -125,4 +101,4 @@ class IssueProcessor {
     });
     this._commentBody = [header, ...commentItems].join('\n\n');
   }
-}
+};

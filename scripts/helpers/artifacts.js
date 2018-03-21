@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const {artifactsPath} = require('../config');
-const {log} = require('./reporter');
+const {log} = require('./logger');
 
 exports.save = function (filename, content) {
   if (!fs.existsSync(artifactsPath)) {

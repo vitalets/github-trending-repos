@@ -3,7 +3,7 @@
  */
 const assert = require('assert');
 const config = require('../config');
-const {log} = require('./reporter');
+const {log} = require('./logger');
 const githubApi = require('./github-api');
 
 const PER_PAGE = 100;

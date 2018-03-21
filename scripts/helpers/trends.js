@@ -8,7 +8,7 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const promiseRetry = require('promise-retry');
-const {log, logError} = require('./reporter');
+const {log, logError} = require('./logger');
 const artifacts = require('./artifacts');
 
 const RETRY_OPTIONS = {

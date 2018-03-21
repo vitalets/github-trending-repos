@@ -2,7 +2,7 @@
  * Works with comments of particular issue.
  */
 
-const {log} = require('./reporter');
+const {log} = require('./logger');
 const githubApi = require('./github-api');
 
 const GITHUB_URL_REG = /https:\/\/github.com\/[^)]+/ig;

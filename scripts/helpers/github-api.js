@@ -7,7 +7,7 @@ const axios = require('axios');
 const axiosRetry = require('axios-retry');
 const parseLinkHeader = require('parse-link-header');
 const config = require('../config');
-const {log} = require('./reporter');
+const {log} = require('./logger');
 
 assert(config.githubToken, 'Empty GitHub token. Check env variables.');
 
