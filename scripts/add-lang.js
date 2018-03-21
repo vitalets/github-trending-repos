@@ -1,11 +1,11 @@
 /**
- * CLI for generating markdown for new langs
+ * Helper script to generate markdown for creating new lang issues.
  * @usage
- * node addlang <lang> <?langForUrl>
+ * node scripts/add-lang <lang> <?langForUrl>
  *
  * @example
- * node addlang JavaScript
- * node addlang "1C Enterprise" 1c-enterprise
+ * node scripts/add-lang JavaScript
+ * node scripts/add-lang "1C Enterprise" 1c-enterprise
  */
 const qs = require('querystring');
 const readline = require('readline');
@@ -27,8 +27,9 @@ function generateIssueData(schedule) {
   const body = `Subscribe to this issue and stay notified about new [${schedule} trending repos in ${lang}](${url}).`;
   const label = `trending-${schedule}`;
   const finalUrl = `${NEW_ISSUE_URL}?title=${qs.escape(title)}&body=${qs.escape(body)}&labels=${label}`;
-  console.log(`${schedule.toUpperCase()}:\n${finalUrl}\n`);
-  console.log(`Don't forget to lock conversation!\n`);
+  console.log(`Open this url to create issue (${schedule}):`.toUpperCase());
+  console.log(`${finalUrl}`);
+  console.log(`\nDon't forget to lock conversation!\n`);
 }
 
 /*

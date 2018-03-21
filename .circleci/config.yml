@@ -9,8 +9,19 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: npm run test-daily
-      - run: npm run test-weekly
+      - run: npm run test-daily-new
+      - run: npm run test-weekly-new
+      - store_artifacts:
+          path: .artifacts
+
+  update_daily_new:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: npm install
+      - run: TRENDING_POST_COMMENTS=true TRENDING_LABEL=trending-daily node scripts/update-issues
+      - store_artifacts:
+          path: .artifacts
 
   update_daily:
     <<: *defaults
@@ -42,7 +53,7 @@ workflows:
                - master
 
     jobs:
-      - update_daily
+      - update_daily_new
 
   weekly_workflow:
     triggers:
