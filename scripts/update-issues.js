@@ -30,7 +30,6 @@ async function updateIssues() {
   const issues = await new Issues(config.issuesLabel, config.lang).getAll();
   for (const issue of issues) {
     try {
-      log(`Issue ${stat.processed + 1} of ${issues.length}`);
       const updater = new IssueUpdater(issue);
       await updater.update();
       handleIssueSuccess(updater.updated);
@@ -38,6 +37,7 @@ async function updateIssues() {
       handleIssueError(e);
     } finally {
       stat.processed++;
+      log(`Issue ${stat.processed} of ${issues.length}`);
     }
   }
 }
