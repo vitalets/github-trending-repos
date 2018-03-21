@@ -38,6 +38,7 @@
     "axios": "^0.18.0",
     "axios-retry": "^3.0.2",
     "cheerio": "^1.0.0-rc.2",
+    "fs-extra": "^5.0.0",
     "ms": "^2.1.1",
     "node-fetch": "^2.0.0-alpha.9",
     "parse-link-header": "^1.0.1",

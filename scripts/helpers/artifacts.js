@@ -1,13 +1,10 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
-const {artifactsPath} = require('../config');
+const config = require('../config');
 const {log} = require('./logger');
 
 exports.save = function (filename, content) {
-  if (!fs.existsSync(artifactsPath)) {
-    fs.mkdirSync(artifactsPath);
-  }
-  const filepath = path.join(artifactsPath, filename);
-  fs.writeFileSync(filepath, content, 'utf-8');
+  const filepath = path.join(config.artifactsPath, filename);
+  fs.outputFileSync(filepath, content, 'utf8');
   log(`Artifact saved: ${filepath}`);
 };
