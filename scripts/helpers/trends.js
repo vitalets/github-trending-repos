@@ -12,9 +12,14 @@ const {log, logError} = require('./logger');
 const artifacts = require('./artifacts');
 
 const RETRY_OPTIONS = {
-  retries: 6,
-  minTimeout: 5000,
+  retries: 5,
+  minTimeout: 3000,
 };
+
+// trending page can take a long time to load
+const request = axios.create({
+  timeout: 20 * 1000,
+});
 
 module.exports = class Trends {
   constructor(url) {
@@ -65,7 +70,7 @@ module.exports = class Trends {
 
   async _loadHtml() {
     this._html = '';
-    this._html = (await axios(this._url)).data;
+    this._html = (await request(this._url)).data;
   }
 
   _constructDom() {

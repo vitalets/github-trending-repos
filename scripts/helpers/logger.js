@@ -8,8 +8,8 @@ function log(...args) {
   console.log(...args);
 }
 
-function logError(...args) {
-  console.error(...args);
+function logError(error) {
+  console.error(error.stack || error.message || error);
 }
 
 function logDuration(label) {
