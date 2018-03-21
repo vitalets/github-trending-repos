@@ -12,8 +12,8 @@ const {log, logError} = require('./logger');
 const artifacts = require('./artifacts');
 
 const RETRY_OPTIONS = {
-  retries: 4,
-  minTimeout: 3000,
+  retries: 6,
+  minTimeout: 5000,
 };
 
 module.exports = class Trends {
