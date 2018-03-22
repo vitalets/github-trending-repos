@@ -14,7 +14,7 @@ config.dryRun = !process.env.TRENDING_POST_COMMENTS;
 config.githubToken = config.dryRun ? process.env.GITHUB_TOKEN_VITALETS : process.env.GITHUB_TOKEN_BOT;
 config.apiUrl = 'https://api.github.com/repos/vitalets/github-trending-repos';
 config.trendingUrl = 'https://github.com/trending';
-config.artifactsPath = path.join('.artifacts', config.issuesLabel);
+config.artifactsPath = path.join('.artifacts', config.issuesLabel || '');
 config.isDailyRun = config.issuesLabel && config.issuesLabel.indexOf('daily') >= 0;
 // Period while issues should not be updated: 22 hours for daily, and 6 days for weekly. Allows to re-run script.
 config.noUpdatePeriodMs = config.isDailyRun ? ms('22h') : ms('6d');
