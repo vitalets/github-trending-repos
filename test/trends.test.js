@@ -3,7 +3,7 @@ const Trends = require('../scripts/helpers/trends');
 
 describe('trends', function () {
 
-  this.timeout(2 * 60 * 1000);
+  this.timeout(30 * 1000);
 
   it('should load and parse trends', async function () {
     const trendingUrl = 'https://github.com/trending/javascript?since=weekly';
@@ -19,6 +19,7 @@ describe('trends', function () {
   });
 
   it('should retry X times for empty trends', async function () {
+    this.timeout(5 * 60 * 1000);
     let counter = 0;
     const trendingUrl = 'https://github.com';
     const trends = new Trends(trendingUrl);
@@ -31,6 +32,6 @@ describe('trends', function () {
     } catch(e) {
       // expected error
     }
-    assert.equal(counter, 5);
+    assert.equal(counter, 6);
   });
 });
