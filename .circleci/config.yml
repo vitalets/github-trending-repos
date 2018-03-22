@@ -23,6 +23,15 @@ jobs:
       - store_artifacts:
           path: .artifacts
 
+  update_weekly_new:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: npm install
+      - run: TRENDING_POST_COMMENTS=true TRENDING_LABEL=trending-weekly node scripts/update-issues
+      - store_artifacts:
+          path: .artifacts
+
   update_daily:
     <<: *defaults
     steps:
@@ -65,4 +74,4 @@ workflows:
                - master
 
     jobs:
-      - update_weekly
+      - update_weekly_new
