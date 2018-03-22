@@ -9,6 +9,7 @@ jobs:
     steps:
       - checkout
       - run: npm install
+      - run: npm run test-helpers
       - run: npm run test-daily-new
       - run: npm run test-weekly-new
       - store_artifacts:
