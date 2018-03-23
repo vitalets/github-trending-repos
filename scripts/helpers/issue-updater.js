@@ -58,6 +58,7 @@ module.exports = class IssueUpdater {
   async _postComment() {
     const result = await this._commentsHelper.post(this._commentBody);
     if (result.url) {
+      this._updated = true;
       log(`Commented: ${result.html_url}`);
     } else {
       throw new Error(JSON.stringify(result));
