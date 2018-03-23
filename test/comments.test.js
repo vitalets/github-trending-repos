@@ -11,11 +11,14 @@ describe('comments', function () {
     assert.isString(comments[0].body);
   });
 
-  it('should post comment', async function () {
-    // #2 - special closed issue
-    const comments = new Comments({number: 2});
-    const result = await comments.post('**test comment body**');
-    assert.ok(result.id);
-    assert.equal(result.body, '**test comment body**');
+  it('should post and delete comment', async function () {
+    // special test issue: https://github.com/vitalets/github-trending-repos/issues/2
+    const issue = {number: 2};
+    const comments = new Comments(issue);
+    const newComment = await comments.post('**test comment body**');
+    assert.ok(newComment.id);
+    assert.ok(newComment.url);
+    assert.equal(newComment.body, '**test comment body**');
+    await comments.delete(newComment);
   });
 });

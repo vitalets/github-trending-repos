@@ -38,7 +38,7 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: TRENDING_POST_COMMENTS=true TRENDING_LABEL=trending-daily TRENDING_LANG=java node scripts/clean-issues
+      - run: TRENDING_POST_COMMENTS=true TRENDING_LABEL=trending-daily TRENDING_LANG=ruby node scripts/clean-issues
 
   update_daily:
     <<: *defaults
@@ -75,7 +75,7 @@ workflows:
   daily_clean_workflow:
     triggers:
       - schedule:
-         cron: "0 15 * * *"
+         cron: "0 16 * * *"
          filters:
            branches:
              only:

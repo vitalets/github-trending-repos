@@ -49,8 +49,7 @@ module.exports = class Comments {
    * @param {Object} comment
    */
   async delete(comment) {
-    const url = `${this._url}/${comment.id}`;
-    return (await githubApi.fetchJson(`delete`, url)).result;
+    return (await githubApi.fetchJson(`delete`, comment.url)).result;
   }
 
   async _loadCommentsPage() {
