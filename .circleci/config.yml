@@ -38,7 +38,7 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: TRENDING_POST_COMMENTS=true TRENDING_LABEL=trending-daily TRENDING_LANG=ruby node scripts/clean-issues
+      - run: TRENDING_POST_COMMENTS=true TRENDING_LABEL=trending-daily node scripts/clean-issues
 
   update_daily:
     <<: *defaults
