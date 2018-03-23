@@ -1,17 +1,20 @@
 /**
- * Main script for updating issues with new trending repos.
- *
- * 1. Loads all issues with trending label
- * 2. For each issues loads trends and comments
- * 3. Checks for new repos and posts comment
+ * Clean outdated comments.
  */
 
+const ms = require('ms');
 const config = require('./config');
 const {log, logError} = require('./helpers/logger');
 const reporter = require('./helpers/reporter');
 const stat = require('./helpers/stat');
 const Issues = require('./helpers/issues');
-const IssueUpdater = require('./helpers/issue-updater');
+const IssueCleaner = require('./helpers/issue-cleaner');
+
+const cleanerOptions = {
+  commentsMaxAge: ms('30 days'),
+  // always keep some comments in issue
+  commentsMinCount: config.isDailyRun ? 5 : 3,
+};
 
 main()
   .catch(e => {
@@ -21,18 +24,19 @@ main()
 
 async function main() {
   reporter.logStart();
-  await updateIssues();
+  await cleanIssues();
   reporter.logFinish();
   throwIfErrors();
 }
 
-async function updateIssues() {
+async function cleanIssues() {
+  log(`Delete comments older than: ${ms(cleanerOptions.commentsMaxAge, {long: true})}`);
   const issues = await new Issues(config.issuesLabel, config.lang).getAll();
   for (const issue of issues) {
     try {
-      const updater = new IssueUpdater(issue);
-      await updater.update();
-      handleIssueSuccess(updater.updated);
+      const cleaner = new IssueCleaner(issue, cleanerOptions);
+      await cleaner.clean();
+      handleIssueSuccess(cleaner.deletedCount > 0);
     } catch(e) {
       handleIssueError(e);
     } finally {

@@ -44,6 +44,15 @@ module.exports = class Comments {
     return (await githubApi.fetchJson(`post`, this._url, {body})).result;
   }
 
+  /**
+   * Delete single comment.
+   * @param {Object} comment
+   */
+  async delete(comment) {
+    const url = `${this._url}/${comment.id}`;
+    return (await githubApi.fetchJson(`delete`, url)).result;
+  }
+
   async _loadCommentsPage() {
     const {result, pages} = await githubApi.fetchJson(`get`, this._nextPageUrl);
     this._comments.push(...result);
@@ -52,5 +61,12 @@ module.exports = class Comments {
 
   static extractRepos(comment) {
     return comment.body.match(GITHUB_URL_REG) || [];
+  }
+
+  /**
+   * Returns comment age in ms.
+   */
+  static getCommentAge(comment) {
+    return Date.now() - new Date(comment.created_at).valueOf();
   }
 };

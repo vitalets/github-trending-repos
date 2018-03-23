@@ -33,6 +33,13 @@ jobs:
       - store_artifacts:
           path: .artifacts
 
+  clean_daily:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: npm install
+      - run: TRENDING_POST_COMMENTS=true TRENDING_LABEL=trending-daily TRENDING_LANG=java node scripts/clean-issues
+
   update_daily:
     <<: *defaults
     steps:
@@ -64,6 +71,18 @@ workflows:
 
     jobs:
       - update_daily_new
+
+  daily_clean_workflow:
+    triggers:
+      - schedule:
+         cron: "0 15 * * *"
+         filters:
+           branches:
+             only:
+               - master
+
+    jobs:
+      - clean_daily
 
   weekly_workflow:
     triggers:

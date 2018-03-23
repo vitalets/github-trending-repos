@@ -16,6 +16,8 @@
     "test-issues": "mocha test/issues.test.js -r test/setup.js",
     "test-comments": "mocha test/comments.test.js -r test/setup.js",
     "test-helpers": "mocha test/*.test.js -r test/setup.js",
+    "test-clean-lang-new": "TRENDING_LABEL=trending-daily TRENDING_LANG=java node scripts/clean-issues",
+    "test-clean-daily-new": "TRENDING_LABEL=trending-daily node scripts/clean-issues",
     "test-lang-new": "TRENDING_LABEL=trending-daily TRENDING_LANG=javascript node scripts/update-issues",
     "test-daily-new": "TRENDING_LABEL=trending-daily node scripts/update-issues",
     "test-weekly-new": "TRENDING_LABEL=trending-weekly node scripts/update-issues",
