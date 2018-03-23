@@ -103,7 +103,7 @@ It's a matter of taste. Personally I found it convenient by the following reason
 
 None of alternatives can *send notifications per programming language*. That's why I've created this project.
 
-## Links
+## Related links
 * [Discussion on Hacker News](https://news.ycombinator.com/item?id=16446250#16446992)
 * [Here are 5 ways you can keep track of trending repositories on GitHub](https://medium.freecodecamp.org/five-ways-of-tracking-trends-on-github-63940fca63b)
 
