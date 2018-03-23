@@ -63,7 +63,7 @@ module.exports = class IssueCleaner {
   async _deleteComments() {
     for (const comment of this._commentsToDelete) {
       const commentAge = Comments.getCommentAge(comment);
-      const logMessage = `Deleting comment created ${ms(commentAge, {long: true})} ago`;
+      const logMessage = `Deleting comment created ${ms(commentAge, {long: true})} ago: ${comment.html_url}`;
       if (config.dryRun) {
         log(`DRY RUN: ${logMessage}`);
       } else {
