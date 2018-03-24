@@ -46,7 +46,7 @@ module.exports = class IssueUpdater {
 
   async _loadTrendingRepos() {
     const trendingUrl = Issues.extractTrendingUrl(this._issue);
-    this._trendingRepos = await new Trends(trendingUrl).getAll();
+    this._trendingRepos = await new Trends(trendingUrl, config.trendingRetryOptions).getAll();
   }
 
   async _loadKnownRepos() {

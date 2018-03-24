@@ -1,13 +1,16 @@
 
 const Trends = require('../scripts/helpers/trends');
-
+const retryOptions = {
+  retries: 2,
+  minTimeout: 500,
+};
 describe('trends', function () {
 
   this.timeout(30 * 1000);
 
   it('should load and parse trends', async function () {
     const trendingUrl = 'https://github.com/trending/javascript?since=weekly';
-    const repos = await new Trends(trendingUrl).getAll();
+    const repos = await new Trends(trendingUrl, retryOptions).getAll();
     const repo = repos[0];
     assert.equal(repos.length, 25);
     assert.isString(repo.name);
@@ -19,10 +22,9 @@ describe('trends', function () {
   });
 
   it('should retry X times for empty trends', async function () {
-    this.timeout(5 * 60 * 1000);
     let counter = 0;
     const trendingUrl = 'https://github.com';
-    const trends = new Trends(trendingUrl);
+    const trends = new Trends(trendingUrl, retryOptions);
     trends._loadRepos = () => {
       counter++;
       return Trends.prototype._loadRepos.call(trends);
@@ -32,6 +34,6 @@ describe('trends', function () {
     } catch(e) {
       // expected error
     }
-    assert.equal(counter, 6);
+    assert.equal(counter, 3);
   });
 });

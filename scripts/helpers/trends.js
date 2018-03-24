@@ -1,7 +1,7 @@
 /**
  * Grabs trending repos from https://github.com/trending/<lang>.
  *
- * Retries 3 times because server can response with different errors:
+ * In case of error retries X times because server can response with different errors:
  * 1. "Trending repos are being dissecting." - when GitHub re-calculates trends
  * 2. "This page is taking way too long to load." - when page loads too long
  */
@@ -11,7 +11,7 @@ const promiseRetry = require('promise-retry');
 const {log, logError} = require('./logger');
 const artifacts = require('./artifacts');
 
-const RETRY_OPTIONS = {
+const RETRY_DEFAULTS = {
   retries: 5,
   minTimeout: 5000,
 };
@@ -22,8 +22,9 @@ const request = axios.create({
 });
 
 module.exports = class Trends {
-  constructor(url) {
+  constructor(url, retryOptions) {
     this._url = url;
+    this._retryOptions = Object.assign({}, RETRY_DEFAULTS, retryOptions);
     this._html = null;
     this._$ = null;
     this._domRepos = null;
@@ -42,7 +43,7 @@ module.exports = class Trends {
       const time = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
       log(`Fetching trending repos (attempt #${attempt}, ${time}): ${this._url}`);
       return this._loadRepos().catch(e => this._retry(e, retry));
-    }, RETRY_OPTIONS);
+    }, this._retryOptions);
   }
 
   async _loadRepos() {
