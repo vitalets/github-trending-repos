@@ -16,18 +16,11 @@
     "test-issues": "mocha test/issues.test.js -r test/setup.js",
     "test-comments": "mocha test/comments.test.js -r test/setup.js",
     "test-helpers": "mocha test/*.test.js -r test/setup.js",
-    "test-clean-daily-new": "TRENDING_LABEL=trending-daily TRENDING_LANG=javascript node scripts/clean-issues",
-    "test-daily-new": "TRENDING_LABEL=trending-daily TRENDING_LANG=javascript node scripts/update-issues",
-    "test-weekly-new": "TRENDING_LABEL=trending-weekly TRENDING_LANG=javascript node scripts/update-issues",
-    "separator": "--- old commands ---",
-    "test-lang": "TRENDING_LANG=javascript npm run test-all",
-    "test-daily": "npm run daily",
-    "test-weekly": "npm run weekly",
-    "test-all": "npm run test-daily && npm run test-weekly",
-    "update-daily": "TRENDING_POST_COMMENTS=true npm run daily",
-    "update-weekly": "TRENDING_POST_COMMENTS=true npm run weekly",
-    "daily": "TRENDING_LABEL=trending-daily node .",
-    "weekly": "TRENDING_LABEL=trending-weekly node .",
+    "test-daily": "TRENDING_LABEL=trending-daily TRENDING_LANG=javascript node scripts/update-issues",
+    "test-weekly": "TRENDING_LABEL=trending-weekly TRENDING_LANG=javascript node scripts/update-issues",
+    "test-clean": "TRENDING_LABEL=trending-daily TRENDING_LANG=javascript node scripts/clean-issues",
+    "test-all": "npm run test-helpers && npm run test-daily && npm run test-weekly && npm run test-clean",
+    "diff": "git diff -- . ':!package-lock.json'",
     "precommit": "lint-staged",
     "prepush": "npm run code"
   },
@@ -40,18 +33,16 @@
     "cheerio": "^1.0.0-rc.2",
     "fs-extra": "^5.0.0",
     "ms": "^2.1.1",
-    "node-fetch": "^2.0.0-alpha.9",
     "parse-link-header": "^1.0.1",
     "promise-retry": "^1.1.1",
     "ramda": "^0.25.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "eslint": "^4.10.0",
+    "eslint": "^4.19.1",
     "husky": "^0.14.3",
-    "lint-staged": "^4.3.0",
-    "lodash.groupby": "^4.6.0",
-    "mocha": "^5.0.3"
+    "lint-staged": "^7.0.0",
+    "mocha": "^5.0.5"
   },
   "license": "MIT"
 }

@@ -4,7 +4,7 @@
  * node scripts/langs-md
  */
 
-const groupBy = require('lodash.groupby');
+const R = require('ramda');
 const Issues = require('./helpers/issues');
 
 const EXCLUDE = ['all languages', 'unknown languages'];
@@ -20,7 +20,7 @@ async function main() {
   const issuesWeekly = await getIssues('trending-weekly');
   const issues = [...issuesDaily, ...issuesWeekly];
   assertAllLocked(issues);
-  const langs = groupBy(issues, 'lang');
+  const langs = R.groupBy(R.prop('lang'), issues);
   const md = generateMarkdown(langs);
   console.log(md);
 }

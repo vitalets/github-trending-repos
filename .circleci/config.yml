@@ -9,27 +9,25 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: npm run test-helpers
-      - run: npm run test-daily-new
-      - run: npm run test-weekly-new
+      - run: npm run test-all
       - store_artifacts:
           path: .artifacts
 
-  update_daily_new:
+  update_daily:
     <<: *defaults
     steps:
       - checkout
       - run: npm install
-      - run: TRENDING_POST_COMMENTS=true TRENDING_LABEL=trending-daily node scripts/update-issues
+      - run: TRENDING_NOT_DRY_RUN=true TRENDING_LABEL=trending-daily node scripts/update-issues
       - store_artifacts:
           path: .artifacts
 
-  update_weekly_new:
+  update_weekly:
     <<: *defaults
     steps:
       - checkout
       - run: npm install
-      - run: TRENDING_POST_COMMENTS=true TRENDING_LABEL=trending-weekly node scripts/update-issues
+      - run: TRENDING_NOT_DRY_RUN=true TRENDING_LABEL=trending-weekly node scripts/update-issues
       - store_artifacts:
           path: .artifacts
 
@@ -38,21 +36,8 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: TRENDING_POST_COMMENTS=true TRENDING_LABEL=trending-daily node scripts/clean-issues
-
-  update_daily:
-    <<: *defaults
-    steps:
-      - checkout
-      - run: npm install
-      - run: npm run update-daily
-
-  update_weekly:
-    <<: *defaults
-    steps:
-      - checkout
-      - run: npm install
-      - run: npm run update-weekly
+      - run: TRENDING_NOT_DRY_RUN=true TRENDING_LABEL=trending-daily node scripts/clean-issues
+      - run: TRENDING_NOT_DRY_RUN=true TRENDING_LABEL=trending-weekly node scripts/clean-issues
 
 workflows:
   version: 2
@@ -60,7 +45,7 @@ workflows:
     jobs:
       - test
 
-  daily_workflow:
+  update_daily_workflow:
     triggers:
       - schedule:
          cron: "0 0 * * *"
@@ -70,21 +55,9 @@ workflows:
                - master
 
     jobs:
-      - update_daily_new
+      - update_daily
 
-  daily_clean_workflow:
-    triggers:
-      - schedule:
-         cron: "0 7 * * *"
-         filters:
-           branches:
-             only:
-               - master
-
-    jobs:
-      - clean_daily
-
-  weekly_workflow:
+  update_weekly_workflow:
     triggers:
       - schedule:
          cron: "0 2 * * 5"
@@ -94,4 +67,16 @@ workflows:
                - master
 
     jobs:
-      - update_weekly_new
+      - update_weekly
+
+  clean_daily_workflow:
+    triggers:
+      - schedule:
+         cron: "0 8 * * *"
+         filters:
+           branches:
+             only:
+               - master
+
+    jobs:
+      - clean_daily
