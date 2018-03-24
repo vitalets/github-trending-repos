@@ -21,7 +21,7 @@ You can choose the following subscription types:
 Once a day (or a week) you get a notification in GitHub web interface:  
 ![Example of web notification](https://user-images.githubusercontent.com/1473072/32488601-4295b138-c3be-11e7-8eb2-18a624c54ca2.png)
 
-After click you are navigated to the first unread comment with new trends in selected language:  
+After click you are navigated to the first unread comment with new trends in the selected language:  
 ![Example of comment](https://user-images.githubusercontent.com/1473072/33029917-f054b67c-ce2a-11e7-9b42-a7ee16d98228.png)
 
 ## Available languages
@@ -75,12 +75,12 @@ If you'd like to add new language - feel free to [create issue by this template]
 
 ## Specials
 
-* Trending repos across all languages ([daily](https://github.com/vitalets/github-trending-repos/issues/6) | [weekly](https://github.com/vitalets/github-trending-repos/issues/15))
-* Trending repos in unknown languages ([daily](https://github.com/vitalets/github-trending-repos/issues/28) | [weekly](https://github.com/vitalets/github-trending-repos/issues/27))
+* Trending repos across **all languages** ([daily](https://github.com/vitalets/github-trending-repos/issues/6) | [weekly](https://github.com/vitalets/github-trending-repos/issues/15))
+* Trending repos in **unknown languages** ([daily](https://github.com/vitalets/github-trending-repos/issues/28) | [weekly](https://github.com/vitalets/github-trending-repos/issues/27))
 
 ## Watching the repo
-If you start watching this repo - you will receive **many** notifications about trends in all languages.
-It's more convenient to selectively subscribe on issues you are interested in.
+If you start watching this repo - you will receive **many** notifications about all trends in all languages.
+The recommended way is to selectively subscribe on issues you are interested in.
 
 ## Is it better than RSS / newsletter / etc?
 It's a matter of taste. Personally I found it convenient by the following reasons:
