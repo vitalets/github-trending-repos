@@ -75,7 +75,7 @@ workflows:
   daily_clean_workflow:
     triggers:
       - schedule:
-         cron: "0 16 * * *"
+         cron: "0 7 * * *"
          filters:
            branches:
              only:
