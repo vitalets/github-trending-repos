@@ -72,7 +72,7 @@ workflows:
   clean_daily_workflow:
     triggers:
       - schedule:
-         cron: "0 8 * * *"
+         cron: "0 22 * * *"
          filters:
            branches:
              only:
