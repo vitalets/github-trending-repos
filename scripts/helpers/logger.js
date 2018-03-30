@@ -7,7 +7,11 @@ function log(...args) {
 }
 
 function logError(error) {
-  console.error(error.stack || error.message || error);
+  const message = error.stack || error.message || String(error);
+  console.error(message);
+  if (error && error.response) {
+    console.log(`Response: ${error.response.data}`);
+  }
 }
 
 module.exports = {log, logError};
