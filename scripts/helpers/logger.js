@@ -11,6 +11,7 @@ function logError(error) {
   console.error(message);
   if (error && error.response) {
     console.log('Response:', error.response.data);
+    console.log('Headers:', error.response.headers);
   }
 }
 
