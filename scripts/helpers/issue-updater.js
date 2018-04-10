@@ -6,6 +6,7 @@ const R = require('ramda');
 const ms = require('ms');
 const config = require('../config');
 const {log} = require('./logger');
+const Translator = require('./translator');
 const Issues = require('./issues');
 const Trends = require('./trends');
 const Comments = require('./comments');
@@ -38,7 +39,7 @@ module.exports = class IssueUpdater {
   }
 
   async _processNewRepos() {
-    this._generateCommentBody();
+    await this._generateCommentBody();
     if (this._shouldUpdate()) {
       await this._postComment();
     }
@@ -90,16 +91,20 @@ module.exports = class IssueUpdater {
     log(`\n== ${this._issue.title.toUpperCase()} ==`);
   }
 
-  _generateCommentBody() {
+  async _generateCommentBody() {
     const since = this._issue.title.indexOf('daily') >= 0 ? 'today' : 'this week';
     const header = `**${this._issue.title}!**`;
-    const commentItems = this._newRepos.map(repo => {
-      return [
-        `[${repo.name.replace('/', ' / ')}](${repo.url})`,
-        repo.description,
-        repo.starsAdded ? `***+${repo.starsAdded}** stars ${since}*` : '',
-      ].filter(Boolean).join('\n');
-    });
+    const commentItems = await Promise.all(this._newRepos.map(repo => this._generateRepoMarkdown(repo, since)));
     this._commentBody = [header, ...commentItems].join('\n\n');
+  }
+
+  async _generateRepoMarkdown(repo, since) {
+    const translated = await new Translator(repo.description).toEn();
+    return [
+      `[${repo.name.replace('/', ' / ')}](${repo.url})`,
+      repo.description,
+      translated ? `> ${translated}\n` : '',
+      repo.starsAdded ? `***+${repo.starsAdded}** stars ${since}*` : '',
+    ].filter(Boolean).join('\n');
   }
 };
