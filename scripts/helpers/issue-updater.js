@@ -4,6 +4,7 @@
 
 const R = require('ramda');
 const ms = require('ms');
+const Timeout = require('await-timeout');
 const config = require('../config');
 const {log} = require('./logger');
 const Translator = require('./translator');
@@ -42,6 +43,8 @@ module.exports = class IssueUpdater {
     await this._generateCommentBody();
     if (this._shouldUpdate()) {
       await this._postComment();
+      // wait 1 second after comment
+      await Timeout.set(1000);
     }
   }
 

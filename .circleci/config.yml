@@ -60,7 +60,7 @@ workflows:
   update_weekly_workflow:
     triggers:
       - schedule:
-         cron: "0 2 * * 5"
+         cron: "0 3 * * 5"
          filters:
            branches:
              only:

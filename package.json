@@ -29,6 +29,7 @@
     "*.js": "eslint"
   },
   "dependencies": {
+    "await-timeout": "^0.2.0",
     "axios": "^0.18.0",
     "axios-retry": "^3.0.2",
     "cheerio": "^1.0.0-rc.2",

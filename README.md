@@ -15,7 +15,7 @@ Updates come as [GitHub notifications] once a day or a week.
 ## Schedule
 You can choose the following subscription types:
 * Daily: runs **every day at 00:00 UTC**, see issues labeled with [trending-daily](https://github.com/vitalets/github-trending-repos/labels/trending-daily)
-* Weekly: runs **every friday at 02:00 UTC**, see issues labeled with [trending-weekly](https://github.com/vitalets/github-trending-repos/labels/trending-weekly)
+* Weekly: runs **every friday at 03:00 UTC**, see issues labeled with [trending-weekly](https://github.com/vitalets/github-trending-repos/labels/trending-weekly)
 
 ## Examples
 Once a day (or a week) you get a notification in GitHub web interface:  
