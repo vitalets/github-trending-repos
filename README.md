@@ -86,9 +86,8 @@ The recommended way is to selectively subscribe on issues you are interested in.
 It's a matter of taste. Personally I found it convenient by the following reasons:
 
 * I'm dealing with GitHub notifications anyway and trends are seamlessly integrated in my daily workflow
-* I'm familiar with GitHub UI
-* I don't want to visit another website, setup any tool, register somewhere and etc
-* I can quickly overview trends without loosing the working context
+* I can quickly overview trends without registering somewhere and watching ads
+* I can view non-english entries that are automatically translated
 
 ## Alternatives
 * Newsletter:
