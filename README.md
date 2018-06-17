@@ -2,7 +2,7 @@
 <h1 align="center">GitHub Trending Repos</h1>
 <a href="https://circleci.com/gh/vitalets/github-trending-repos"><img src="https://circleci.com/gh/vitalets/github-trending-repos.svg?style=svg" alt="CircleCI"/></a>
 
-A way to subscribe on new [GitHub trending repositories](https://github.com/trending) in your favorite programming language.
+Here you can subscribe to new [GitHub trending repositories](https://github.com/trending) in your favorite programming language.
 Updates come as [GitHub notifications] once a day or a week.
 
 ## How it works
