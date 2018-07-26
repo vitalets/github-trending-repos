@@ -97,8 +97,9 @@ It's a matter of taste. Personally I found it convenient by the following reason
 * Twitter bot: [@TrendingGithub](https://twitter.com/TrendingGithub)
 * Browser extension: [Githunt](https://github.com/kamranahmedse/githunt)
 * RSS feed: [github-trends.ryotarai.info](http://github-trends.ryotarai.info/)
-* Webpage with extra filters: [gitmostwanted.com/trending](http://gitmostwanted.com/trending/)
+* Webpage: [gitmostwanted.com/trending](http://gitmostwanted.com/trending/)
 * Daily updated repo: [josephyzhou/github-trending](https://github.com/josephyzhou/github-trending)
+* Webpage: [hanford/trends](https://github.com/hanford/trends)
 
 None of alternatives can *send notifications per programming language*. That's why I've created this project.
 
