@@ -99,7 +99,7 @@ It's a matter of taste. Personally I found it convenient by the following reason
 * RSS feed: [github-trends.ryotarai.info](http://github-trends.ryotarai.info/)
 * Webpage: [gitmostwanted.com/trending](http://gitmostwanted.com/trending/)
 * Daily updated repo: [josephyzhou/github-trending](https://github.com/josephyzhou/github-trending)
-* Webpage: [hanford/trends](https://github.com/hanford/trends)
+* Webpage + GraphiQL API: [https://trends.now.sh](https://trends.now.sh)
 
 None of alternatives can *send notifications per programming language*. That's why I've created this project.
 
