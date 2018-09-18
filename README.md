@@ -98,7 +98,6 @@ It's a matter of taste. Personally I found it convenient by the following reason
 * Browser extension: [Githunt](https://github.com/kamranahmedse/githunt)
 * RSS feed: [github-trends.ryotarai.info](http://github-trends.ryotarai.info/)
 * Webpage: [gitmostwanted.com/trending](http://gitmostwanted.com/trending/)
-* Daily updated repo: [josephyzhou/github-trending](https://github.com/josephyzhou/github-trending)
 * Webpage + GraphiQL API: [https://trends.now.sh](https://trends.now.sh)
 
 ## Related links
