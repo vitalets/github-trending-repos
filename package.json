@@ -35,7 +35,7 @@
     "cheerio": "^1.0.0-rc.2",
     "emoji-regex": "^6.5.1",
     "fs-extra": "^5.0.0",
-    "google-translate-api": "^2.3.0",
+    "google-translate-api": "github:vitalets/google-translate-api",
     "ms": "^2.1.1",
     "parse-link-header": "^1.0.1",
     "promise-retry": "^1.1.1",
