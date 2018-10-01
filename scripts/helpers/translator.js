@@ -5,7 +5,6 @@
 const translate = require('google-translate-api');
 const emojiRegex = require('emoji-regex');
 const {logError, log} = require('./logger');
-const proxy = require('./proxy');
 
 const ONLY_LATIN_SYMBOLS = /^[\u0000-\u007F]*$/; // eslint-disable-line no-control-regex
 const EMOJI = emojiRegex();
@@ -45,12 +44,9 @@ module.exports = class Translator {
 
   async _translate() {
     try {
-      // use proxy to access translate api
-      await proxy.enable();
       this._result = await translate(this._text, {to: 'en'});
     } catch (e) {
       logError(e);
     }
-    proxy.disable();
   }
 };
