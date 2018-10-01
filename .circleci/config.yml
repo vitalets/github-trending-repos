@@ -8,7 +8,7 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: npm install
+      - run: npm ci
       - run: npm run test-all
       - store_artifacts:
           path: .artifacts
@@ -17,7 +17,7 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: npm install
+      - run: npm ci
       - run: TRENDING_NOT_DRY_RUN=true TRENDING_LABEL=trending-daily node scripts/update-issues
       - store_artifacts:
           path: .artifacts
@@ -26,7 +26,7 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: npm install
+      - run: npm ci
       - run: TRENDING_NOT_DRY_RUN=true TRENDING_LABEL=trending-weekly node scripts/update-issues
       - store_artifacts:
           path: .artifacts
@@ -35,7 +35,7 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: npm install
+      - run: npm ci
       - run: TRENDING_NOT_DRY_RUN=true TRENDING_LABEL=trending-daily node scripts/clean-issues
       - run: TRENDING_NOT_DRY_RUN=true TRENDING_LABEL=trending-weekly node scripts/clean-issues
 
