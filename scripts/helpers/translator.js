@@ -4,7 +4,7 @@
 
 const translate = require('google-translate-api');
 const emojiRegex = require('emoji-regex');
-const {logError} = require('./logger');
+const {logError, log} = require('./logger');
 
 const ONLY_LATIN_SYMBOLS = /^[\u0000-\u007F]*$/; // eslint-disable-line no-control-regex
 const EMOJI = emojiRegex();
@@ -26,8 +26,10 @@ module.exports = class Translator {
     if (this._hasOnlyLatinSymbols()) {
       return '';
     } else {
+      log(`Translating: ${this._text}`);
       await this._translate();
       const translatedText = this._result && this._result.text;
+      log(`Translated: ${translatedText}`);
       return translatedText !== this._text ? translatedText : '';
     }
   }

@@ -3,6 +3,7 @@
  */
 
 const ms = require('ms');
+const ip = require('ip');
 const config = require('../config');
 const {log} = require('./logger');
 const stat = require('./stat');
@@ -13,6 +14,7 @@ exports.logStart = function () {
   log(`Issues label: ${config.issuesLabel}`);
   log(`Issues lang: ${config.lang || '*'}`);
   log(`Dry run: ${config.dryRun}`);
+  log(`IP: ${ip.address()}`);
 };
 
 exports.logFinish = function () {
