@@ -2,7 +2,7 @@
  * Translate to EN if needed.
  */
 
-const translate = require('google-translate-api');
+const translate = require('@vitalets/google-translate-api');
 const emojiRegex = require('emoji-regex');
 const {logError, log} = require('./logger');
 
