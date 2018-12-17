@@ -11,7 +11,7 @@ const Issues = require('./helpers/issues');
 const IssueCleaner = require('./helpers/issue-cleaner');
 
 const cleanerOptions = {
-  commentsMaxAge: ms('30 days'),
+  commentsMaxAge: ms('60 days'),
   // always keep some comments in issue
   commentsMinCount: config.isDaily ? 5 : 3,
 };
