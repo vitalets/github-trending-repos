@@ -27,9 +27,11 @@ function generateIssueData(schedule) {
   const body = `Subscribe to this issue and stay notified about new [${schedule} trending repos in ${lang}](${url}).`;
   const label = `trending-${schedule}`;
   const finalUrl = `${NEW_ISSUE_URL}?title=${qs.escape(title)}&body=${qs.escape(body)}&labels=${label}`;
-  console.log(`Open this url to create issue (${schedule}):`.toUpperCase());
+  console.log(`Copy-paste this url to create issue (${schedule}):`.toUpperCase());
   console.log(`${finalUrl}`);
-  console.log(`\nDon't forget to lock conversation!\n`);
+  console.log(`\nDon't forget to:`);
+  console.log(`1. lock conversation`);
+  console.log(`2. add to readme`);
 }
 
 /*
