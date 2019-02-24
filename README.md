@@ -50,6 +50,8 @@ Many languages are available for subscription:
 * Jupyter Notebook ([daily](https://github.com/vitalets/github-trending-repos/issues/109) | [weekly](https://github.com/vitalets/github-trending-repos/issues/110))
 * Kotlin ([daily](https://github.com/vitalets/github-trending-repos/issues/92) | [weekly](https://github.com/vitalets/github-trending-repos/issues/93))
 * Lua ([daily](https://github.com/vitalets/github-trending-repos/issues/76) | [weekly](https://github.com/vitalets/github-trending-repos/issues/77))
+* MQL4 ([weekly](https://github.com/vitalets/github-trending-repos/issues/133))
+* MQL5 ([weekly](https://github.com/vitalets/github-trending-repos/issues/134))
 * Nim ([daily](https://github.com/vitalets/github-trending-repos/issues/78) | [weekly](https://github.com/vitalets/github-trending-repos/issues/79))
 * Nix ([daily](https://github.com/vitalets/github-trending-repos/issues/96) | [weekly](https://github.com/vitalets/github-trending-repos/issues/97))
 * OCaml ([daily](https://github.com/vitalets/github-trending-repos/issues/85) | [weekly](https://github.com/vitalets/github-trending-repos/issues/86))
