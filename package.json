@@ -43,6 +43,7 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
+    "dotenv": "^6.2.0",
     "eslint": "^4.19.1",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.0",

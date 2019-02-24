@@ -4,6 +4,7 @@
  * node scripts/langs-md
  */
 
+require('dotenv').config();
 const R = require('ramda');
 const Issues = require('./helpers/issues');
 
