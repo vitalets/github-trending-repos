@@ -20,9 +20,13 @@
     "test-daily": "TRENDING_LABEL=trending-daily TRENDING_LANG=javascript node scripts/update-issues",
     "test-weekly": "TRENDING_LABEL=trending-weekly TRENDING_LANG=javascript node scripts/update-issues",
     "test-clean": "TRENDING_LABEL=trending-daily TRENDING_LANG=javascript node scripts/clean-issues",
-    "test-all": "npm run test-helpers && npm run test-daily && npm run test-weekly && npm run test-clean",
-    "precommit": "lint-staged",
-    "prepush": "npm run code"
+    "test-all": "npm run test-helpers && npm run test-daily && npm run test-weekly && npm run test-clean"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run code"
+    }
   },
   "lint-staged": {
     "*.js": "eslint"
