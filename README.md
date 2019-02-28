@@ -35,6 +35,7 @@ Many languages are available for subscription:
 * Clojure ([daily](https://github.com/vitalets/github-trending-repos/issues/104) | [weekly](https://github.com/vitalets/github-trending-repos/issues/105))
 * Common Lisp ([weekly](https://github.com/vitalets/github-trending-repos/issues/91))
 * Crystal ([daily](https://github.com/vitalets/github-trending-repos/issues/80) | [weekly](https://github.com/vitalets/github-trending-repos/issues/81))
+* D ([weekly](https://github.com/vitalets/github-trending-repos/issues/136))
 * Dart ([daily](https://github.com/vitalets/github-trending-repos/issues/102) | [weekly](https://github.com/vitalets/github-trending-repos/issues/103))
 * Elixir ([daily](https://github.com/vitalets/github-trending-repos/issues/82) | [weekly](https://github.com/vitalets/github-trending-repos/issues/83))
 * Elm ([daily](https://github.com/vitalets/github-trending-repos/issues/87) | [weekly](https://github.com/vitalets/github-trending-repos/issues/88))
