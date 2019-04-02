@@ -7,7 +7,7 @@ const config = require('../config');
 const {log} = require('./logger');
 const Comments = require('./comments');
 
-const defaults= {
+const defaults = {
   commentsMaxAge: ms('30 days'),
   commentsMinCount: 5,
 };
