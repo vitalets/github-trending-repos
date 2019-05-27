@@ -7,10 +7,12 @@ Updates come as [GitHub notifications] once a day or a week.
 
 ## How it works
 1. Every issue in this repo is related to a particular programming language
-2. You can subscribe to comments in the issue by pressing <img alt="subscribe button" valign="middle" src="https://user-images.githubusercontent.com/1473072/32487280-46f4489c-c3ba-11e7-82d7-cfe073cac8d1.png"> button
-3. Scheduled script grabs trending repos per language on daily and weekly basis
-4. If there are new repos - the script drops a comment to the corresponding issue
-5. All issue subscribers receive GitHub notification in the web interface <img alt="notification icon" valign="bottom" src="https://user-images.githubusercontent.com/1473072/32723023-01555c78-c87d-11e7-8190-6bf3bb0ec405.png"> or by email
+2. Scheduled script once a day grabs [github.com/trending](https://github.com/trending) for each language and drops a comment to the corresponding issue
+3. All issue subscribers receive pretty GitHub notification with new trends in the web interface <img alt="notification icon" valign="bottom" src="https://user-images.githubusercontent.com/1473072/32723023-01555c78-c87d-11e7-8190-6bf3bb0ec405.png"> or by email
+
+## How to subscribe
+To become a subscriber please explore [available languages](https://github.com/vitalets/github-trending-repos#available-languages)
+and press <img alt="subscribe button" valign="middle" src="https://user-images.githubusercontent.com/1473072/32487280-46f4489c-c3ba-11e7-82d7-cfe073cac8d1.png"> button in the corresponding issues.
 
 ## Schedule
 You can choose the following subscription types:
