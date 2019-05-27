@@ -15,7 +15,7 @@ To become a subscriber please explore [available languages](https://github.com/v
 and press <img alt="subscribe button" valign="middle" src="https://user-images.githubusercontent.com/1473072/32487280-46f4489c-c3ba-11e7-82d7-cfe073cac8d1.png"> button in the corresponding issues.
 
 ## Schedule
-You can choose the following subscription types:
+You can choose daily or weekly notifications:
 * Daily: runs **every day at 00:00 UTC**, see issues labeled with [trending-daily](https://github.com/vitalets/github-trending-repos/labels/trending-daily)
 * Weekly: runs **every friday at 03:00 UTC**, see issues labeled with [trending-weekly](https://github.com/vitalets/github-trending-repos/labels/trending-weekly)
 
