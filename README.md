@@ -48,6 +48,7 @@ Many languages are available for subscription:
 * Haxe ([daily](https://github.com/vitalets/github-trending-repos/issues/111) | [weekly](https://github.com/vitalets/github-trending-repos/issues/112))
 * Java ([daily](https://github.com/vitalets/github-trending-repos/issues/8) | [weekly](https://github.com/vitalets/github-trending-repos/issues/12))
 * JavaScript ([daily](https://github.com/vitalets/github-trending-repos/issues/5) | [weekly](https://github.com/vitalets/github-trending-repos/issues/16))
+* Julia ([daily](https://github.com/vitalets/github-trending-repos/issues/139) | [weekly](https://github.com/vitalets/github-trending-repos/issues/140))
 * Jupyter Notebook ([daily](https://github.com/vitalets/github-trending-repos/issues/109) | [weekly](https://github.com/vitalets/github-trending-repos/issues/110))
 * Kotlin ([daily](https://github.com/vitalets/github-trending-repos/issues/92) | [weekly](https://github.com/vitalets/github-trending-repos/issues/93))
 * Lua ([daily](https://github.com/vitalets/github-trending-repos/issues/76) | [weekly](https://github.com/vitalets/github-trending-repos/issues/77))
