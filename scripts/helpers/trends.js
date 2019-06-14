@@ -8,6 +8,7 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const promiseRetry = require('promise-retry');
+const {throwIf} = require('throw-utils');
 const {log, logError} = require('./logger');
 const artifacts = require('./artifacts');
 
@@ -79,20 +80,20 @@ module.exports = class Trends {
   }
 
   _queryRepos() {
-    this._domRepos = this._$('li', 'ol.repo-list');
-    log(`Found trending repos: ${this._domRepos.length}`);
+    const repoSelector = '.Box-row';
+    this._domRepos = this._$(repoSelector);
+    log(`Found trending repos: ${this._domRepos.length} by selector: ${repoSelector}`);
   }
 
   _extractRepoInfo(repo) {
     const $repo = this._$(repo);
-    const name = $repo.find('h3').text().trim().replace(/ /g, '');
-    if (!name) {
-      throw new Error(`Can't extract repo name. Check selector 'h3' on: ${this._url}`);
-    }
+    const nameSelector = 'h1 a';
+    const name = $repo.find(nameSelector).attr('href').replace(/^\//, '');
+    throwIf(!name, `Can't find repo name by selector '${nameSelector}' on: ${this._url}`);
     const info = {
       name,
       url: `https://github.com/${name}`,
-      description: $repo.find('p', '.py-1').text().trim(),
+      description: $repo.find('h1 p').text().trim(),
       language: $repo.find('[itemprop=programmingLanguage]').text().trim(),
       starsAdded: toNumber($repo.find(`.float-sm-right`)),
       stars: toNumber($repo.find(`[href="/${name}/stargazers"]`)),
