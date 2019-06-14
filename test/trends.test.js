@@ -13,12 +13,12 @@ describe('trends', function () {
     const repos = await new Trends(trendingUrl, retryOptions).getAll();
     const repo = repos[0];
     assert.equal(repos.length, 25);
-    assert.isString(repo.name);
-    assert.isString(repo.url);
-    assert.isString(repo.description);
-    assert.isNumber(repo.starsAdded);
-    assert.isNumber(repo.stars);
-    assert.isNumber(repo.forks);
+    assert.isAbove(repo.name.length, 0, 'name');
+    assert.isAbove(repo.url.length, 0, 'url');
+    assert.isAbove(repo.description.length, 0, 'description');
+    assert.isAbove(repo.starsAdded, 0, 'starsAdded');
+    assert.isAbove(repo.stars, 0, 'stars');
+    assert.isAbove(repo.forks, 0, 'forks');
   });
 
   it('should retry X times for empty trends', async function () {

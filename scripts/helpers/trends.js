@@ -93,11 +93,11 @@ module.exports = class Trends {
     const info = {
       name,
       url: `https://github.com/${name}`,
-      description: $repo.find('h1 p').text().trim(),
+      description: $repo.find('p').text().trim(),
       language: $repo.find('[itemprop=programmingLanguage]').text().trim(),
       starsAdded: toNumber($repo.find(`.float-sm-right`)),
       stars: toNumber($repo.find(`[href="/${name}/stargazers"]`)),
-      forks: toNumber($repo.find(`[href="/${name}/network"]`)),
+      forks: toNumber($repo.find(`[href="/${name}/network/members"]`)),
     };
     this._repos.push(info);
   }
