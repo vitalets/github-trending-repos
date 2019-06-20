@@ -1,4 +1,5 @@
 
+const fs = require('fs');
 const Trends = require('../scripts/helpers/trends');
 const retryOptions = {
   retries: 2,
@@ -36,4 +37,13 @@ describe('trends', function () {
     }
     assert.equal(counter, 3);
   });
+
+  it('should detect GitHub message when there are no trending repos for lang', async function () {
+    const file = 'test/data/purescript_daily_no_trending_repos.html';
+    const trends = new Trends('', {retries: 0});
+    trends._loadHtml = () => trends._html = fs.readFileSync(file, 'utf8');
+    const repos = await trends.getAll();
+    assert.equal(repos.length, 0);
+  });
+
 });

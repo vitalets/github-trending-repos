@@ -33,6 +33,8 @@ module.exports = class IssueUpdater {
     if (this._trendingRepos.length) {
       await this._loadKnownRepos();
       this._detectNewRepos();
+    } else {
+      log('No trending repos. Skipping.');
     }
     if (this._newRepos.length) {
       await this._processNewRepos();

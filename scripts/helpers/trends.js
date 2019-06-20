@@ -52,10 +52,14 @@ module.exports = class Trends {
     this._constructDom();
     this._queryRepos();
     this._domRepos.each((index, repo) => this._extractRepoInfo(repo));
-    if (this._repos.length === 0) {
-      throw new Error(`Can't find trending repos on page: ${this._url}`);
+    if (this._repos.length > 0) {
+      return this._repos;
     }
-    return this._repos;
+    if (this._isNoRepos()) {
+      log(`Found message that there are no trending repos on url: ${this._url}`);
+      return [];
+    }
+    throw new Error(`Can't find trending repos on page: ${this._url}`);
   }
 
   _retry(error, retryFn) {
@@ -108,6 +112,15 @@ module.exports = class Trends {
     } catch (e) {
       logError('Error while saving artifact', e);
     }
+  }
+
+  /**
+   * For some langs GitHub shows: It looks like we don’t have any trending repositories for %lang%
+   */
+  _isNoRepos() {
+    const messageSelector = '.blankslate';
+    const message = this._$(messageSelector).text();
+    return message.indexOf('have any trending repositories') > 0;
   }
 };
 
