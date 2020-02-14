@@ -63,10 +63,10 @@ module.exports = class Trends {
   }
 
   _retry(error, retryFn) {
-    const r = error.response;
-    if (r) {
-      log(`Error: ${r.status} ${r.statusText}`);
-      this._saveHtmlToArtifacts(r.data);
+    const response = error.response;
+    if (response) {
+      log(`HTTP Error: ${response.status} ${response.statusText}`);
+      this._saveHtmlToArtifacts(response.data);
     } else {
       logError(error);
       this._saveHtmlToArtifacts(this._html);
@@ -76,7 +76,12 @@ module.exports = class Trends {
 
   async _loadHtml() {
     this._html = '';
-    this._html = (await request(this._url)).data;
+    const response = await request(this._url, {
+      headers: {
+        Accept: 'text/html'
+      }
+    });
+    this._html = response.data;
   }
 
   _constructDom() {
@@ -100,8 +105,9 @@ module.exports = class Trends {
       description: $repo.find('p').text().trim(),
       language: $repo.find('[itemprop=programmingLanguage]').text().trim(),
       starsAdded: toNumber($repo.find(`.float-sm-right`)),
-      stars: toNumber($repo.find(`[href="/${name}/stargazers"]`)),
-      forks: toNumber($repo.find(`[href="/${name}/network/members"]`)),
+      // '*=' means 'contains'
+      stars: toNumber($repo.find(`[href*="/${name}/stargazers"]`)),
+      forks: toNumber($repo.find(`[href*="/${name}/network/members"]`)),
     };
     this._repos.push(info);
   }
