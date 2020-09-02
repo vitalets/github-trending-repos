@@ -28,7 +28,6 @@ After click you are navigated to the first unread comment with new trends in the
 
 ## Available languages
 Many languages are available for subscription:
-
 * 1C Enterprise ([daily](https://github.com/vitalets/github-trending-repos/issues/43))
 * C ([daily](https://github.com/vitalets/github-trending-repos/issues/33) | [weekly](https://github.com/vitalets/github-trending-repos/issues/21))
 * C# ([daily](https://github.com/vitalets/github-trending-repos/issues/31) | [weekly](https://github.com/vitalets/github-trending-repos/issues/19))
@@ -73,6 +72,7 @@ Many languages are available for subscription:
 * Rust ([daily](https://github.com/vitalets/github-trending-repos/issues/44) | [weekly](https://github.com/vitalets/github-trending-repos/issues/45))
 * Scala ([daily](https://github.com/vitalets/github-trending-repos/issues/37) | [weekly](https://github.com/vitalets/github-trending-repos/issues/25))
 * Shell ([daily](https://github.com/vitalets/github-trending-repos/issues/35) | [weekly](https://github.com/vitalets/github-trending-repos/issues/23))
+* Solidity ([daily](https://github.com/vitalets/github-trending-repos/issues/151) | [weekly](https://github.com/vitalets/github-trending-repos/issues/152))
 * Swift ([daily](https://github.com/vitalets/github-trending-repos/issues/36) | [weekly](https://github.com/vitalets/github-trending-repos/issues/24))
 * TypeScript ([daily](https://github.com/vitalets/github-trending-repos/issues/34) | [weekly](https://github.com/vitalets/github-trending-repos/issues/22))
 * Verilog ([daily](https://github.com/vitalets/github-trending-repos/issues/50))
