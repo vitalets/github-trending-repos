@@ -1,5 +1,5 @@
 
-const Issues = require('../scripts/helpers/issues');
+const Issues = require('../../scripts/helpers/issues.js');
 
 describe('issues', function () {
   this.timeout(15 * 1000);

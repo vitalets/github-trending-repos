@@ -1,5 +1,5 @@
 
-const Translator = require('../scripts/helpers/translator');
+const Translator = require('../../scripts/helpers/translator.js');
 
 describe('translator', function () {
   it('should translate mixed chinese + en', async function () {

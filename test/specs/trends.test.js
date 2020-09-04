@@ -1,6 +1,6 @@
 
 const fs = require('fs');
-const Trends = require('../scripts/helpers/trends');
+const Trends = require('../../scripts/helpers/trends.js');
 const retryOptions = {
   retries: 2,
   minTimeout: 500,

@@ -1,5 +1,5 @@
 
-const Comments = require('../scripts/helpers/comments');
+const Comments = require('../../scripts/helpers/comments.js');
 
 describe('comments', function () {
 
