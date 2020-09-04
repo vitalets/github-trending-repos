@@ -53,6 +53,7 @@ module.exports = class Trends {
     this._queryRepos();
     this._domRepos.each((index, repo) => this._extractRepoInfo(repo));
     if (this._repos.length > 0) {
+      this._sortRepos();
       return this._repos;
     }
     if (this._isNoRepos()) {
@@ -127,6 +128,10 @@ module.exports = class Trends {
     const messageSelector = '.blankslate';
     const message = this._$(messageSelector).text();
     return message.indexOf('have any trending repositories') > 0;
+  }
+
+  _sortRepos() {
+    this._repos.sort((a, b) => b.starsAdded - a.starsAdded);
   }
 };
 

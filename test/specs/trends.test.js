@@ -20,6 +20,7 @@ describe('trends', function () {
     assert.isAbove(repo.starsAdded, 0, 'starsAdded');
     assert.isAbove(repo.stars, 0, 'stars');
     assert.isAbove(repo.forks, 0, 'forks');
+    assert.isAbove(repos[0].starsAdded, repos[1].starsAdded);
   });
 
   it('should retry X times for empty trends', async function () {
