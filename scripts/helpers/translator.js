@@ -44,7 +44,7 @@ module.exports = class Translator {
 
   async _translate() {
     try {
-      this._result = await translate(this._text, {to: 'en'});
+      this._result = await translate(this._text, {to: 'en', client: 'gtx'});
     } catch (e) {
       logError(e);
     }
