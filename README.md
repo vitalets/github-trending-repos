@@ -44,6 +44,7 @@ Many languages are available for subscription:
 * Erlang ([daily](https://github.com/vitalets/github-trending-repos/issues/98) | [weekly](https://github.com/vitalets/github-trending-repos/issues/99))
 * F# ([weekly](https://github.com/vitalets/github-trending-repos/issues/84))
 * Fortran ([daily](https://github.com/vitalets/github-trending-repos/issues/126) | [weekly](https://github.com/vitalets/github-trending-repos/issues/127))
+* GDScript ([weekly](https://github.com/vitalets/github-trending-repos/issues/161))
 * Go ([daily](https://github.com/vitalets/github-trending-repos/issues/32) | [weekly](https://github.com/vitalets/github-trending-repos/issues/20))
 * Haskell ([daily](https://github.com/vitalets/github-trending-repos/issues/46) | [weekly](https://github.com/vitalets/github-trending-repos/issues/47))
 * Haxe ([daily](https://github.com/vitalets/github-trending-repos/issues/111) | [weekly](https://github.com/vitalets/github-trending-repos/issues/112))
@@ -73,11 +74,13 @@ Many languages are available for subscription:
 * Scala ([daily](https://github.com/vitalets/github-trending-repos/issues/37) | [weekly](https://github.com/vitalets/github-trending-repos/issues/25))
 * Shell ([daily](https://github.com/vitalets/github-trending-repos/issues/35) | [weekly](https://github.com/vitalets/github-trending-repos/issues/23))
 * Solidity ([daily](https://github.com/vitalets/github-trending-repos/issues/151) | [weekly](https://github.com/vitalets/github-trending-repos/issues/152))
+* Svelte ([daily](https://github.com/vitalets/github-trending-repos/issues/159) | [weekly](https://github.com/vitalets/github-trending-repos/issues/160))
 * Swift ([daily](https://github.com/vitalets/github-trending-repos/issues/36) | [weekly](https://github.com/vitalets/github-trending-repos/issues/24))
 * TypeScript ([daily](https://github.com/vitalets/github-trending-repos/issues/34) | [weekly](https://github.com/vitalets/github-trending-repos/issues/22))
 * Verilog ([daily](https://github.com/vitalets/github-trending-repos/issues/50))
 * Vim script ([daily](https://github.com/vitalets/github-trending-repos/issues/118) | [weekly](https://github.com/vitalets/github-trending-repos/issues/119))
 * Vue ([daily](https://github.com/vitalets/github-trending-repos/issues/128) | [weekly](https://github.com/vitalets/github-trending-repos/issues/129))
+* Zig ([daily](https://github.com/vitalets/github-trending-repos/issues/162) | [weekly](https://github.com/vitalets/github-trending-repos/issues/163))
 
 If you'd like to add new language - feel free to [create issue by this template](https://github.com/vitalets/github-trending-repos/issues/new?title=Please%20add%20%7Blang%7D&body=%7Blink%20to%20GitHub%20trending%20page%7D%20%20%0A-%20%5B%20%5D%20daily%0A-%20%5B%20%5D%20weekly).
 
