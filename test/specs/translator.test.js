@@ -35,9 +35,8 @@ describe('translator', function () {
 
   it('should translate russian', async function () {
     const text = 'Супер-мега-библиотека';
-    const textEn = 'Super-mega-library';
     const translated = await new Translator(text).toEn();
-    assert.equal(translated, textEn);
+    assert.include(translated.toLowerCase(), 'super-mega-library');
   });
 
   it('should translate mixed russian + en', async function () {
