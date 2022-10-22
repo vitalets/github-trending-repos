@@ -5,25 +5,25 @@
  */
 
 const R = require('ramda');
+const markdownMagic = require('markdown-magic');
 const Issues = require('./helpers/issues');
 
 const EXCLUDE = ['all languages', 'unknown languages'];
 
-main()
-  .catch(e => {
-    console.error(e);
-    process.exit(1);
-  });
+const config = {
+  transforms: {
+    LANGS: async () => {
+      const issuesDaily = await getIssues('trending-daily');
+      const issuesWeekly = await getIssues('trending-weekly');
+      const issues = [...issuesDaily, ...issuesWeekly];
+      assertAllLocked(issues);
+      const langs = R.groupBy(R.prop('lang'), issues);
+      return generateMarkdown(langs);
+    }
+  }
+};
 
-async function main() {
-  const issuesDaily = await getIssues('trending-daily');
-  const issuesWeekly = await getIssues('trending-weekly');
-  const issues = [...issuesDaily, ...issuesWeekly];
-  assertAllLocked(issues);
-  const langs = R.groupBy(R.prop('lang'), issues);
-  const md = generateMarkdown(langs);
-  console.log(md);
-}
+markdownMagic('README.md', config);
 
 async function getIssues(label) {
   const isDaily = /daily/i.test(label);

@@ -5,6 +5,19 @@
 Here you can subscribe to new [GitHub trending repositories](https://github.com/trending) in your favorite programming language.
 Updates come as [GitHub notifications] once a day or a week.
 
+<!-- AUTO-GENERATED-CONTENT:START (TOC) -->
+- [How it works](#how-it-works)
+- [How to subscribe](#how-to-subscribe)
+- [Schedule](#schedule)
+- [Examples](#examples)
+- [Available languages](#available-languages)
+- [Specials](#specials)
+- [Watching the repo](#watching-the-repo)
+- [Is it better than RSS / newsletter / etc?](#is-it-better-than-rss--newsletter--etc)
+- [Alternatives](#alternatives)
+- [Related links](#related-links)
+<!-- AUTO-GENERATED-CONTENT:END -->
+
 ## How it works
 1. Every issue in this repo is related to a particular programming language
 2. Scheduled script once a day grabs [github.com/trending](https://github.com/trending) for each language and drops a comment to the corresponding issue
@@ -28,6 +41,7 @@ After click you are navigated to the first unread comment with new trends in the
 
 ## Available languages
 Many languages are available for subscription:
+<!-- AUTO-GENERATED-CONTENT:START (LANGS) -->
 * 1C Enterprise ([daily](https://github.com/vitalets/github-trending-repos/issues/43))
 * C ([daily](https://github.com/vitalets/github-trending-repos/issues/33) | [weekly](https://github.com/vitalets/github-trending-repos/issues/21))
 * C# ([daily](https://github.com/vitalets/github-trending-repos/issues/31) | [weekly](https://github.com/vitalets/github-trending-repos/issues/19))
@@ -77,10 +91,12 @@ Many languages are available for subscription:
 * Svelte ([daily](https://github.com/vitalets/github-trending-repos/issues/159) | [weekly](https://github.com/vitalets/github-trending-repos/issues/160))
 * Swift ([daily](https://github.com/vitalets/github-trending-repos/issues/36) | [weekly](https://github.com/vitalets/github-trending-repos/issues/24))
 * TypeScript ([daily](https://github.com/vitalets/github-trending-repos/issues/34) | [weekly](https://github.com/vitalets/github-trending-repos/issues/22))
+* Vala ([daily](https://github.com/vitalets/github-trending-repos/issues/168) | [weekly](https://github.com/vitalets/github-trending-repos/issues/169))
 * Verilog ([daily](https://github.com/vitalets/github-trending-repos/issues/50))
 * Vim script ([daily](https://github.com/vitalets/github-trending-repos/issues/118) | [weekly](https://github.com/vitalets/github-trending-repos/issues/119))
 * Vue ([daily](https://github.com/vitalets/github-trending-repos/issues/128) | [weekly](https://github.com/vitalets/github-trending-repos/issues/129))
 * Zig ([daily](https://github.com/vitalets/github-trending-repos/issues/162) | [weekly](https://github.com/vitalets/github-trending-repos/issues/163))
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 If you'd like to add new language - feel free to [create issue by this template](https://github.com/vitalets/github-trending-repos/issues/new?title=Please%20add%20%7Blang%7D&body=%7Blink%20to%20GitHub%20trending%20page%7D%20%20%0A-%20%5B%20%5D%20daily%0A-%20%5B%20%5D%20weekly).
 
@@ -115,7 +131,9 @@ It's a matter of taste. Personally I found it convenient by the following reason
 * [Discussion on Hacker News](https://news.ycombinator.com/item?id=16446250#16446992)
 * [Here are 5 ways you can keep track of trending repositories on GitHub](https://medium.freecodecamp.org/five-ways-of-tracking-trends-on-github-63940fca63b)
 
-&copy; 2017-2018 [Vitaliy Potapov](https://github.com/vitalets)
+&copy; 2017-2022 [Vitaliy Potapov](https://github.com/vitalets)
+
+<a href="https://www.buymeacoffee.com/vitpotapov" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
 [trending-daily]: https://github.com/vitalets/github-trending-repos/labels/trending-daily
 [trending-weekly]: https://github.com/vitalets/github-trending-repos/labels/trending-weekly
