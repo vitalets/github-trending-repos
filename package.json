@@ -32,7 +32,7 @@
     "*.js": "eslint"
   },
   "dependencies": {
-    "@vitalets/google-translate-api": "^4.0.0",
+    "@vitalets/google-translate-api": "^9.0.0-0",
     "await-timeout": "^1.1.1",
     "axios": "^0.20.0",
     "axios-retry": "^3.1.8",

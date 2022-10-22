@@ -2,7 +2,7 @@
  * Translate to EN if needed.
  */
 
-const translate = require('@vitalets/google-translate-api');
+const { translate } = require('@vitalets/google-translate-api');
 const emojiRegex = require('emoji-regex');
 const {logError, log} = require('./logger');
 
@@ -44,7 +44,9 @@ module.exports = class Translator {
 
   async _translate() {
     try {
-      this._result = await translate(this._text, {to: 'en', client: 'gtx'});
+      // this._result = await translate(this._text, {to: 'en', client: 'gtx'});
+      // new translate using google-translate-api v9
+      this._result = await translate(this._text, { to: 'en' });
     } catch (e) {
       logError(e);
     }
