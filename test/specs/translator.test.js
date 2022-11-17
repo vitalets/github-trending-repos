@@ -12,13 +12,6 @@ describe('translator', function () {
     assert.equal(translated, textEn);
   });
 
-  it('should translate chinese only', async function () {
-    const text = '前端入门和进阶学习笔记，超详细的图文教程。';
-    const textEn = 'Front-end entry and advanced study notes, super detailed graphic tutorials';
-    const translated = await new Translator(text).toEn();
-    assert.equal(translated, textEn);
-  });
-
   it('should translate chinese with emoji', async function () {
     const text = '微信小程序开发资源汇总 💯';
     const textEn = 'Summary of WeChat Mini Program Development Resources 💯';
