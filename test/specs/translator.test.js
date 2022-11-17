@@ -14,7 +14,7 @@ describe('translator', function () {
 
   it('should translate chinese only', async function () {
     const text = '前端入门和进阶学习笔记，超详细的图文教程。';
-    const textEn = 'Front-end entry and advanced study notes, super detailed graphic tutorials.';
+    const textEn = 'Front-end entry and advanced study notes, super detailed graphic tutorials';
     const translated = await new Translator(text).toEn();
     assert.equal(translated, textEn);
   });
