@@ -1,5 +1,6 @@
 
 const Comments = require('../../scripts/helpers/comments.js');
+const { stripMentionsFromRepoDesc } = require('../../scripts/helpers/issue-updater.js');
 
 describe('comments', function () {
 
@@ -21,4 +22,12 @@ describe('comments', function () {
     assert.equal(newComment.body, '**test comment body**');
     await comments.delete(newComment);
   });
+
+  it('should strip mentions from repo desc', () => {
+    assert.equal(stripMentionsFromRepoDesc('Repo desc [maintainer=@abc]'), 'Repo desc');
+    assert.equal(stripMentionsFromRepoDesc('Repo desc 2 [maintainer=@abc,@xx]'), 'Repo desc 2');
+    assert.equal(stripMentionsFromRepoDesc('Repo desc [maintainer=@abc] 11'), 'Repo desc  11');
+    assert.equal(stripMentionsFromRepoDesc('Repo desc maintainer'), 'Repo desc maintainer');
+  });
+
 });

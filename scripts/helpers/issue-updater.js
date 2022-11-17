@@ -104,12 +104,20 @@ module.exports = class IssueUpdater {
   }
 
   async _generateRepoMarkdown(repo, since) {
-    const translated = await new Translator(repo.description).toEn();
+    const desc = IssueUpdater.stripMentionsFromRepoDesc(repo.description);
+    const translated = await new Translator(desc).toEn();
     return [
       `[${repo.name.replace('/', ' / ')}](${repo.url})`,
-      repo.description,
+      desc,
       translated ? `> ${translated}\n` : '',
       repo.starsAdded ? `***+${repo.starsAdded}** stars ${since}*` : '',
     ].filter(Boolean).join('\n');
+  }
+
+  /**
+   * See: https://github.com/vitalets/github-trending-repos/issues/170
+   */
+  static stripMentionsFromRepoDesc(desc) {
+    return (desc || '').replace(/\[maintainer=@.+\]/g, '').trim();
   }
 };
