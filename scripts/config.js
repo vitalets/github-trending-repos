@@ -14,8 +14,6 @@ config.dryRun = !process.env.TRENDING_NOT_DRY_RUN;
 // Use bot's token for posting/deleting comments and vitalets token for testing (to share API requests limit)
 config.githubToken = config.dryRun ? process.env.GITHUB_TOKEN_VITALETS : process.env.GITHUB_TOKEN_BOT;
 config.apiUrl = 'https://api.github.com/repos/vitalets/github-trending-repos';
-config.githubToken = config.dryRun ? process.env.GITHUB_TOKEN_VITALETS : process.env.TRENDING_TOKEN_BOT;
-config.apiUrl = 'https://api.github.com/repos/owen800q/github-trending-repos';
 config.trendingUrl = 'https://github.com/trending';
 config.trendingRetryOptions = {
   retries: 5,
