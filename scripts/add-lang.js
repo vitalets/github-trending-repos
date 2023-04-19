@@ -13,7 +13,7 @@ const lang = process.argv[2];
 const langInUrl = process.argv[3] || lang.toLowerCase();
 const rl = readline.createInterface({input: process.stdin,  output: process.stdout});
 
-const NEW_ISSUE_URL = 'https://github.com/owen800q/github-trending-repos/issues/new';
+const NEW_ISSUE_URL = 'https://github.com/vitalets/github-trending-repos/issues/new';
 
 generateIssueData('daily');
 rl.question('Press any key to generate weekly:', () => {
