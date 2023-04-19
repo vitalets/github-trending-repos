@@ -97,7 +97,7 @@ module.exports = class Trends {
 
   _extractRepoInfo(repo) {
     const $repo = this._$(repo);
-    const nameSelector = 'h1 a';
+    const nameSelector = 'h2 a';
     const name = $repo.find(nameSelector).attr('href').replace(/^\//, '');
     throwIf(!name, `Can't find repo name by selector '${nameSelector}' on: ${this._url}`);
     const info = {
@@ -108,7 +108,7 @@ module.exports = class Trends {
       starsAdded: toNumber($repo.find(`.float-sm-right`)),
       // '*=' means 'contains'
       stars: toNumber($repo.find(`[href*="/${name}/stargazers"]`)),
-      forks: toNumber($repo.find(`[href*="/${name}/network/members"]`)),
+      forks: toNumber($repo.find(`[href*="/${name}/forks"]`)),
     };
     this._repos.push(info);
   }
