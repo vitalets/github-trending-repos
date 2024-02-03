@@ -60,6 +60,7 @@ Many languages are available for subscription:
 * Fortran ([daily](https://github.com/vitalets/github-trending-repos/issues/126) | [weekly](https://github.com/vitalets/github-trending-repos/issues/127))
 * GDScript ([weekly](https://github.com/vitalets/github-trending-repos/issues/161))
 * Go ([daily](https://github.com/vitalets/github-trending-repos/issues/32) | [weekly](https://github.com/vitalets/github-trending-repos/issues/20))
+* HCL ([daily](https://github.com/vitalets/github-trending-repos/issues/175) | [weekly](https://github.com/vitalets/github-trending-repos/issues/176))
 * Haskell ([daily](https://github.com/vitalets/github-trending-repos/issues/46) | [weekly](https://github.com/vitalets/github-trending-repos/issues/47))
 * Haxe ([daily](https://github.com/vitalets/github-trending-repos/issues/111) | [weekly](https://github.com/vitalets/github-trending-repos/issues/112))
 * Java ([daily](https://github.com/vitalets/github-trending-repos/issues/8) | [weekly](https://github.com/vitalets/github-trending-repos/issues/12))
