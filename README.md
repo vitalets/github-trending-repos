@@ -91,6 +91,7 @@ Many languages are available for subscription:
 * Solidity ([daily](https://github.com/vitalets/github-trending-repos/issues/151) | [weekly](https://github.com/vitalets/github-trending-repos/issues/152))
 * Svelte ([daily](https://github.com/vitalets/github-trending-repos/issues/159) | [weekly](https://github.com/vitalets/github-trending-repos/issues/160))
 * Swift ([daily](https://github.com/vitalets/github-trending-repos/issues/36) | [weekly](https://github.com/vitalets/github-trending-repos/issues/24))
+* TeX ([daily](https://github.com/vitalets/github-trending-repos/issues/177) | [weekly](https://github.com/vitalets/github-trending-repos/issues/178))
 * TypeScript ([daily](https://github.com/vitalets/github-trending-repos/issues/34) | [weekly](https://github.com/vitalets/github-trending-repos/issues/22))
 * Vala ([daily](https://github.com/vitalets/github-trending-repos/issues/168) | [weekly](https://github.com/vitalets/github-trending-repos/issues/169))
 * Verilog ([daily](https://github.com/vitalets/github-trending-repos/issues/50))
