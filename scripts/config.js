@@ -11,8 +11,8 @@ config.issuesLabel = process.env.TRENDING_LABEL;
 config.lang = process.env.TRENDING_LANG || '';
 // Set TRENDING_NOT_DRY_RUN=true to actually post/delete comments
 config.dryRun = !process.env.TRENDING_NOT_DRY_RUN;
-// Use bot's token for posting/deleting comments and vitalets token for testing (to share API requests limit)
-config.githubToken = config.dryRun ? process.env.GITHUB_TOKEN_VITALETS : process.env.GITHUB_TOKEN_BOT;
+// Use the automatic Actions token or GITHUB_TOKEN from .env for local runs.
+config.githubToken = process.env.GITHUB_TOKEN;
 config.apiUrl = 'https://api.github.com/repos/vitalets/github-trending-repos';
 config.trendingUrl = 'https://github.com/trending';
 config.trendingRetryOptions = {

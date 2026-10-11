@@ -1,0 +1,34 @@
+name: Tests
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+  issues: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      GOOGLE_TRANSLATE_PROXY_HOST: ${{ secrets.GOOGLE_TRANSLATE_PROXY_HOST }}
+      TRENDING_NOT_DRY_RUN: ''
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run test-all
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: test
+          path: .artifacts
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 14

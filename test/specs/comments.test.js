@@ -1,10 +1,13 @@
 
+const githubApi = require('../../scripts/helpers/github-api.js');
 const Comments = require('../../scripts/helpers/comments.js');
 const { stripMentionsFromRepoDesc } = require('../../scripts/helpers/issue-updater.js');
 
 describe('comments', function () {
 
   this.timeout(15 * 1000);
+
+  afterEach(() => sinon.restore());
 
   it('should load comments from all pages', async function () {
     const comments = await new Comments({number: 5}).getAll();
@@ -13,14 +16,23 @@ describe('comments', function () {
   });
 
   it('should post and delete comment', async function () {
-    // special test issue: https://github.com/vitalets/github-trending-repos/issues/2
-    const issue = {number: 2};
-    const comments = new Comments(issue);
-    const newComment = await comments.post('**test comment body**');
-    assert.ok(newComment.id);
-    assert.ok(newComment.url);
-    assert.equal(newComment.body, '**test comment body**');
-    await comments.delete(newComment);
+    const body = '**test comment body**';
+    const comment = {
+      id: 123,
+      url: 'https://api.github.com/repos/vitalets/github-trending-repos/issues/comments/123',
+      body,
+    };
+    const fetchJson = sinon.stub(githubApi, 'fetchJson');
+    fetchJson.onFirstCall().resolves({result: comment});
+    fetchJson.onSecondCall().resolves({result: undefined});
+
+    const comments = new Comments({number: 2});
+    assert.deepEqual(await comments.post(body), comment);
+    await comments.delete(comment);
+
+    sinon.assert.calledTwice(fetchJson);
+    sinon.assert.calledWithExactly(fetchJson.firstCall, 'post', 'issues/2/comments', {body});
+    sinon.assert.calledWithExactly(fetchJson.secondCall, 'delete', comment.url);
   });
 
   it('should strip mentions from repo desc', () => {

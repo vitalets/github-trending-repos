@@ -1,0 +1,51 @@
+name: Daily updates
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Preview changes without posting or deleting comments
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  # Keep this group identical in update-daily.yml, update-weekly.yml, and cleanup.yml.
+  # Serialize updates and cleanup so they cannot read or modify issue comments concurrently.
+  group: trending-issues
+  cancel-in-progress: false
+
+jobs:
+  run:
+    # Prevent manual runs from experimental branches.
+    if: github.ref_name == 'master'
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      GOOGLE_TRANSLATE_PROXY_HOST: ${{ secrets.GOOGLE_TRANSLATE_PROXY_HOST }}
+      TRENDING_NOT_DRY_RUN: ${{ (github.event_name == 'schedule' || inputs.dry_run == false) && 'true' || '' }}
+      TRENDING_LABEL: trending-daily
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: node scripts/update-issues
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: update-daily
+          path: .artifacts
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 14
