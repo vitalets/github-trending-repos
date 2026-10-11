@@ -1,6 +1,9 @@
 <div align="center"><img src="https://user-images.githubusercontent.com/1473072/33020417-45869a00-ce0f-11e7-9faa-368445d463f7.gif" alt="Stars counter"/></div>
 <h1 align="center">GitHub Trending Repos</h1>
+
 [![Tests](https://github.com/vitalets/github-trending-repos/actions/workflows/test.yml/badge.svg)](https://github.com/vitalets/github-trending-repos/actions/workflows/test.yml)
+[![Daily updates](https://github.com/vitalets/github-trending-repos/actions/workflows/update-daily.yml/badge.svg)](https://github.com/vitalets/github-trending-repos/actions/workflows/update-daily.yml)
+[![Weekly updates](https://github.com/vitalets/github-trending-repos/actions/workflows/update-weekly.yml/badge.svg)](https://github.com/vitalets/github-trending-repos/actions/workflows/update-weekly.yml)
 
 Here you can subscribe to new [GitHub trending repositories](https://github.com/trending) in your favorite programming language.
 Updates come as [GitHub notifications] once a day or a week.
