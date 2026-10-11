@@ -5,45 +5,45 @@
 [![Daily updates](https://github.com/vitalets/github-trending-repos/actions/workflows/update-daily.yml/badge.svg)](https://github.com/vitalets/github-trending-repos/actions/workflows/update-daily.yml)
 [![Weekly updates](https://github.com/vitalets/github-trending-repos/actions/workflows/update-weekly.yml/badge.svg)](https://github.com/vitalets/github-trending-repos/actions/workflows/update-weekly.yml)
 
-Here you can subscribe to new [GitHub trending repositories](https://github.com/trending) in your favorite programming language.
-Updates come as [GitHub notifications] once a day or a week.
+Subscribe to updates about new [trending GitHub repositories](https://github.com/trending) in your favorite programming language.
+Receive updates through [GitHub notifications](https://help.github.com/articles/accessing-your-notifications/) once a day or once a week.
 
 <!-- AUTO-GENERATED-CONTENT:START (TOC) -->
 - [How it works](#how-it-works)
 - [How to subscribe](#how-to-subscribe)
 - [Schedule](#schedule)
-- [Examples](#examples)
+- [Example](#example)
 - [Available languages](#available-languages)
 - [Specials](#specials)
 - [Watching the repo](#watching-the-repo)
-- [Is it better than RSS / newsletter / etc?](#is-it-better-than-rss--newsletter--etc)
+- [Is it better than RSS feeds or newsletters?](#is-it-better-than-rss-feeds-or-newsletters)
 - [Alternatives](#alternatives)
 - [Related links](#related-links)
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ## How it works
-1. Every issue in this repo is related to a particular programming language
-2. Scheduled script once a day grabs [github.com/trending](https://github.com/trending) for each language and drops a comment to the corresponding issue
-3. All issue subscribers receive pretty GitHub notification with new trends in the web interface <img alt="notification icon" valign="bottom" src="https://user-images.githubusercontent.com/1473072/32723023-01555c78-c87d-11e7-8190-6bf3bb0ec405.png"> or by email
+1. Each issue in this repo corresponds to a particular programming language.
+2. A scheduled script fetches [trending repositories](https://github.com/trending) for each language and posts a comment on the corresponding issue.
+3. All issue subscribers receive a GitHub notification with the latest trending repositories in the web interface <img alt="notification icon" valign="bottom" src="https://user-images.githubusercontent.com/1473072/32723023-01555c78-c87d-11e7-8190-6bf3bb0ec405.png"> or by email.
 
 ## How to subscribe
-To become a subscriber please explore [available languages](https://github.com/vitalets/github-trending-repos#available-languages)
-and press <img alt="subscribe button" valign="middle" src="https://user-images.githubusercontent.com/1473072/32487280-46f4489c-c3ba-11e7-82d7-cfe073cac8d1.png"> button in the corresponding issues.
+To subscribe, browse the [available languages](https://github.com/vitalets/github-trending-repos#available-languages)
+and click the <img alt="subscribe button" valign="middle" src="https://user-images.githubusercontent.com/1473072/32487280-46f4489c-c3ba-11e7-82d7-cfe073cac8d1.png"> button in the corresponding issue.
 
 ## Schedule
 You can choose daily or weekly notifications:
-* Daily: runs **every day at 00:00 UTC**, see issues labeled with [trending-daily](https://github.com/vitalets/github-trending-repos/labels/trending-daily)
-* Weekly: runs **every friday at 03:00 UTC**, see issues labeled with [trending-weekly](https://github.com/vitalets/github-trending-repos/labels/trending-weekly)
+* Daily: runs **every day at 00:00 UTC**. See issues labeled with [trending-daily](https://github.com/vitalets/github-trending-repos/labels/trending-daily).
+* Weekly: runs **every Friday at 03:00 UTC**. See issues labeled with [trending-weekly](https://github.com/vitalets/github-trending-repos/labels/trending-weekly).
 
-## Examples
-Once a day (or a week) you get a notification in GitHub web interface:  
+## Example
+Once a day (or once a week), you receive a notification in GitHub's web interface:  
 ![Example of web notification](https://user-images.githubusercontent.com/1473072/32488601-4295b138-c3be-11e7-8eb2-18a624c54ca2.png)
 
-After click you are navigated to the first unread comment with new trends in the selected language:  
+Clicking the notification takes you to the first unread comment with new trending repositories in your selected language:  
 ![Example of comment](https://user-images.githubusercontent.com/1473072/33029917-f054b67c-ce2a-11e7-9b42-a7ee16d98228.png)
 
 ## Available languages
-Many languages are available for subscription:
+You can subscribe to updates for the following languages:
 <!-- AUTO-GENERATED-CONTENT:START (LANGS) -->
 * 1C Enterprise ([daily](https://github.com/vitalets/github-trending-repos/issues/43))
 * C ([daily](https://github.com/vitalets/github-trending-repos/issues/33) | [weekly](https://github.com/vitalets/github-trending-repos/issues/21))
@@ -104,7 +104,7 @@ Many languages are available for subscription:
 * Zig ([daily](https://github.com/vitalets/github-trending-repos/issues/162) | [weekly](https://github.com/vitalets/github-trending-repos/issues/163))
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-If you'd like to add new language - feel free to [create issue by this template](https://github.com/vitalets/github-trending-repos/issues/new?title=Please%20add%20%7Blang%7D&body=%7Blink%20to%20GitHub%20trending%20page%7D%20%20%0A-%20%5B%20%5D%20daily%0A-%20%5B%20%5D%20weekly).
+If you'd like to add a new language, feel free to [create an issue using this template](https://github.com/vitalets/github-trending-repos/issues/new?title=Please%20add%20%7Blang%7D&body=%7Blink%20to%20GitHub%20trending%20page%7D%20%20%0A-%20%5B%20%5D%20daily%0A-%20%5B%20%5D%20weekly).
 
 ## Specials
 
@@ -112,18 +112,18 @@ If you'd like to add new language - feel free to [create issue by this template]
 * Trending repos in **unknown languages** ([daily](https://github.com/vitalets/github-trending-repos/issues/28) | [weekly](https://github.com/vitalets/github-trending-repos/issues/27))
 
 ## Watching the repo
-If you start watching this repo - you will receive **many** notifications about all trends in all languages.
-The recommended way is to selectively subscribe on issues you are interested in.
+If you watch this repo, you will receive **many** notifications about trending repositories across all languages.
+We recommend subscribing only to the issues you're interested in.
 
-## Is it better than RSS / newsletter / etc?
-It's a matter of taste. Personally I found it convenient by the following reasons:
+## Is it better than RSS feeds or newsletters?
+It's a matter of taste. Personally, I find it convenient for the following reasons:
 
-* I'm dealing with GitHub notifications anyway and trends are seamlessly integrated in my daily workflow
-* I can quickly overview trends without registering somewhere and watching ads
-* I can view non-english entries that are automatically translated
+* I already use GitHub notifications, so trending repository updates fit seamlessly into my daily workflow.
+* I can quickly browse trending repositories without signing up for another service or viewing ads.
+* I can read automatically translated descriptions of non-English entries.
 
 ## Alternatives
-* Newsletter:
+* Newsletters:
   * [Official GitHub Explore Newsletter](https://github.com/explore#newsletter)
   * [Changelog Nightly](https://changelog.com/nightly)
   * [GitLogs](http://www.gitlogs.com/)
@@ -134,13 +134,9 @@ It's a matter of taste. Personally I found it convenient by the following reason
 * Webpage + GraphiQL API: [https://trends.now.sh](https://trends.now.sh)
 
 ## Related links
-* [Discussion on Hacker News](https://news.ycombinator.com/item?id=16446250#16446992)
+* [Discussion on Hacker News](https://news.ycombinator.com/item?id=16446250)
 * [Here are 5 ways you can keep track of trending repositories on GitHub](https://medium.freecodecamp.org/five-ways-of-tracking-trends-on-github-63940fca63b)
 
-&copy; 2017-2022 [Vitaliy Potapov](https://github.com/vitalets)
+&copy; 2017-2026 [Vitaliy Potapov](https://github.com/vitalets)
 
 <a href="https://www.buymeacoffee.com/vitpotapov" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
-
-[trending-daily]: https://github.com/vitalets/github-trending-repos/labels/trending-daily
-[trending-weekly]: https://github.com/vitalets/github-trending-repos/labels/trending-weekly
-[GitHub notifications]: https://help.github.com/articles/accessing-your-notifications/
