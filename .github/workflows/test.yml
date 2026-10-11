@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-24.04
     env:
       GITHUB_TOKEN: ${{ github.token }}
-      GOOGLE_TRANSLATE_PROXY_HOST: ${{ secrets.GOOGLE_TRANSLATE_PROXY_HOST }}
+      GOOGLE_TRANSLATE_API_KEY: ${{ secrets.GOOGLE_TRANSLATE_API_KEY }}
       TRENDING_NOT_DRY_RUN: ''
     steps:
       - uses: actions/checkout@v7

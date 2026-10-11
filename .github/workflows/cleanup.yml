@@ -27,7 +27,6 @@ jobs:
     runs-on: ubuntu-24.04
     env:
       GITHUB_TOKEN: ${{ github.token }}
-      GOOGLE_TRANSLATE_PROXY_HOST: ${{ secrets.GOOGLE_TRANSLATE_PROXY_HOST }}
       TRENDING_NOT_DRY_RUN: ${{ (github.event_name == 'schedule' || inputs.dry_run == false) && 'true' || '' }}
     steps:
       - uses: actions/checkout@v7

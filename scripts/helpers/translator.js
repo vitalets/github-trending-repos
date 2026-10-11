@@ -2,13 +2,11 @@
  * Translate to EN if needed.
  */
 
-const { translate } = require('@vitalets/google-translate-api');
 const emojiRegex = require('emoji-regex');
 const {logError, log} = require('./logger');
 
 const ONLY_LATIN_SYMBOLS = /^[\u0000-\u007F]*$/; // eslint-disable-line no-control-regex
 const EMOJI = emojiRegex();
-const GOOGLE_TRANSLATE_PROXY_HOST = process.env.GOOGLE_TRANSLATE_PROXY_HOST;
 
 module.exports = class Translator {
   constructor(text) {
@@ -43,20 +41,24 @@ module.exports = class Translator {
     return ONLY_LATIN_SYMBOLS.test(this._cleanText);
   }
 
-  async _translate(host = '') {
+  async _translate() {
     try {
-      // this._result = await translate(this._text, {to: 'en', client: 'gtx'});
-      // new translate using google-translate-api v9
-      const options = { to: 'en' };
-      if (host) options.host = host;
-      this._result = await translate(this._text, options);
+      const apiKey = process.env.GOOGLE_TRANSLATE_API_KEY;
+      if (!apiKey) throw new Error('GOOGLE_TRANSLATE_API_KEY is required for translation');
+      const response = await fetch('https://translation.googleapis.com/language/translate/v2', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Goog-Api-Key': apiKey,
+        },
+        body: JSON.stringify({ q: this._text, target: 'en', format: 'text' }),
+        signal: AbortSignal.timeout(15000),
+      });
+      if (!response.ok) throw new Error(`Google Translation failed: HTTP ${response.status}`);
+      const result = await response.json();
+      this._result = { text: result.data.translations[0].translatedText };
     } catch (e) {
-      if (!host && e.name === 'TooManyRequestsError' && GOOGLE_TRANSLATE_PROXY_HOST) {
-        log(`TooManyRequestsError. Retrying with proxy host...`);
-        await this._translate(GOOGLE_TRANSLATE_PROXY_HOST);
-      } else {
-        logError(e);
-      }
+      logError(e);
     }
   }
 };
